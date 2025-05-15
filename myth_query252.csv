@@ -1,0 +1,253 @@
+char1Label,char1TypeLabelSample,relationLabel,char2Label,char2TypeLabelSample
+Pandia,lunar deity,father,Zeus,King of the Gods
+Pasithea,Greek deity,father,Zeus,King of the Gods
+Thallo,mythological Greek character,father,Zeus,King of the Gods
+Thalia,Greek deity,father,Zeus,King of the Gods
+Hebe,Olympian god,father,Zeus,King of the Gods
+Hecate,goddess,father,Zeus,King of the Gods
+Zagreus,Greek deity,father,Zeus,King of the Gods
+Calligeneia,mythological Greek character,father,Zeus,King of the Gods
+Adrasteia,Greek deity,father,Zeus,King of the Gods
+Eirene,Greek deity,father,Zeus,King of the Gods
+Angelos,Greek deity,father,Zeus,King of the Gods
+Caerus,Greek deity,father,Zeus,King of the Gods
+Melinoe,Greek deity,father,Zeus,King of the Gods
+Athena,Olympian god,father,Zeus,King of the Gods
+Apollo,Greek deity,father,Zeus,King of the Gods
+Artemis,Olympian god,father,Zeus,King of the Gods
+Basileia,Greek deity,father,Zeus,King of the Gods
+Ares,Greek deity,father,Zeus,King of the Gods
+Dionysus,Greek deity,father,Zeus,King of the Gods
+Hephaestus,Greek deity,father,Zeus,King of the Gods
+Aglaea,Greek deity,father,Zeus,King of the Gods
+Persephone,Greek deity,father,Zeus,King of the Gods
+Dike,allegorical Greek deity,father,Zeus,King of the Gods
+Carpo,Greek deity,father,Zeus,King of the Gods
+Euphrosyne,Greek deity,father,Zeus,King of the Gods
+Astraea,Greek deity,father,Zeus,King of the Gods
+Enyo,war deity,father,Zeus,King of the Gods
+Atropos,Greek deity,father,Zeus,King of the Gods
+Auxo,Greek deity,father,Zeus,King of the Gods
+Clotho,Greek deity,father,Zeus,King of the Gods
+Britomartis,Greek deity,father,Zeus,King of the Gods
+Lachesis,Greek deity,father,Zeus,King of the Gods
+Eunomia,Greek deity,father,Zeus,King of the Gods
+Eileithyia,Greek deity,father,Zeus,King of the Gods
+Aphrodite Pandemos,Greek deity,father,Zeus,King of the Gods
+Aristaeus,Greek deity,father,Apollo,Greek deity
+Asclepius,health deity,father,Apollo,Greek deity
+Hymen,nature deity,father,Apollo,Greek deity
+Phobos,Greek deity,father,Ares,Greek deity
+Deimos,Greek deity,father,Ares,Greek deity
+Eros,fertility deity,father,Ares,Greek deity
+Enyalius,Greek deity,father,Ares,Greek deity
+Himeros,Greek deity,father,Ares,Greek deity
+Adrestia,Greek deity,father,Ares,Greek deity
+Anteros,Greek deity,father,Ares,Greek deity
+Harmonia,Greek deity,father,Ares,Greek deity
+Aeolus,Greek deity,father,Poseidon,Olympian god
+Despoina,Greek deity,father,Poseidon,Olympian god
+Phaunos,Greek deity,father,Poseidon,Olympian god
+Benthesikyme,Greek deity,father,Poseidon,Olympian god
+Zagreus,Greek deity,father,Hades,Olympian god
+Staphylus,mythological Greek character,father,Dionysus,Greek deity
+Pasithea,Greek deity,father,Dionysus,Greek deity
+Phthonus,Greek deity,father,Dionysus,Greek deity
+Hymen,nature deity,father,Dionysus,Greek deity
+Aphrodite,fertility deity,father,Zeus,Olympian god
+Cadmilus,mythological Greek character,father,Hephaestus,Greek deity
+Eucleia,mythological Greek character,father,Hephaestus,Greek deity
+Philophrosyne,Greek deity,father,Hephaestus,Greek deity
+Telesphorus,Greek deity,father,Asclepius,health deity
+Hygieia,Greek deity,father,Asclepius,health deity
+Aegle,Greek deity,father,Asclepius,health deity
+Aceso,mythological Greek character,father,Asclepius,health deity
+Panacea,Greek deity,father,Asclepius,health deity
+Crotus,mythological Greek character,father,Pan,Greek deity
+Circe,Greek deity,father,Helios,solar deity
+Phobetor,Greek deity,father,Hypnos,Greek deity
+Morpheus,Greek deity,father,Hypnos,Greek deity
+Phantasos,Greek deity,father,Hypnos,Greek deity
+Ctesius,Greek deity,father,Soter,Greek deity
+Eupraxia,Greek deity,father,Soter,Greek deity
+Homonoia,Greek deity,father,Soter,Greek deity
+Dike,allegorical Greek deity,father,Nomos,Greek deity
+Pasithea,Greek deity,mother,Hera,fertility deity
+Hebe,Olympian god,mother,Hera,fertility deity
+Hecate,goddess,mother,Hera,fertility deity
+Angelos,Greek deity,mother,Hera,fertility deity
+Enyo,war deity,mother,Hera,fertility deity
+Eileithyia,goddess,mother,Hera,fertility deity
+Ares,Greek deity,mother,Hera,Greek deity
+Hephaestus,Greek deity,mother,Hera,Greek deity
+Philomelus,Greek deity,mother,Demeter,Greek deity
+Despoina,Greek deity,mother,Demeter,Greek deity
+Hecate,goddess,mother,Demeter,Greek deity
+Calligeneia,mythological Greek character,mother,Demeter,Greek deity
+Plutus,Greek deity,mother,Demeter,Greek deity
+Dionysus,Greek deity,mother,Demeter,Greek deity
+Persephone,Greek deity,mother,Demeter,Greek deity
+Zagreus,Greek deity,mother,Persephone,Greek deity
+Melinoe,Greek deity,mother,Persephone,Greek deity
+Phobos,Greek deity,mother,Aphrodite,fertility deity
+Deimos,Greek deity,mother,Aphrodite,fertility deity
+Eros,fertility deity,mother,Aphrodite,fertility deity
+Himeros,Greek deity,mother,Aphrodite,fertility deity
+Phthonus,Greek deity,mother,Aphrodite,fertility deity
+Pothos,mythological Greek character,mother,Aphrodite,fertility deity
+Hermaphroditus,Greek deity,mother,Aphrodite,fertility deity
+Adrestia,Greek deity,mother,Aphrodite,fertility deity
+Hymen,nature deity,mother,Aphrodite,fertility deity
+Anteros,Greek deity,mother,Aphrodite,fertility deity
+Harmonia,Greek deity,mother,Aphrodite,fertility deity
+Hygieia,Greek deity,mother,Athena,Greek deity
+Phosphorus,personification,mother,Eos,Greek deity
+Hesperus,Greek deity,mother,Eos,Greek deity
+Astraea,Greek deity,mother,Eos,Greek deity
+Benthesikyme,Greek deity,mother,Amphitrite,sea deity
+Eros,fertility deity,mother,Iris,Greek deity
+Pothos,mythological Greek character,mother,Iris,Greek deity
+Phaunos,Greek deity,mother,Circe,Greek deity
+Circe,Greek deity,mother,Hecate,goddess
+Pandia,lunar deity,mother,Selene,goddess
+Limos,Greek deity,mother,Eris,Greek deity
+Eros,fertility deity,mother,Eris,Greek deity
+Adikia,Greek deity,mother,Eris,Greek deity
+Neikea,Greek deity,mother,Eris,Greek deity
+Algos,Greek deity,mother,Eris,Greek deity
+Enyalius,Greek deity,mother,Enyo,war deity
+Phantasos,Greek deity,mother,Pasithea,Greek deity
+Homonoia,Greek deity,mother,Praxidice,Greek deity
+Eros,fertility deity,mother,Penia,personification
+Selene,goddess,mother,Basileia,Greek deity
+Morpheus,Greek deity,mother,Aglaea,Greek deity
+Eucleia,mythological Greek character,mother,Aglaea,Greek deity
+Philophrosyne,Greek deity,mother,Aglaea,Greek deity
+Hera,Olympian god,sibling,Hades,Greek deity
+Demeter,Greek deity,sibling,Hades,Greek deity
+Poseidon,Olympian god,sibling,Hades,Greek deity
+Hestia,household deity,sibling,Hades,Greek deity
+Zeus,Olympian god,sibling,Hestia,household deity
+Hera,Olympian god,sibling,Hestia,household deity
+Demeter,Greek deity,sibling,Hestia,household deity
+Poseidon,Olympian god,sibling,Hestia,household deity
+Hades,Olympian god,sibling,Hestia,household deity
+Eris,Greek deity,sibling,Ares,Greek deity
+Hephaestus,Greek deity,sibling,Ares,Greek deity
+Zeus,Olympian god,sibling,Poseidon,Olympian god
+Hera,Olympian god,sibling,Poseidon,Olympian god
+Demeter,Greek deity,sibling,Poseidon,Olympian god
+Hades,Olympian god,sibling,Poseidon,Olympian god
+Hestia,household deity,sibling,Poseidon,Olympian god
+Zeus,Olympian god,sibling,Hades,Olympian god
+Hera,Olympian god,sibling,Zeus,Olympian god
+Demeter,Greek deity,sibling,Zeus,Olympian god
+Poseidon,Olympian god,sibling,Zeus,Olympian god
+Hades,Olympian god,sibling,Zeus,Olympian god
+Hestia,household deity,sibling,Zeus,Olympian god
+Artemis,Olympian god,sibling,Apollo,Greek deity
+Zeus,Olympian god,sibling,Hera,Olympian god
+Demeter,Greek deity,sibling,Hera,Olympian god
+Poseidon,Olympian god,sibling,Hera,Olympian god
+Hades,Olympian god,sibling,Hera,Olympian god
+Hestia,household deity,sibling,Hera,Olympian god
+Apollo,Greek deity,sibling,Artemis,Olympian god
+Zeus,Olympian god,sibling,Demeter,Greek deity
+Hera,Olympian god,sibling,Demeter,Greek deity
+Poseidon,Olympian god,sibling,Demeter,Greek deity
+Hades,Olympian god,sibling,Demeter,Greek deity
+Hestia,household deity,sibling,Demeter,Greek deity
+Phosphorus,personification,sibling,Hesperus,Greek deity
+Deimos,Greek deity,sibling,Phobos,Greek deity
+Phobos,Greek deity,sibling,Deimos,Greek deity
+Himeros,Greek deity,sibling,Eros,fertility deity
+Pothos,mythological Greek character,sibling,Eros,fertility deity
+Anteros,Greek deity,sibling,Eros,fertility deity
+Helios,solar deity,sibling,Selene,goddess
+Eos,Greek deity,sibling,Selene,goddess
+Selene,goddess,sibling,Helios,solar deity
+Eos,Greek deity,sibling,Helios,solar deity
+Ares,Greek deity,sibling,Eris,Greek deity
+Zelus,Greek deity,sibling,Nike,goddess
+Bia,Greek deity,sibling,Nike,goddess
+Kratos,Greek deity,sibling,Nike,goddess
+Telesphorus,Greek deity,sibling,Hygieia,Greek deity
+Aegle,Greek deity,sibling,Hygieia,Greek deity
+Aceso,mythological Greek character,sibling,Hygieia,Greek deity
+Panacea,Greek deity,sibling,Hygieia,Greek deity
+Selene,goddess,sibling,Eos,Greek deity
+Helios,solar deity,sibling,Eos,Greek deity
+Nike,goddess,sibling,Zelus,Greek deity
+Bia,Greek deity,sibling,Zelus,Greek deity
+Kratos,Greek deity,sibling,Zelus,Greek deity
+Dike,allegorical Greek deity,sibling,Eirene,Greek deity
+Eunomia,Greek deity,sibling,Eirene,Greek deity
+Nike,goddess,sibling,Bia,Greek deity
+Zelus,Greek deity,sibling,Bia,Greek deity
+Kratos,Greek deity,sibling,Bia,Greek deity
+Nike,goddess,sibling,Kratos,Greek deity
+Zelus,Greek deity,sibling,Kratos,Greek deity
+Bia,Greek deity,sibling,Kratos,Greek deity
+Eirene,Greek deity,sibling,Dike,allegorical Greek deity
+Eunomia,Greek deity,sibling,Dike,allegorical Greek deity
+Eros,fertility deity,sibling,Anteros,Greek deity
+Himeros,Greek deity,sibling,Anteros,Greek deity
+Pothos,mythological Greek character,sibling,Anteros,Greek deity
+Telesphorus,Greek deity,sibling,Aceso,mythological Greek character
+Hygieia,Greek deity,sibling,Aceso,mythological Greek character
+Aegle,Greek deity,sibling,Aceso,mythological Greek character
+Panacea,Greek deity,sibling,Aceso,mythological Greek character
+Thallo,mythological Greek character,sibling,Carpo,Greek deity
+Thalia,Greek deity,sibling,Euphrosyne,Greek deity
+Aglaea,Greek deity,sibling,Euphrosyne,Greek deity
+Clotho,Greek deity,sibling,Atropos,Greek deity
+Lachesis,Greek deity,sibling,Atropos,Greek deity
+Atropos,Greek deity,sibling,Clotho,Greek deity
+Lachesis,Greek deity,sibling,Clotho,Greek deity
+Telesphorus,Greek deity,sibling,Panacea,Greek deity
+Hygieia,Greek deity,sibling,Panacea,Greek deity
+Aegle,Greek deity,sibling,Panacea,Greek deity
+Aceso,mythological Greek character,sibling,Panacea,Greek deity
+Atropos,Greek deity,sibling,Lachesis,Greek deity
+Clotho,Greek deity,sibling,Lachesis,Greek deity
+Eirene,Greek deity,sibling,Eunomia,Greek deity
+Dike,allegorical Greek deity,sibling,Eunomia,Greek deity
+Persephone,Greek deity,sibling,Despoina,Greek deity
+Hygieia,Greek deity,sibling,Telesphorus,Greek deity
+Aegle,Greek deity,sibling,Telesphorus,Greek deity
+Aceso,mythological Greek character,sibling,Telesphorus,Greek deity
+Panacea,Greek deity,sibling,Telesphorus,Greek deity
+Carpo,Greek deity,sibling,Thallo,mythological Greek character
+Aglaea,Greek deity,sibling,Thalia,Greek deity
+Euphrosyne,Greek deity,sibling,Thalia,Greek deity
+Eros,fertility deity,sibling,Himeros,Greek deity
+Pothos,mythological Greek character,sibling,Himeros,Greek deity
+Anteros,Greek deity,sibling,Himeros,Greek deity
+Eros,fertility deity,sibling,Pothos,mythological Greek character
+Himeros,Greek deity,sibling,Pothos,mythological Greek character
+Anteros,Greek deity,sibling,Pothos,mythological Greek character
+Hesperus,Greek deity,sibling,Phosphorus,personification
+Philophrosyne,Greek deity,sibling,Eucleia,mythological Greek character
+Eucleia,mythological Greek character,sibling,Philophrosyne,Greek deity
+Telesphorus,Greek deity,sibling,Aegle,Greek deity
+Hygieia,Greek deity,sibling,Aegle,Greek deity
+Aceso,mythological Greek character,sibling,Aegle,Greek deity
+Panacea,Greek deity,sibling,Aegle,Greek deity
+Penia,personification,sibling,Amechania,Greek deity
+Amechania,Greek deity,sibling,Penia,personification
+Thalia,Greek deity,sibling,Aglaea,Greek deity
+Euphrosyne,Greek deity,sibling,Aglaea,Greek deity
+Zeus,Olympian god,spouse,Hera,Olympian god
+Amphitrite,sea deity,spouse,Poseidon,Olympian god
+Persephone,Greek deity,spouse,Hades,Olympian god
+Aphrodite,fertility deity,spouse,Hephaestus,Greek deity
+Aglaea,Greek deity,spouse,Hephaestus,Greek deity
+Hades,Olympian god,spouse,Persephone,Greek deity
+Hera,Olympian god,spouse,Zeus,Olympian god
+Ares,Greek deity,spouse,Aphrodite,fertility deity
+Hephaestus,Greek deity,spouse,Aphrodite,fertility deity
+Psyche,mythological Greek character,spouse,Eros,fertility deity
+Poseidon,Olympian god,spouse,Amphitrite,sea deity
+Pasithea,Greek deity,spouse,Hypnos,Greek deity
+Hypnos,Greek deity,spouse,Pasithea,Greek deity
+Hephaestus,Greek deity,spouse,Aglaea,Greek deity
