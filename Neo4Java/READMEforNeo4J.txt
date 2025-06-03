@@ -1,3 +1,6 @@
+basically its an intro for people to make the same graphdatanbase
+
+
 Step 1: Access Neo4j Online
 
 Go to Neo4j Sandbox (https://sandbox.neo4j.com/) - this is free and doesn't require installation
@@ -40,6 +43,3 @@ MATCH (n) OPTIONAL MATCH (n)-[r]->(m) RETURN n, r, m
 
 Step 5: Customize Visualization
 
-Click on any node type in the left panel to change colors
-Adjust node sizes and relationship styles
-Use the zoom and pan controls to navigate
