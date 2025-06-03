@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Greek Mythology Graph</title>
 
-    <!-- Load dependencies first -->
+    <!-- ✅ Load libraries FIRST -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/neo4j-driver/5.15.0/neo4j-driver.min.js"></script>
+    <!-- ✅ FIXED: Using correct Neo4j driver CDN URL -->
+    <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
 
     <style>
-        /* Same styling as your original file (unchanged) */
+        /* 👇 Your styles unchanged */
         body {
             margin: 0;
             padding: 20px;
@@ -184,13 +185,35 @@
         <div class="tooltip" id="tooltip" style="display: none;"></div>
     </div>
 
-    <!-- Your app logic goes at the end of the body, after all libraries are loaded -->
+    <!-- ✅ APP LOGIC GOES HERE AFTER LIBRARIES ARE LOADED -->
     <script>
         window.onload = async function () {
-            const driver = neo4j.driver(
-                'neo4j+s://10634e70.databases.neo4j.io',
-                neo4j.auth.basic('neo4j', 'jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI')
-            );
+            // ✅ FIXED: Check for neo4j in the correct scope
+            if (typeof neo4j === "undefined") {
+                document.getElementById("loading").innerHTML = `
+          ❌ <strong>Neo4j library failed to load!</strong><br/>
+          Make sure your internet is working and the script URL is correct.<br/>
+          <small>Using URL: https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js</small>`;
+                console.error("Neo4j driver not defined. Make sure script loaded properly.");
+                return;
+            }
+
+            console.log("✅ Neo4j driver loaded successfully:", typeof neo4j);
+
+            let driver;
+            try {
+                driver = neo4j.driver(
+                    'neo4j+s://10634e70.databases.neo4j.io',
+                    neo4j.auth.basic('neo4j', 'jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI')
+                );
+                console.log("✅ Neo4j driver created successfully");
+            } catch (error) {
+                console.error("❌ Error creating Neo4j driver:", error);
+                document.getElementById("loading").innerHTML = `
+          ❌ <strong>Error creating Neo4j driver!</strong><br/>
+          ${error.message}`;
+                return;
+            }
 
             const colorMap = {
                 'Olympian god': '#ff6b6b',
@@ -203,11 +226,7 @@
             const container = document.querySelector('.graph-container');
             const width = container.clientWidth;
             const height = container.clientHeight;
-
-            const svg = d3.select('#graph')
-                .attr('width', width)
-                .attr('height', height);
-
+            const svg = d3.select('#graph').attr('width', width).attr('height', height);
             const tooltip = d3.select('#tooltip');
 
             const simulation = d3.forceSimulation()
@@ -219,69 +238,69 @@
             async function loadGraphData() {
                 const session = driver.session();
                 try {
-                    const result = await session.run(`
-                        MATCH (n)
-                        OPTIONAL MATCH (n)-[r]->(m)
-                        RETURN n, r, m
-                    `);
+                    console.log("🔍 Executing Neo4j query...");
+                    const result = await session.run(`MATCH (n) OPTIONAL MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 100`);
+                    console.log("✅ Query executed, processing results...");
 
                     const nodes = new Map();
                     const links = [];
 
                     result.records.forEach(record => {
-                        const node = record.get('n');
-                        const relationship = record.get('r');
-                        const targetNode = record.get('m');
+                        const n = record.get('n');
+                        const r = record.get('r');
+                        const m = record.get('m');
 
-                        if (node && !nodes.has(node.properties.id)) {
-                            nodes.set(node.properties.id, {
-                                id: node.properties.id,
-                                label: node.properties.label || node.properties.id,
-                                type: node.properties.type,
-                                color: colorMap[node.properties.type] || '#888888'
+                        if (n && !nodes.has(n.properties.id)) {
+                            nodes.set(n.properties.id, {
+                                id: n.properties.id,
+                                label: n.properties.label || n.properties.id,
+                                type: n.properties.type,
+                                color: colorMap[n.properties.type] || '#888'
                             });
                         }
 
-                        if (targetNode && relationship) {
-                            if (!nodes.has(targetNode.properties.id)) {
-                                nodes.set(targetNode.properties.id, {
-                                    id: targetNode.properties.id,
-                                    label: targetNode.properties.label || targetNode.properties.id,
-                                    type: targetNode.properties.type,
-                                    color: colorMap[targetNode.properties.type] || '#888888'
+                        if (m && r) {
+                            if (!nodes.has(m.properties.id)) {
+                                nodes.set(m.properties.id, {
+                                    id: m.properties.id,
+                                    label: m.properties.label || m.properties.id,
+                                    type: m.properties.type,
+                                    color: colorMap[m.properties.type] || '#888'
                                 });
                             }
 
                             links.push({
-                                source: node.properties.id,
-                                target: targetNode.properties.id,
-                                type: relationship.properties.type || relationship.type,
-                                relationship: relationship.type
+                                source: n.properties.id,
+                                target: m.properties.id,
+                                relationship: r.type
                             });
                         }
                     });
 
+                    console.log(`✅ Data processed: ${nodes.size} nodes, ${links.length} links`);
+
                     return {
                         nodes: Array.from(nodes.values()),
-                        links: links
+                        links
                     };
                 } finally {
                     await session.close();
                 }
             }
 
-            function createVisualization(graphData) {
+            function createVisualization(data) {
                 document.getElementById('loading').style.display = 'none';
+                console.log("🎨 Creating visualization...");
 
                 const link = svg.append('g')
                     .selectAll('line')
-                    .data(graphData.links)
+                    .data(data.links)
                     .enter().append('line')
                     .attr('class', 'link');
 
                 const node = svg.append('g')
                     .selectAll('circle')
-                    .data(graphData.nodes)
+                    .data(data.nodes)
                     .enter().append('circle')
                     .attr('class', 'node')
                     .attr('r', d => d.id === 'Zeus' ? 25 : 20)
@@ -292,30 +311,24 @@
                         .on('drag', dragged)
                         .on('end', dragended));
 
-                const labels = svg.append('g')
+                const label = svg.append('g')
                     .selectAll('text')
-                    .data(graphData.nodes)
+                    .data(data.nodes)
                     .enter().append('text')
                     .attr('class', 'node-label')
-                    .text(d => d.label)
-                    .style('font-size', d => d.id === 'Zeus' ? '16px' : '14px');
+                    .text(d => d.label);
 
-                node.on('mouseover', function (event, d) {
-                    tooltip
-                        .style('display', 'block')
+                node.on('mouseover', (event, d) => {
+                    tooltip.style('display', 'block')
                         .style('left', (event.pageX + 10) + 'px')
                         .style('top', (event.pageY - 10) + 'px')
                         .html(`<strong>${d.label}</strong><br/>Type: ${d.type}<br/>ID: ${d.id}`);
-                }).on('mouseout', function () {
-                    tooltip.style('display', 'none');
-                });
+                }).on('mouseout', () => tooltip.style('display', 'none'));
 
-                svg.on('dblclick', function () {
-                    simulation.alpha(0.3).restart();
-                });
+                svg.on('dblclick', () => simulation.alpha(0.3).restart());
 
-                simulation.nodes(graphData.nodes).on('tick', ticked);
-                simulation.force('link').links(graphData.links);
+                simulation.nodes(data.nodes).on('tick', ticked);
+                simulation.force('link').links(data.links);
 
                 function ticked() {
                     link
@@ -328,7 +341,7 @@
                         .attr('cx', d => d.x)
                         .attr('cy', d => d.y);
 
-                    labels
+                    label
                         .attr('x', d => d.x)
                         .attr('y', d => d.y);
                 }
@@ -338,12 +351,10 @@
                     d.fx = d.x;
                     d.fy = d.y;
                 }
-
                 function dragged(event, d) {
                     d.fx = event.x;
                     d.fy = event.y;
                 }
-
                 function dragended(event, d) {
                     if (!event.active) simulation.alphaTarget(0);
                     d.fx = null;
@@ -351,19 +362,22 @@
                 }
             }
 
-            // Load and show graph
-            loadGraphData()
-                .then(createVisualization)
-                .catch(error => {
-                    console.error('Error loading graph data:', error);
-                    document.getElementById('loading').innerHTML = `
-                        <div style="color: #ff6b6b;">❌ Error loading data</div>
-                        <div style="font-size: 0.8em; margin-top: 10px;">${error.message}</div>
-                    `;
-                });
+            try {
+                const data = await loadGraphData();
+                createVisualization(data);
+                console.log("🎉 Visualization created successfully!");
+            } catch (err) {
+                console.error("❌ Error loading graph data:", err);
+                document.getElementById("loading").innerHTML = `
+            ❌ <strong>Error loading graph data</strong><br/>
+            ${err.message}<br/>
+            <small>Check console for more details</small>`;
+            }
 
-            window.addEventListener('beforeunload', () => {
-                driver.close();
+            window.addEventListener("beforeunload", () => {
+                if (driver) {
+                    driver.close();
+                }
             });
         };
     </script>
