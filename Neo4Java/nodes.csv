@@ -1,0 +1,606 @@
+id,label,type
+Pandia,Pandia,lunar deity
+Pasithea,Pasithea,Greek deity
+Thallo,Thallo,mythological Greek character
+Thalia,Thalia,Greek deity
+Hebe,Hebe,Olympian god
+Hecate,Hecate,goddess
+Zagreus,Zagreus,Greek deity
+Calligeneia,Calligeneia,mythological Greek character
+Adrasteia,Adrasteia,Greek deity
+Eirene,Eirene,Greek deity
+Angelos,Angelos,Greek deity
+Caerus,Caerus,Greek deity
+Melinoe,Melinoe,Greek deity
+Athena,Athena,Olympian god
+Apollo,Apollo,Greek deity
+Artemis,Artemis,Olympian god
+Basileia,Basileia,Greek deity
+Ares,Ares,Greek deity
+Dionysus,Dionysus,Greek deity
+Hephaestus,Hephaestus,Greek deity
+Aglaea,Aglaea,Greek deity
+Persephone,Persephone,Greek deity
+Dike,Dike,allegorical Greek deity
+Carpo,Carpo,Greek deity
+Euphrosyne,Euphrosyne,Greek deity
+Astraea,Astraea,Greek deity
+Enyo,Enyo,war deity
+Atropos,Atropos,Greek deity
+Auxo,Auxo,Greek deity
+Clotho,Clotho,Greek deity
+Britomartis,Britomartis,Greek deity
+Lachesis,Lachesis,Greek deity
+Eunomia,Eunomia,Greek deity
+Eileithyia,Eileithyia,Greek deity
+Aphrodite Pandemos,Aphrodite Pandemos,Greek deity
+Aristaeus,Aristaeus,Greek deity
+Asclepius,Asclepius,health deity
+Hymen,Hymen,nature deity
+Phobos,Phobos,Greek deity
+Deimos,Deimos,Greek deity
+Eros,Eros,fertility deity
+Enyalius,Enyalius,Greek deity
+Himeros,Himeros,Greek deity
+Adrestia,Adrestia,Greek deity
+Anteros,Anteros,Greek deity
+Harmonia,Harmonia,Greek deity
+Aeolus,Aeolus,Greek deity
+Despoina,Despoina,Greek deity
+Phaunos,Phaunos,Greek deity
+Benthesikyme,Benthesikyme,Greek deity
+Staphylus,Staphylus,mythological Greek character
+Phthonus,Phthonus,Greek deity
+Aphrodite,Aphrodite,fertility deity
+Cadmilus,Cadmilus,mythological Greek character
+Eucleia,Eucleia,mythological Greek character
+Philophrosyne,Philophrosyne,Greek deity
+Telesphorus,Telesphorus,Greek deity
+Hygieia,Hygieia,Greek deity
+Aegle,Aegle,Greek deity
+Aceso,Aceso,mythological Greek character
+Panacea,Panacea,Greek deity
+Crotus,Crotus,mythological Greek character
+Circe,Circe,Greek deity
+Phobetor,Phobetor,Greek deity
+Morpheus,Morpheus,Greek deity
+Phantasos,Phantasos,Greek deity
+Ctesius,Ctesius,Greek deity
+Eupraxia,Eupraxia,Greek deity
+Homonoia,Homonoia,Greek deity
+Eileithyia,Eileithyia,goddess
+Philomelus,Philomelus,Greek deity
+Plutus,Plutus,Greek deity
+Pothos,Pothos,mythological Greek character
+Hermaphroditus,Hermaphroditus,Greek deity
+Phosphorus,Phosphorus,personification
+Hesperus,Hesperus,Greek deity
+Limos,Limos,Greek deity
+Adikia,Adikia,Greek deity
+Neikea,Neikea,Greek deity
+Algos,Algos,Greek deity
+Selene,Selene,goddess
+Hera,Hera,Olympian god
+Demeter,Demeter,Greek deity
+Poseidon,Poseidon,Olympian god
+Hestia,Hestia,household deity
+Zeus,Zeus,Olympian god
+Hades,Hades,Olympian god
+Eris,Eris,Greek deity
+Helios,Helios,solar deity
+Eos,Eos,Greek deity
+Zelus,Zelus,Greek deity
+Bia,Bia,Greek deity
+Kratos,Kratos,Greek deity
+Nike,Nike,goddess
+Penia,Penia,personification
+Amechania,Amechania,Greek deity
+Amphitrite,Amphitrite,sea deity
+Psyche,Psyche,mythological Greek character
+Hypnos,Hypnos,Greek deity
+Aetna,Aetna,Greek nymph
+Eros,Eros,personification
+Methone,Methone,naiad
+Asterius,Asterius,Giants
+Hippolytos,Hippolytos,Giants
+Anax,Anax,Giants
+Pallas,Pallas,Giants
+Aristaeus,Aristaeus,Giants
+Astraios,Astraios,Giants
+Eurytos,Eurytos,Giants
+Hoplodamus,Hoplodamus,Giants
+Athos,Athos,Giants
+Cottus,Cottus,Hecatoncheires
+Otus,Otus,Giants
+Peloreus,Peloreus,Giants
+Colophonus,Colophonus,Giants
+Corydon,Corydon,Giants
+Effra,Effra,Giants
+Halie,Halie,Greek nymph
+Enceladus,Enceladus,Giants
+Damysos,Damysos,Giants
+Alpos,Alpos,Giants
+Mimas,Mimas,Giants
+Clytius,Clytius,Giants
+Aura,Aura,Anemoi
+Hyrpace,Hyrpace,Greek nymph
+Thoosa,Thoosa,Greek nymph
+Polemos,Polemos,personification
+Eurymedon,Eurymedon,Giants
+Oceanus,Oceanus,titan
+Tethys,Tethys,titan
+Typhon,Typhon,Giants
+Aphrodite,Aphrodite,goddess
+Aegaeon,Aegaeon,Greek water deities
+Briareus,Briareus,Hecatoncheires
+Gyges,Gyges,Hecatoncheires
+Polybotes,Polybotes,Giants
+Ephialtes,Ephialtes,Giants
+Porphyrion,Porphyrion,Giants
+Glauce,Glauce,Greek nymph
+Gration,Gration,Giants
+Alcyoneus,Alcyoneus,Giants
+Nemesis,Nemesis,Okeanid
+Uranus,Uranus,Greek primordial deity
+Gaia,Gaia,Greek primordial deity
+Erebos,Erebos,Greek primordial deity
+Nyx,Nyx,goddess
+Aether,Aether,Greek primordial deity
+Chaos,Chaos,Greek primordial deity
+Emphytus,Emphytus,Giants
+Hybris,Hybris,daemon
+Thalassa,Thalassa,Greek primordial deity
+Phorcys,Phorcys,chthonic deities
+Lycus,Lycus,Telchines
+Echidna,Echidna,drakaina
+Cronus,Cronus,titan
+Mnemosyne,Mnemosyne,titan
+Rhea,Rhea,titan
+Themis,Themis,titan
+Hyperion,Hyperion,titan
+Iapetos,Iapetos,titan
+Coeus,Coeus,titan
+Phoebe,Phoebe,titan
+Theia,Theia,titan
+Kreios,Kreios,titan
+Dione,Dione,titan
+Damon,Damon,Telchines
+Geras,Geras,allegorical Greek deity
+Aergia,Aergia,Greek deity
+Nereus,Nereus,Greek water deities
+Ceto,Ceto,Greek water deities
+Thaumas,Thaumas,Greek water deities
+Eurybia,Eurybia,Greek water deities
+Ananke,Ananke,allegory
+Chronos,Chronos,Greek primordial deity
+Charon,Charon,psychopomp
+Hemera,Hemera,goddess
+Thanatos,Thanatos,death deity
+Eleos,Eleos,Greek deity
+Dolos,Dolos,Greek deity
+Dolor,Dolor,Greek deity
+Heimarmene,Heimarmene,mythological Greek character
+Lyssa,Lyssa,Greek deity
+Momus,Momus,Greek deity
+Moros,Moros,Greek deity
+Phthonus,Phthonus,personification
+Epiphron,Epiphron,Greek deity
+Amicitia,Amicitia,personification
+Aegina,Aegina,Greek nymph
+Io,Io,Greek nymph
+Alala,Alala,human
+Hypereia,Hypereia,Greek nymph
+Asopis,Asopis,Greek nymph
+Ismenus,Ismenus,Potamoi
+Pitane,Pitane,naiad
+Daulis,Daulis,naiad
+Anchiroe,Anchiroe,naiad
+Telphusa,Telphusa,Greek nymph
+Symaithis,Symaithis,naiad
+Tricca,Tricca,Greek nymph
+Melite,Melite,naiad
+Samia,Samia,naiad
+Diopatra,Diopatra,Greek nymph
+Castalia,Castalia,naiad
+Callirhoe,Callirhoe,naiad
+Cyane,Cyane,naiad
+Corcyra,Corcyra,Greek nymph
+Euboea,Euboea,naiad
+Sinope,Sinope,naiad
+Nemea,Nemea,naiad
+Salamis,Salamis,Greek nymph
+Harpina,Harpina,Greek nymph
+Combe,Combe,Greek nymph
+Pirene,Pirene,naiad
+Chalcis,Chalcis,Greek nymph
+Oeroe,Oeroe,Greek nymph
+Ornea,Ornea,Greek nymph
+Plataea,Plataea,naiad
+Thespia,Thespia,Greek nymph
+Thyia,Thyia,naiad
+Melaena,Melaena,Greek nymph
+Astyoche,Astyoche,Greek nymph
+Hieromneme,Hieromneme,Greek water deities
+Borysthenis,Borysthenis,Greek nymph
+Evadne,Evadne,naiad
+Tereine,Tereine,Greek nymph
+Asterodeia,Asterodeia,Greek nymph
+Daphne,Daphne,naiad
+Metope,Metope,naiad
+Thelpusa,Thelpusa,Greek nymph
+Alexirrhoe,Alexirrhoe,Greek nymph
+Pegasis,Pegasis,naiad
+Cnossia,Cnossia,naiad
+Aganippe,Aganippe,Greek nymph
+Eupheme,Eupheme,Greek nymph
+Thisbe,Thisbe,Greek nymph
+Abarbarea,Abarbarea,naiad
+Strophia,Strophia,naiad
+Dercetis,Dercetis,Greek nymph
+Ismenis,Ismenis,naiad
+Minthe,Minthe,Greek nymph
+Limnaee,Limnaee,naiad
+Polyxo,Polyxo,naiad
+Caliadne,Caliadne,naiad
+Chione,Chione,Greek nymph
+Anippe,Anippe,naiad
+Phoroneus,Phoroneus,Potamoi
+Danais,Danais,Greek nymph
+Myrtoessa,Myrtoessa,naiad
+Nana,Nana,Greek nymph
+Ocyrhoe,Ocyrhoe,Greek nymph
+Orseis,Orseis,naiad
+Stilbe,Stilbe,naiad
+Tiasa,Tiasa,naiad
+Oenone,Oenone,naiad
+Hesperia,Hesperia,Greek nymph
+Lilaea,Lilaea,naiad
+Sagaritis,Sagaritis,Hamadryad
+Dexithea,Dexithea,Telchines
+Rhesus of Thrace,Rhesus of Thrace,mythological Greek character
+Syrinx,Syrinx,Hamadryad
+Istrus,Istrus,personification
+Cephissus,Cephissus,Potamoi
+Euphrates,Euphrates,Potamoi
+Kytheros,Kytheros,Greek water deities
+Pleistos,Pleistos,Greek water deities
+Ilissos,Ilissos,Greek water deities
+Amalthea,Amalthea,Okeanid
+Metis,Metis,Okeanid
+Zeuxo,Zeuxo,Okeanid
+Tyche,Tyche,Okeanid
+Philyra,Philyra,Okeanid
+Merope,Merope,Okeanid
+Pleione,Pleione,Okeanid
+Styx,Styx,Okeanid
+Eurynome,Eurynome,Okeanid
+Asia,Asia,Okeanid
+Peitho,Peitho,Okeanid
+Rhodos,Rhodos,Okeanid
+Argeia,Argeia,Okeanid
+Plouto,Plouto,Okeanid
+Hesione,Hesione,Okeanid
+Doris,Doris,Okeanid
+Beroe,Beroe,Okeanid
+Idothea,Idothea,Okeanid
+Klytia,Klytia,Okeanid
+Polydora,Polydora,Okeanid
+Asterope,Asterope,Okeanid
+Zeuxippe,Zeuxippe,Okeanid
+Chryseis,Chryseis,deity
+Cisseis,Cisseis,naiad
+Coryphe,Coryphe,Okeanid
+Eudore,Eudore,Okeanid
+Plexaure,Plexaure,Okeanid
+Ianire,Ianire,deity
+Argie,Argie,deity
+Menestho,Menestho,deity
+Melobosis,Melobosis,deity
+Ianthe,Ianthe,Okeanid
+Kleio,Kleio,Okeanid
+Kretheis,Kretheis,naiad
+Axius,Axius,Potamoi
+Phyllis,Phyllis,Potamoi
+Apidanus,Apidanus,Potamoi
+Ardescus,Ardescus,Potamoi
+Granicus,Granicus,Potamoi
+Chremetes,Chremetes,Potamoi
+Calypso,Calypso,Okeanid
+Amphitrite,Amphitrite,Okeanid
+Anapos,Anapos,Potamoi
+Asopus,Asopus,Potamoi
+Crinisus,Crinisus,Potamoi
+Nilus,Nilus,Potamoi
+Inachus,Inachus,Potamoi
+Clitumnus,Clitumnus,Potamoi
+Alpheus,Alpheus,Potamoi
+Enipeus,Enipeus,Potamoi
+Hermus,Hermus,Potamoi
+Chrysas,Chrysas,Potamoi
+Scamander,Scamander,Potamoi
+Eridanos,Eridanos,Potamoi
+Sangarius,Sangarius,Potamoi
+Peneus,Peneus,Potamoi
+Cebren,Cebren,Potamoi
+Caicus,Caicus,Potamoi
+Clytie,Clytie,Okeanid
+Prymno,Prymno,Okeanid
+Callirhoe,Callirhoe,Okeanid
+Creusa,Creusa,naiad
+Lysithea,Lysithea,Okeanid
+Telesto,Telesto,Okeanid
+Perse,Perse,Okeanid
+Electra,Electra,Okeanid
+Thoe,Thoe,Okeanid
+Hippo,Hippo,Okeanid
+Amphiro,Amphiro,Okeanid
+Eidyia,Eidyia,Okeanid
+Phaeno,Phaeno,Okeanid
+Xanthe,Xanthe,deity
+Meliboea,Meliboea,Okeanid
+Pasithoe,Pasithoe,Okeanid
+Capheira,Capheira,Okeanid
+Galaxaura,Galaxaura,Okeanid
+Daeira,Daeira,Okeanid
+Acaste,Acaste,Okeanid
+Admete,Admete,Okeanid
+Bolbe,Bolbe,naiad
+Thrace,Thrace,Okeanid
+Europa,Europa,Okeanid
+Evagore,Evagore,Okeanid
+Ephyra,Ephyra,Okeanid
+Camarina,Camarina,Okeanid
+Cerceis,Cerceis,Okeanid
+Plexaure,Plexaure,goddess
+Hydaspes,Hydaspes,Potamoi
+Hebrus,Hebrus,Potamoi
+Acheron,Acheron,Potamoi
+Aegaeus,Aegaeus,Potamoi
+Aesar,Aesar,Potamoi
+Amnisus,Amnisus,Potamoi
+Anaurus,Anaurus,Potamoi
+Anigrus,Anigrus,Potamoi
+Ascanius,Ascanius,Potamoi
+Baphyras,Baphyras,Potamoi
+Brychon,Brychon,Potamoi
+Elisson,Elisson,Potamoi
+Erasinos,Erasinos,Potamoi
+Termessus,Termessus,Potamoi
+Aesepus,Aesepus,Potamoi
+Symaithos,Symaithos,Potamoi
+Evenus,Evenus,Potamoi
+Ganges,Ganges,Potamoi
+Pactolus,Pactolus,Potamoi
+Nerites,Nerites,Greek water deities
+Idotea,Idotea,Greek water deities
+Crataeis,Crataeis,Greek nymph
+Calliste,Calliste,Greek nymph
+Periboea,Periboea,Greek nymph
+Borysthenes,Borysthenes,river
+Haliacmon,Haliacmon,Potamoi
+Strymon,Strymon,Potamoi
+Bromie,Bromie,Greek nymph
+Phasis,Phasis,Potamoi
+Ladon,Ladon,Potamoi
+Adrasteia,Adrasteia,Greek nymph
+Asterion,Asterion,Potamoi
+Ceto,Ceto,water deity
+Aeas,Aeas,Potamoi
+Dodone,Dodone,Greek nymph
+Deino,Deino,Greek nymph
+Klymene,Klymene,Greek nymph
+Chariclo,Chariclo,Greek nymph
+Cladeus,Cladeus,Potamoi
+Kydnos,Kydnos,river
+Meander,Meander,Potamoi
+Neda,Neda,Greek nymph
+Pamisus,Pamisus,Potamoi
+Caanthus,Caanthus,Greek water deities
+Simoeis,Simoeis,Potamoi
+Spercheus,Spercheus,Potamoi
+Caystrus,Caystrus,Potamoi
+Aethra,Aethra,Greek nymph
+Leuce,Leuce,Greek nymph
+Nephele,Nephele,Greek nymph
+Thaleia,Thaleia,Greek nymph
+Neaera,Neaera,deity
+Orithyia,Orithyia,Greek nymph
+Deiopea,Deiopea,Greek nymph
+Glyce,Glyce,Greek nymph
+Cabeiro,Cabeiro,Greek nymph
+Iris,Iris,goddess
+Arke,Arke,Greek deity
+Aletheia,Aletheia,daemon
+Aegiale,Aegiale,Greek nymph
+Phaethusa,Phaethusa,Greek nymph
+Lampetia,Lampetia,Greek nymph
+Ares,Ares,Olympian god
+Hermes,Hermes,Olympian god
+Heracles,Heracles,demigod of Greek mythology
+Perseus,Perseus,Greek heroes
+Hebe,Hebe,goddess
+Ceroessa,Ceroessa,Greek nymph
+Thrassa,Thrassa,Greek nymph
+Cymopoleia,Cymopoleia,Greek nymph
+Nysa,Nysa,Greek nymph
+Macris,Macris,Greek nymph
+Dike,Dike,Greek deity
+Ersa,Ersa,goddess
+Atë,Atë,allegorical Greek deity
+Amyrus,Amyrus,Potamoi
+Thysa,Thysa,Greek nymph
+Thalia,Thalia,Greek nymph
+Artemis,Artemis,lunar deity
+Aegle,Aegle,naiad
+Athena,Athena,goddess
+Apollo,Apollo,solar deity
+Astris,Astris,Greek nymph
+Beroe,Beroe,Greek nymph
+Hamadryas,Hamadryas,dryad
+Menoites,Menoites,daemon
+Triton,Triton,Greek water deities
+Proteus,Proteus,water deity
+Charybdis,Charybdis,sea monster
+Glaucus,Glaucus,Greek water deities
+Benthesikyme,Benthesikyme,Greek water deities
+Apollonis,Apollonis,Muses Apollonides
+Chrysus,Chrysus,daemon
+Eurymedon,Eurymedon,daemon
+Phaethousa,Phaethousa,Greek nymph
+Opus II,Opus II,demigod of Greek mythology
+Eirene,Eirene,personification
+Cephisso,Cephisso,Muses Apollonides
+Astraea,Astraea,goddess
+Enyo,Enyo,Greek deity
+Auxo,Auxo,mythological Greek character
+Pandia,Pandia,goddess
+Harmonia,Harmonia,mythological Greek character
+Aeolus,Aeolus,mythological Greek character
+Dionysus,Dionysus,nature deity
+Asclepius,Asclepius,Greek deity
+Enyalius,Enyalius,epithet
+Adrestia,Adrestia,goddess
+Despoina,Despoina,mythological Greek character
+Homonoia,Homonoia,mythological Greek character
+Angelia,Angelia,Greek deity
+Caerus,Caerus,personification
+Aphrodite Pandemos,Aphrodite Pandemos,epithet
+Epimetheus,Epimetheus,titan
+Prometheus,Prometheus,titan
+Atlas,Atlas,titan
+Leto,Leto,titan
+Lelantos,Lelantos,titan
+Poseidon,Poseidon,Greek deity
+Hestia,Hestia,Greek deity
+Aura,Aura,Greek nymph
+Taygete,Taygete,Pleiades
+Menoetius,Menoetius,titan
+Anchiale,Anchiale,titan
+Asteria,Asteria,titan
+Euros,Euros,Anemoi
+Notus,Notus,Anemoi
+Caecias,Caecias,Anemoi
+Lips,Lips,wind
+Apeliotes,Apeliotes,Anemoi
+Sciron,Sciron,Anemoi
+Argestes,Argestes,Anemoi
+Astraeus,Astraeus,titan
+Pallas,Pallas,titan
+Perses,Perses,titan
+Phaenon,Phaenon,Astra Planeta
+Pyroeis,Pyroeis,Astra Planeta
+Maia,Maia,Pleiades
+Merope,Merope,Pleiades
+Sterope,Sterope,Pleiades
+Electra,Electra,Pleiades
+Zeus,Zeus,thunder deity
+Hera,Hera,fertility deity
+Demeter,Demeter,goddess
+Stilbon,Stilbon,titan
+Boreas,Boreas,personification
+Zephyrus,Zephyrus,Anemoi
+Celaeno,Celaeno,Greek nymph
+Alcyone,Alcyone,Greek nymph
+Dioné,Dioné,Greek nymph
+Keltos,Keltos,mythological Greek character
+Coronis,Coronis,Greek nymph
+Hades,Hades,death deity
+Aidos,Aidos,Greek deity
+Pan,Pan,nature deity
+Eos,Eos,personification
+Bia,Bia,goddess
+Prophasis,Prophasis,Greek deity
+Phoitos,Phoitos,Giants
+Athis,Athis,demigod of Greek mythology
+Porus,Porus,daemon
+Asopus,Asopus,Greek water deities
+Morea,Morea,Greek nymph
+Ampelus,Ampelus,Hamadryad
+Q21286562,Q21286562,Hamadryad
+Aigeiros,Aigeiros,Hamadryad
+Syke,Syke,Hamadryad
+Kraneia,Kraneia,Hamadryad
+Balanus,Balanus,Hamadryad
+Carya,Carya,Hamadryad
+Ptelea,Ptelea,Hamadryad
+Damasen,Damasen,Giants
+Ourea,Ourea,Greek primordial deity
+Scotus,Scotus,Greek primordial deity
+Pontus,Pontus,Greek primordial deity
+Achlys,Achlys,Greek primordial deity
+Pheme,Pheme,Greek deity
+Andes,Andes,titan
+Oizys,Oizys,allegorical Greek deity
+Apate,Apate,personification
+Philotes,Philotes,goddess
+Elpis,Elpis,mythological Greek character
+Kakia,Kakia,Greek deity
+Acmon,Acmon,Greek deity
+Corus,Corus,daemon
+Periboea,Periboea,water deity
+Scylla,Scylla,sea monster
+Achelous,Achelous,Potamoi
+Helle,Helle,Greek water deities
+Lethe,Lethe,daemon
+Ponos,Ponos,personification
+Dysnomia,Dysnomia,allegorical Greek deity
+Carystus,Carystus,demigod of Greek mythology
+Menai,Menai,titan
+Algea,Algea,group of Greek mythical characters
+Agave,Agave,Greek water deities
+Algos,Algos,goddess
+Limos,Limos,personification
+Tartarus,Tartarus,Greek primordial deity
+Oceanus,Oceanus,Greek water deities
+Melia,Melia,Greek nymph
+Zeus,Zeus,King of the Gods
+Poseidon,Poseidon,water deity
+Hestia,Hestia,Olympian god
+Idaea,Idaea,Greek nymph
+Ida,Ida,Greek nymph
+Amechania,Amechania,personification
+Phoebe,Phoebe,Hamadryad
+Hydros,Hydros,Greek primordial deity
+Orithyia,Orithyia,Greek water deities
+Chloris,Chloris,Greek nymph
+Thesis,Thesis,Greek primordial deity
+Laodice,Laodice,Greek nymph
+Teledice,Teledice,Greek nymph
+Orphne,Orphne,Greek nymph
+Nomos,Nomos,Greek deity
+Adranus,Adranus,Greek deity
+Euryte,Euryte,Greek nymph
+Eusebia,Eusebia,daemon
+Ares,Ares,war deity
+Pronoia,Pronoia,Okeanid
+Pan,Pan,Greek deity
+Soter,Soter,Greek deity
+Hera,Hera,Greek deity
+Athena,Athena,Greek deity
+Iris,Iris,Greek deity
+Praxidice,Praxidice,Greek deity
+Hades,Hades,Greek deity
+Eurotas,Eurotas,Potamoi
+Cephissus,Cephissus,Greek water deities
+Cocytus,Cocytus,Potamoi
+Adonis,Adonis,Greek deity
+Oreius,Oreius,Greek deity
+Keuthonymos,Keuthonymos,Greek deity
+Zeus,Zeus,Greek deity
+Celusa,Celusa,Oread
+Doris,Doris,water deity
+Penelope,Penelope,dryad
+Hamadryas,Hamadryas,mythological Greek character
+Gaia,Gaia,Roman deity
+Nyx,Nyx,Greek primordial deity
+Carme,Carme,Greek nymph
+Nais,Nais,Greek nymph
+Callisto,Callisto,Greek nymph
+Dyssebeia,Dyssebeia,Greek deity
+Aphrodite,Aphrodite,Greek deity
+Aphrodite,Aphrodite,Olympian god
+Praxidice,Praxidice,mythological Greek character
+Lethe,Lethe,Potamoi
+Tethys,Tethys,goddess
+Pseudea,Pseudea,goddess
+Atlantia,Atlantia,Hamadryad
