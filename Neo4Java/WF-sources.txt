@@ -1,0 +1,3 @@
+https://raw.githubusercontent.com/freely1967/Myth_Project/refs/heads/main/Neo4Java/nodes.csv
+
+https://raw.githubusercontent.com/freely1967/Myth_Project/refs/heads/main/Neo4Java/relationships.csv
