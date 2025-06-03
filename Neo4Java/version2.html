@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greek Mythology Relationship Explorer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            min-height: 100vh;
+            color: #1565c0;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #1565c0, #42a5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls-panel {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-box {
+            padding: 12px 45px 12px 20px;
+            border: 2px solid #e3f2fd;
+            border-radius: 25px;
+            font-size: 16px;
+            width: 300px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #1565c0;
+            box-shadow: 0 0 20px rgba(21, 101, 192, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1565c0;
+            font-size: 18px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter-select,
+        .limit-select {
+            padding: 10px 15px;
+            border: 2px solid #e3f2fd;
+            border-radius: 20px;
+            background: white;
+            color: #1565c0;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus,
+        .limit-select:focus {
+            outline: none;
+            border-color: #1565c0;
+        }
+
+        .clear-btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            height: calc(100vh - 140px);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .relationship-filters {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .filter-checkbox:hover {
+            background: rgba(21, 101, 192, 0.1);
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1565c0;
+        }
+
+        .stats-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(21, 101, 192, 0.1);
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #1565c0;
+        }
+
+        .graph-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #graph {
+            width: 100%;
+            height: 100%;
+        }
+
+        .node {
+            cursor: pointer;
+            stroke-width: 3px;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+            transition: all 0.3s ease;
+        }
+
+        .node:hover {
+            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3));
+            transform: scale(1.1);
+        }
+
+        .node.highlighted {
+            stroke: #ff6b6b;
+            stroke-width: 4px;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.8));
+        }
+
+        .link {
+            stroke-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .link.highlighted {
+            stroke-width: 4px;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.6));
+        }
+
+        .node-label {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            fill: #1565c0;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .relationship-label {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            fill: #666;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #1565c0;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #e3f2fd;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 250px;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 1.2em;
+            color: #1565c0;
+        }
+
+        .spinner {
+            border: 3px solid #e3f2fd;
+            border-top: 3px solid #1565c0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .legend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid rgba(21, 101, 192, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .graph-container {
+                height: 600px;
+                order: 1;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .search-box {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🏛️ Mythology Explorer</div>
+            <div class="controls-panel">
+                <div class="search-container">
+                    <input type="text" class="search-box" id="searchBox" placeholder="Search for a character...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <select class="limit-select" id="limitSelect">
+                    <option value="25">Show 25 nodes</option>
+                    <option value="100">Show 100 nodes</option>
+                    <option value="all">Show all nodes</option>
+                </select>
+                <button class="clear-btn" id="clearBtn">Clear Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <h3>🔗 Relationship Filters</h3>
+            <div class="relationship-filters" id="relationshipFilters">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div class="stats-panel">
+                <h3>📊 Statistics</h3>
+                <div class="stat-item">
+                    <span>Nodes:</span>
+                    <span class="stat-value" id="nodeCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Relationships:</span>
+                    <span class="stat-value" id="linkCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Visible:</span>
+                    <span class="stat-value" id="visibleCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <div>Loading Greek Mythology Data...</div>
+                <div style="font-size: 0.9em; margin-top: 10px;">Connecting to Neo4j...</div>
+            </div>
+            <svg id="graph"></svg>
+
+            <div class="legend">
+                <h4 style="margin-bottom: 10px; color: #1565c0;">🎭 Character Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff6b6b;"></div>
+                    <span>Olympian Gods</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4ecdc4;"></div>
+                    <span>Greek Deities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #45b7d1;"></div>
+                    <span>Lunar Deities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #96ceb4;"></div>
+                    <span>Goddesses</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #feca57;"></div>
+                    <span>Mythological Characters</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #a8e6cf;"></div>
+                    <span>Titans</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tooltip" id="tooltip" style="display: none;"></div>
+    </div>
+
+    <script>
+        class MythologyExplorer {
+            constructor() {
+                this.driver = null;
+                this.allData = { nodes: [], links: [] };
+                this.filteredData = { nodes: [], links: [] };
+                this.simulation = null;
+                this.svg = null;
+                this.tooltip = null;
+                this.selectedRelationships = new Set();
+                this.searchTerm = '';
+                this.nodeLimit = 25;
+
+                this.colorMap = {
+                    'Olympian god': '#ff6b6b',
+                    'Greek deity': '#4ecdc4',
+                    'lunar deity': '#45b7d1',
+                    'goddess': '#96ceb4',
+                    'mythological Greek character': '#feca57',
+                    'titan': '#a8e6cf',
+                    'thunder deity': '#ff9f43',
+                    'King of the Gods': '#ff6b6b'
+                };
+
+                this.relationshipColors = {
+                    'father': '#ff6b6b',
+                    'mother': '#ff8fab',
+                    'sibling': '#4ecdc4',
+                    'spouse': '#ff9f43',
+                    'child': '#45b7d1'
+                };
+
+                this.init();
+            }
+
+            async init() {
+                this.setupEventListeners();
+                this.setupVisualization();
+                await this.connectToNeo4j();
+                await this.loadData();
+            }
+
+            setupEventListeners() {
+                document.getElementById('searchBox').addEventListener('input', (e) => {
+                    this.searchTerm = e.target.value.toLowerCase();
+                    this.updateVisualization();
+                });
+
+                document.getElementById('limitSelect').addEventListener('change', (e) => {
+                    this.nodeLimit = e.target.value === 'all' ? Infinity : parseInt(e.target.value);
+                    this.updateVisualization();
+                });
+
+                document.getElementById('clearBtn').addEventListener('click', () => {
+                    this.clearFilters();
+                });
+            }
+
+            setupVisualization() {
+                const container = document.querySelector('.graph-container');
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+
+                this.svg = d3.select('#graph').attr('width', width).attr('height', height);
+                this.tooltip = d3.select('#tooltip');
+
+                this.simulation = d3.forceSimulation()
+                    .force('link', d3.forceLink().id(d => d.id).distance(120))
+                    .force('charge', d3.forceManyBody().strength(-400))
+                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    .force('collision', d3.forceCollide().radius(35));
+            }
+
+            async connectToNeo4j() {
+                try {
+                    this.driver = neo4j.driver(
+                        'neo4j+s://10634e70.databases.neo4j.io',
+                        neo4j.auth.basic('neo4j', 'jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI')
+                    );
+                    console.log('✅ Connected to Neo4j');
+                } catch (error) {
+                    console.error('❌ Neo4j connection failed:', error);
+                    this.showError('Failed to connect to database');
+                }
+            }
+
+            async loadData() {
+                const session = this.driver.session();
+                try {
+                    const result = await session.run(`
+                        MATCH (n) 
+                        OPTIONAL MATCH (n)-[r]->(m) 
+                        RETURN n, r, m 
+                        LIMIT 200
+                    `);
+
+                    this.processData(result.records);
+                    this.createRelationshipFilters();
+                    this.updateVisualization();
+                    document.getElementById('loading').style.display = 'none';
+
+                } catch (error) {
+                    console.error('❌ Data loading failed:', error);
+                    this.showError('Failed to load data');
+                } finally {
+                    await session.close();
+                }
+            }
+
+            processData(records) {
+                const nodes = new Map();
+                const links = [];
+
+                records.forEach(record => {
+                    const n = record.get('n');
+                    const r = record.get('r');
+                    const m = record.get('m');
+
+                    if (n && !nodes.has(n.properties.id)) {
+                        nodes.set(n.properties.id, {
+                            id: n.properties.id,
+                            label: n.properties.label || n.properties.id,
+                            type: n.properties.type,
+                            color: this.colorMap[n.properties.type] || '#888'
+                        });
+                    }
+
+                    if (m && r) {
+                        if (!nodes.has(m.properties.id)) {
+                            nodes.set(m.properties.id, {
+                                id: m.properties.id,
+                                label: m.properties.label || m.properties.id,
+                                type: m.properties.type,
+                                color: this.colorMap[m.properties.type] || '#888'
+                            });
+                        }
+
+                        links.push({
+                            source: n.properties.id,
+                            target: m.properties.id,
+                            relationship: r.properties.type || r.type,
+                            color: this.relationshipColors[r.properties.type] || '#999'
+                        });
+                    }
+                });
+
+                this.allData = {
+                    nodes: Array.from(nodes.values()),
+                    links
+                };
+
+                this.updateStats();
+            }
+
+            createRelationshipFilters() {
+                const relationships = [...new Set(this.allData.links.map(l => l.relationship))];
+                const container = document.getElementById('relationshipFilters');
+
+                relationships.forEach(rel => {
+                    if (rel) {
+                        const div = document.createElement('div');
+                        div.className = 'filter-checkbox';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.id = `rel-${rel}`;
+                        checkbox.checked = true;
+                        checkbox.addEventListener('change', () => {
+                            if (checkbox.checked) {
+                                this.selectedRelationships.add(rel);
+                            } else {
+                                this.selectedRelationships.delete(rel);
+                            }
+                            this.updateVisualization();
+                        });
+
+                        const label = document.createElement('label');
+                        label.htmlFor = `rel-${rel}`;
+                        label.textContent = rel;
+
+                        div.appendChild(checkbox);
+                        div.appendChild(label);
+                        container.appendChild(div);
+
+                        this.selectedRelationships.add(rel);
+                    }
+                });
+            }
+
+            updateVisualization() {
+                this.filterData();
+                this.createVisualization();
+                this.updateStats();
+            }
+
+            filterData() {
+                let filteredNodes = this.allData.nodes;
+                let filteredLinks = this.allData.links;
+
+                // Filter by search term
+                if (this.searchTerm) {
+                    const searchNodes = filteredNodes.filter(n =>
+                        n.label.toLowerCase().includes(this.searchTerm)
+                    );
+
+                    const connectedNodeIds = new Set();
+                    searchNodes.forEach(n => connectedNodeIds.add(n.id));
+
+                    filteredLinks.forEach(l => {
+                        if (connectedNodeIds.has(l.source.id || l.source) ||
+                            connectedNodeIds.has(l.target.id || l.target)) {
+                            connectedNodeIds.add(l.source.id || l.source);
+                            connectedNodeIds.add(l.target.id || l.target);
+                        }
+                    });
+
+                    filteredNodes = filteredNodes.filter(n => connectedNodeIds.has(n.id));
+                }
+
+                // Filter by relationships
+                filteredLinks = filteredLinks.filter(l =>
+                    this.selectedRelationships.has(l.relationship)
+                );
+
+                // Get connected nodes
+                const connectedNodeIds = new Set();
+                filteredLinks.forEach(l => {
+                    connectedNodeIds.add(l.source.id || l.source);
+                    connectedNodeIds.add(l.target.id || l.target);
+                });
+
+                filteredNodes = filteredNodes.filter(n =>
+                    connectedNodeIds.has(n.id) ||
+                    (this.searchTerm && n.label.toLowerCase().includes(this.searchTerm))
+                );
+
+                // Apply node limit
+                if (filteredNodes.length > this.nodeLimit) {
+                    filteredNodes = filteredNodes.slice(0, this.nodeLimit);
+                    const limitedNodeIds = new Set(filteredNodes.map(n => n.id));
+                    filteredLinks = filteredLinks.filter(l =>
+                        limitedNodeIds.has(l.source.id || l.source) &&
+                        limitedNodeIds.has(l.target.id || l.target)
+                    );
+                }
+
+                this.filteredData = { nodes: filteredNodes, links: filteredLinks };
+            }
+
+            createVisualization() {
+                this.svg.selectAll("*").remove();
+
+                const data = this.filteredData;
+                if (data.nodes.length === 0) return;
+
+                // Create links
+                const link = this.svg.append('g')
+                    .selectAll('line')
+                    .data(data.links)
+                    .enter().append('line')
+                    .attr('class', 'link')
+                    .attr('stroke', d => d.color)
+                    .attr('stroke-width', 2);
+
+                // Create relationship labels
+                const linkLabels = this.svg.append('g')
+                    .selectAll('text')
+                    .data(data.links)
+                    .enter().append('text')
+                    .attr('class', 'relationship-label')
+                    .text(d => d.relationship);
+
+                // Create nodes
+                const node = this.svg.append('g')
+                    .selectAll('circle')
+                    .data(data.nodes)
+                    .enter().append('circle')
+                    .attr('class', 'node')
+                    .attr('r', d => d.id === 'Zeus' ? 30 : 20)
+                    .attr('fill', d => d.color)
+                    .attr('stroke', '#fff')
+                    .call(d3.drag()
+                        .on('start', this.dragstarted.bind(this))
+                        .on('drag', this.dragged.bind(this))
+                        .on('end', this.dragended.bind(this)));
+
+                // Create node labels
+                const nodeLabels = this.svg.append('g')
+                    .selectAll('text')
+                    .data(data.nodes)
+                    .enter().append('text')
+                    .attr('class', 'node-label')
+                    .text(d => d.label);
+
+                // Add interactions
+                node.on('mouseover', (event, d) => {
+                    this.showTooltip(event, d);
+                    this.highlightConnections(d);
+                }).on('mouseout', () => {
+                    this.hideTooltip();
+                    this.clearHighlights();
+                });
+
+                // Setup simulation
+                this.simulation.nodes(data.nodes).on('tick', () => {
+                    link
+                        .attr('x1', d => d.source.x)
+                        .attr('y1', d => d.source.y)
+                        .attr('x2', d => d.target.x)
+                        .attr('y2', d => d.target.y);
+
+                    linkLabels
+                        .attr('x', d => (d.source.x + d.target.x) / 2)
+                        .attr('y', d => (d.source.y + d.target.y) / 2);
+
+                    node
+                        .attr('cx', d => d.x)
+                        .attr('cy', d => d.y);
+
+                    nodeLabels
+                        .attr('x', d => d.x)
+                        .attr('y', d => d.y + 5);
+                });
+
+                this.simulation.force('link').links(data.links);
+                this.simulation.alpha(1).restart();
+            }
+
+            highlightConnections(selectedNode) {
+                const connectedLinks = this.filteredData.links.filter(l =>
+                    l.source.id === selectedNode.id || l.target.id === selectedNode.id
+                );
+
+                this.svg.selectAll('.link')
+                    .classed('highlighted', d => connectedLinks.includes(d));
+
+                const connectedNodeIds = new Set([selectedNode.id]);
+                connectedLinks.forEach(l => {
+                    connectedNodeIds.add(l.source.id);
+                    connectedNodeIds.add(l.target.id);
+                });
+
+                this.svg.selectAll('.node')
+                    .classed('highlighted', d => connectedNodeIds.has(d.id));
+            }
+
+            clearHighlights() {
+                this.svg.selectAll('.link').classed('highlighted', false);
+                this.svg.selectAll('.node').classed('highlighted', false);
+            }
+
+            showTooltip(event, d) {
+                const connections = this.filteredData.links
+                    .filter(l => l.source.id === d.id || l.target.id === d.id)
+                    .map(l => {
+                        const other = l.source.id === d.id ? l.target : l.source;
+                        return `${l.relationship}: ${other.label || other.id}`;
+                    });
+
+                this.tooltip
+                    .style('display', 'block')
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 10) + 'px')
+                    .html(`
+                        <strong>${d.label}</strong><br/>
+                        <em>Type: ${d.type}</em><br/>
+                        <br/>
+                        <strong>Relationships:</strong><br/>
+                        ${connections.slice(0, 5).join('<br/>')}
+                        ${connections.length > 5 ? '<br/>...' : ''}
+                    `);
+            }
+
+            hideTooltip() {
+                this.tooltip.style('display', 'none');
+            }
+
+            updateStats() {
+                document.getElementById('nodeCount').textContent = this.allData.nodes.length;
+                document.getElementById('linkCount').textContent = this.allData.links.length;
+                document.getElementById('visibleCount').textContent = this.filteredData.nodes.length;
+            }
+
+            clearFilters() {
+                document.getElementById('searchBox').value = '';
+                document.getElementById('limitSelect').value = '25';
+                this.searchTerm = '';
+                this.nodeLimit = 25;
+
+                // Check all relationship filters
+                document.querySelectorAll('#relationshipFilters input[type="checkbox"]').forEach(cb => {
+                    cb.checked = true;
+                });
+
+                this.selectedRelationships.clear();
+                this.allData.links.forEach(l => {
+                    if (l.relationship) this.selectedRelationships.add(l.relationship);
+                });
+
+                this.updateVisualization();
+            }
+
+            showError(message) {
+                document.getElementById('loading').innerHTML = `
+                    ❌ <strong>Error:</strong> ${message}<br/>
+                    <small>Please check console for more details</small>
+                `;
+            }
+
+            dragstarted(event, d) {
+                if (!event.active) this.simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            dragended(event, d) {
+                if (!event.active) this.simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        // Initialize the application
+        window.onload = async function () {
+            if (typeof neo4j === "undefined") {
+                document.getElementById("loading").innerHTML = `
+                    ❌ <strong>Neo4j library failed to load!</strong><br/>
+                    Make sure your internet connection is working.<br/>
+                    <small>Using CDN: unpkg.com/neo4j-driver</small>
+                `;
+                return;
+            }
+
+            new MythologyExplorer();
+        };
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const container = document.querySelector('.graph-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            d3.select('#graph').attr('width', width).attr('height', height);
+
+            if (window.explorer && window.explorer.simulation) {
+                window.explorer.simulation.force('center', d3.forceCenter(width / 2, height / 2));
+                window.explorer.simulation.alpha(0.3).restart();
+            }
+        });
+    </script>
+</body>
+
+</html>

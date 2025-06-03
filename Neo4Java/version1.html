@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greek Mythology Graph</title>
+
+    <!-- ✅ Load libraries FIRST -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <!-- ✅ FIXED: Using correct Neo4j driver CDN URL -->
+    <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
+
+    <style>
+        /* 👇 Your styles unchanged */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 1000;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .graph-container {
+            width: 100%;
+            height: calc(100vh - 120px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .node {
+            cursor: pointer;
+            stroke-width: 3px;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+        }
+
+        .node:hover {
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1));
+            transform: scale(1.1);
+        }
+
+        .link {
+            stroke: rgba(255, 215, 0, 0.6);
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.3));
+        }
+
+        .node-label {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            fill: white;
+            text-anchor: middle;
+            dominant-baseline: central;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ffd700;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .legend,
+        .controls {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            font-size: 12px;
+        }
+
+        .legend {
+            top: 20px;
+            right: 20px;
+        }
+
+        .controls {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Greek Mythology Family Tree</h1>
+        </div>
+
+        <div class="graph-container">
+            <div id="loading" class="loading">
+                <div>🏛️ Loading Greek Mythology Data...</div>
+                <div style="font-size: 0.8em; margin-top: 10px;">Connecting to Neo4j...</div>
+            </div>
+            <svg id="graph"></svg>
+        </div>
+
+        <div class="legend">
+            <h3 style="margin-top: 0; color: #ffd700;">Legend</h3>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ff6b6b;"></div><span>Olympian Gods</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #4ecdc4;"></div><span>Greek Deities</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #45b7d1;"></div><span>Lunar Deities</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #96ceb4;"></div><span>Goddesses</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #feca57;"></div><span>Mythological Characters</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h3 style="margin-top: 0; color: #ffd700;">Controls</h3>
+            <div>🖱️ Click and drag nodes to move them</div>
+            <div>🔍 Hover over nodes for details</div>
+            <div>⚡ Double-click to center the graph</div>
+        </div>
+
+        <div class="tooltip" id="tooltip" style="display: none;"></div>
+    </div>
+
+    <!-- ✅ APP LOGIC GOES HERE AFTER LIBRARIES ARE LOADED -->
+    <script>
+        window.onload = async function () {
+            // ✅ FIXED: Check for neo4j in the correct scope
+            if (typeof neo4j === "undefined") {
+                document.getElementById("loading").innerHTML = `
+          ❌ <strong>Neo4j library failed to load!</strong><br/>
+          Make sure your internet is working and the script URL is correct.<br/>
+          <small>Using URL: https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js</small>`;
+                console.error("Neo4j driver not defined. Make sure script loaded properly.");
+                return;
+            }
+
+            console.log("✅ Neo4j driver loaded successfully:", typeof neo4j);
+
+            let driver;
+            try {
+                driver = neo4j.driver(
+                    'neo4j+s://10634e70.databases.neo4j.io',
+                    neo4j.auth.basic('neo4j', 'jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI')
+                );
+                console.log("✅ Neo4j driver created successfully");
+            } catch (error) {
+                console.error("❌ Error creating Neo4j driver:", error);
+                document.getElementById("loading").innerHTML = `
+          ❌ <strong>Error creating Neo4j driver!</strong><br/>
+          ${error.message}`;
+                return;
+            }
+
+            const colorMap = {
+                'Olympian god': '#ff6b6b',
+                'Greek deity': '#4ecdc4',
+                'lunar deity': '#45b7d1',
+                'goddess': '#96ceb4',
+                'mythological Greek character': '#feca57'
+            };
+
+            const container = document.querySelector('.graph-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            const svg = d3.select('#graph').attr('width', width).attr('height', height);
+            const tooltip = d3.select('#tooltip');
+
+            const simulation = d3.forceSimulation()
+                .force('link', d3.forceLink().id(d => d.id).distance(100))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(40));
+
+            async function loadGraphData() {
+                const session = driver.session();
+                try {
+                    console.log("🔍 Executing Neo4j query...");
+                    const result = await session.run(`MATCH (n) OPTIONAL MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 100`);
+                    console.log("✅ Query executed, processing results...");
+                    
+                    const nodes = new Map();
+                    const links = [];
+
+                    result.records.forEach(record => {
+                        const n = record.get('n');
+                        const r = record.get('r');
+                        const m = record.get('m');
+
+                        if (n && !nodes.has(n.properties.id)) {
+                            nodes.set(n.properties.id, {
+                                id: n.properties.id,
+                                label: n.properties.label || n.properties.id,
+                                type: n.properties.type,
+                                color: colorMap[n.properties.type] || '#888'
+                            });
+                        }
+
+                        if (m && r) {
+                            if (!nodes.has(m.properties.id)) {
+                                nodes.set(m.properties.id, {
+                                    id: m.properties.id,
+                                    label: m.properties.label || m.properties.id,
+                                    type: m.properties.type,
+                                    color: colorMap[m.properties.type] || '#888'
+                                });
+                            }
+
+                            links.push({
+                                source: n.properties.id,
+                                target: m.properties.id,
+                                relationship: r.type
+                            });
+                        }
+                    });
+
+                    console.log(`✅ Data processed: ${nodes.size} nodes, ${links.length} links`);
+                    
+                    return {
+                        nodes: Array.from(nodes.values()),
+                        links
+                    };
+                } finally {
+                    await session.close();
+                }
+            }
+
+            function createVisualization(data) {
+                document.getElementById('loading').style.display = 'none';
+                console.log("🎨 Creating visualization...");
+
+                const link = svg.append('g')
+                    .selectAll('line')
+                    .data(data.links)
+                    .enter().append('line')
+                    .attr('class', 'link');
+
+                const node = svg.append('g')
+                    .selectAll('circle')
+                    .data(data.nodes)
+                    .enter().append('circle')
+                    .attr('class', 'node')
+                    .attr('r', d => d.id === 'Zeus' ? 25 : 20)
+                    .attr('fill', d => d.color)
+                    .attr('stroke', '#ffd700')
+                    .call(d3.drag()
+                        .on('start', dragstarted)
+                        .on('drag', dragged)
+                        .on('end', dragended));
+
+                const label = svg.append('g')
+                    .selectAll('text')
+                    .data(data.nodes)
+                    .enter().append('text')
+                    .attr('class', 'node-label')
+                    .text(d => d.label);
+
+                node.on('mouseover', (event, d) => {
+                    tooltip.style('display', 'block')
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 10) + 'px')
+                        .html(`<strong>${d.label}</strong><br/>Type: ${d.type}<br/>ID: ${d.id}`);
+                }).on('mouseout', () => tooltip.style('display', 'none'));
+
+                svg.on('dblclick', () => simulation.alpha(0.3).restart());
+
+                simulation.nodes(data.nodes).on('tick', ticked);
+                simulation.force('link').links(data.links);
+
+                function ticked() {
+                    link
+                        .attr('x1', d => d.source.x)
+                        .attr('y1', d => d.source.y)
+                        .attr('x2', d => d.target.x)
+                        .attr('y2', d => d.target.y);
+
+                    node
+                        .attr('cx', d => d.x)
+                        .attr('cy', d => d.y);
+
+                    label
+                        .attr('x', d => d.x)
+                        .attr('y', d => d.y);
+                }
+
+                function dragstarted(event, d) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+                function dragged(event, d) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                }
+                function dragended(event, d) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }
+            }
+
+            try {
+                const data = await loadGraphData();
+                createVisualization(data);
+                console.log("🎉 Visualization created successfully!");
+            } catch (err) {
+                console.error("❌ Error loading graph data:", err);
+                document.getElementById("loading").innerHTML = `
+            ❌ <strong>Error loading graph data</strong><br/>
+            ${err.message}<br/>
+            <small>Check console for more details</small>`;
+            }
+
+            window.addEventListener("beforeunload", () => {
+                if (driver) {
+                    driver.close();
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
