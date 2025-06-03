@@ -1,0 +1,23 @@
+HELLO people 
+
+
+So I thought, the idea was that our current UI is super crowded and not really user-friendly. So I thought to myself, maybe I can start with the UI. But to really get into it and dive deep into the UI, I needed to change the CSV file, because the one we had was super complicated to use with a graph database.
+
+So I made a Python script that converted it into two simpler CSV files. I made one file for the nodes and one for the relationships. Then I started adding them into a real graph database. I uploaded them online to DataBank, grabbed the raw file from there, and put it on GitHub so I could use it without license issues.
+
+I used that GitHub DataBank in my project, wrote a new Python script, and tried to build a graph database with it. I used the Cypher language in Neo4j, and honestly I had a lot of trouble using it but I finally made it. Now we have a graph database that’s really easy to edit and work with.
+
+Then I started working on defining the structure of the graph. I made the graph database and manually added all the queries for the nodes and relationships between everything, because that part wasn’t in the original data. It was more complicated.
+
+After that, I exported the graph database. I got the API of that graph and used it to create the Jarvis part. We should take that graph database and connect it to the website.
+
+After fixing some website errors, I started editing the UI. Now, on the website, you can choose the number of nodes, search for something, filter the relationships, basically everything you’d need. I think it’s already more than enough for what we need in this project.
+
+So feel free to check it out and let me know what you think.
+
+
+im changin the website continuesly but the link will be the same:
+
+https://hamidrezarahimian.github.io/Greek_Mythology_GraphProject/
+
+
