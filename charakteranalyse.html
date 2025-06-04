@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CharakterAnalyse</title>
+  <title>Character Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
   <style>
@@ -118,31 +118,31 @@
 </head>
 <body>
   <div class="header">
-    <h1>🔍 CharakterAnalyse</h1>
-    <a href="index.html" class="back-link">🏛️ Zurück zur Übersicht</a>
+    <h1>🔍 Character Analysis</h1>
+    <a href="https://freely1967.github.io/Myth_Project/" class="back-link">🏛️ Back to Overview</a>
   </div>
 
   <div class="container">
     <div id="sliders"></div>
 
-    <label for="typeSelect">Charakter-Typ (optional):</label>
+    <label for="typeSelect">Character type (optional):</label>
     <select id="typeSelect">
-      <option value="Any">Alle Typen</option>
+      <option value="Any">All types</option>
     </select>
 
-    <button onclick="analyze()">Finde beste Übereinstimmung</button>
+    <button onclick="analyze()">Find Best Match</button>
 
     <div class="results" id="results"></div>
   </div>
 
   <script>
     const labels = [
-      "Wunsch nach vielen Kindern",
-      "Neigung zu Gewalt (Tötungen)",
-      "Anzahl an Ehen / Partnerschaften",
-      "Beliebtheit (Eingehende Verbindungen)",
-      "Einfluss (Ausgehende Verbindungen)",
-      "Geschwisterverbindungen"
+      "Desire for many children",
+      "Violent tendencies (killings)",
+      "Number of marriages/partners",
+      "Popularity (incoming connections)",
+      "Influence (outgoing connections)",
+      "Sibling relationships"
     ];
 
     const sliderDiv = document.getElementById("sliders");
@@ -226,14 +226,14 @@
         const score = features.reduce((sum, f, i) => sum + f * weights[i], 0);
 
         scores[node.id] = score;
-        explanations[node.id] = `Typ: ${node.type} | Kinder: ${children}, Kills: ${kills}, Ehen: ${spouses}, `
-                              + `Eingehend: ${inc.length}, Ausgehend: ${out.length}, Geschwister: ${siblings} => Score: ${score}`;
+        explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, `
+                              + `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} => Score: ${score}`;
       });
 
       const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
 
       const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "<h2>Top 5 Übereinstimmungen</h2>";
+      resultsDiv.innerHTML = "<h2>Top 5 Matches</h2>";
 
       sorted.slice(0, 5).forEach(([id, score], i) => {
         resultsDiv.innerHTML += `
@@ -245,7 +245,7 @@
       });
     }
 
-    // Fülle Dropdown beim Start
+    // Fill dropdown on load
     fetchGraphData().then(data => {
       const types = [...new Set(data.nodes.map(n => n.type))].sort();
       const select = document.getElementById("typeSelect");
