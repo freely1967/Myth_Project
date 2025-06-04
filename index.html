@@ -282,6 +282,23 @@
                 order: 1;
             }
         }
+        .analysis-btn {
+    background: #ffd54f;
+    color: #1565c0;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.analysis-btn:hover {
+    background: #ffca28;
+    text-decoration: underline;
+}
+
     </style>
 </head>
 
@@ -289,6 +306,8 @@
     <div class="header">
         <div class="header-content">
             <div class="logo">🏛️ Mythology Explorer</div>
+            <a href="charakteranalyse.html" class="btn analysis-btn">🔍 CharakterAnalyse</a>
+
             <div class="controls-panel">
                 <input type="text" class="search-box" id="searchBox" placeholder="Search character...">
                 <select class="limit-select" id="limitSelect">
