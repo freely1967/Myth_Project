@@ -1,0 +1,1359 @@
+char1Label,char1Type,relationLabel,char2Label,char2Type
+Aetna,Greek nymph,father,Briareus,Hecatoncheires
+Eros,personification,father,Zephyrus,Anemoi
+Methone,naiad,father,Alcyoneus,Giants
+Asterius,Giants,father,Anax,Giants
+Hippolytos,Giants,father,Uranus,Greek primordial deity
+Anax,Giants,father,Uranus,Greek primordial deity
+Pallas,Giants,father,Uranus,Greek primordial deity
+Aristaeus,Giants,father,Uranus,Greek primordial deity
+Astraios,Giants,father,Uranus,Greek primordial deity
+Eurytos,Giants,father,Uranus,Greek primordial deity
+Hoplodamus,Giants,father,Uranus,Greek primordial deity
+Athos,Giants,father,Uranus,Greek primordial deity
+Cottus,Hecatoncheires,father,Uranus,Greek primordial deity
+Otus,Giants,father,Uranus,Greek primordial deity
+Peloreus,Giants,father,Uranus,Greek primordial deity
+Colophonus,Giants,father,Tartarus,Greek primordial deity
+Corydon,Giants,father,Tartarus,Greek primordial deity
+Effra,Giants,father,Tartarus,Greek primordial deity
+Halie,Greek nymph,father,Pontus,Greek primordial deity
+Enceladus,Giants,father,Uranus,Greek primordial deity
+Damysos,Giants,father,Uranus,Greek primordial deity
+Alpos,Giants,father,Uranus,Greek primordial deity
+Mimas,Giants,father,Uranus,Greek primordial deity
+Clytius,Giants,father,Uranus,Greek primordial deity
+Aura,Anemoi,father,Boreas,personification
+Hyrpace,Greek nymph,father,Boreas,personification
+Thoosa,Greek nymph,father,Phorcys,chthonic deities
+Polemos,personification,father,Phorcys,chthonic deities
+Eurymedon,Giants,father,Uranus,Greek primordial deity
+Oceanus,titan,father,Uranus,Greek primordial deity
+Tethys,titan,father,Uranus,Greek primordial deity
+Typhon,Giants,father,Tartarus,Greek primordial deity
+Aphrodite,goddess,father,Uranus,Greek primordial deity
+Aegaeon,Greek water deities,father,Uranus,Greek primordial deity
+Aetna,Greek nymph,father,Uranus,Greek primordial deity
+Briareus,Hecatoncheires,father,Uranus,Greek primordial deity
+Gyges,Hecatoncheires,father,Uranus,Greek primordial deity
+Polybotes,Giants,father,Uranus,Greek primordial deity
+Ephialtes,Giants,father,Uranus,Greek primordial deity
+Porphyrion,Giants,father,Uranus,Greek primordial deity
+Glauce,Greek nymph,father,Uranus,Greek primordial deity
+Gration,Giants,father,Uranus,Greek primordial deity
+Alcyoneus,Giants,father,Uranus,Greek primordial deity
+Nemesis,Okeanid,father,Erebos,Greek primordial deity
+Uranus,Greek primordial deity,father,Chaos,Greek primordial deity
+Gaia,Greek primordial deity,father,Chaos,Greek primordial deity
+Eros,personification,father,Chaos,Greek primordial deity
+Erebos,Greek primordial deity,father,Chaos,Greek primordial deity
+Nyx,goddess,father,Chaos,Greek primordial deity
+Eros,personification,father,Erebos,Greek primordial deity
+Aether,Greek primordial deity,father,Erebos,Greek primordial deity
+Uranus,Greek primordial deity,father,Aether,Greek primordial deity
+Gaia,Greek primordial deity,father,Aether,Greek primordial deity
+Eros,personification,father,Aether,Greek primordial deity
+Chaos,Greek primordial deity,father,Chronos,Greek primordial deity
+Enceladus,Giants,father,Tartarus,Greek primordial deity
+Emphytus,Giants,father,Tartarus,Greek primordial deity
+Hybris,daemon,father,Erebos,Greek primordial deity
+Thalassa,Greek primordial deity,father,Aether,Greek primordial deity
+Phorcys,chthonic deities,father,Pontus,Greek primordial deity
+Lycus,Telchines,father,Pontus,Greek primordial deity
+Echidna,drakaina,father,Phorcys,chthonic deities
+Cronus,titan,father,Uranus,Greek primordial deity
+Mnemosyne,titan,father,Uranus,Greek primordial deity
+Rhea,titan,father,Uranus,Greek primordial deity
+Themis,titan,father,Uranus,Greek primordial deity
+Hyperion,titan,father,Uranus,Greek primordial deity
+Iapetos,titan,father,Uranus,Greek primordial deity
+Coeus,titan,father,Uranus,Greek primordial deity
+Phoebe,titan,father,Uranus,Greek primordial deity
+Theia,titan,father,Uranus,Greek primordial deity
+Kreios,titan,father,Uranus,Greek primordial deity
+Dione,titan,father,Uranus,Greek primordial deity
+Damon,Telchines,father,Pontus,Greek primordial deity
+Geras,allegorical Greek deity,father,Erebos,Greek primordial deity
+Aergia,Greek deity,father,Aether,Greek primordial deity
+Nereus,Greek water deities,father,Pontus,Greek primordial deity
+Ceto,Greek water deities,father,Pontus,Greek primordial deity
+Thaumas,Greek water deities,father,Pontus,Greek primordial deity
+Aegaeon,Greek water deities,father,Pontus,Greek primordial deity
+Eurybia,Greek water deities,father,Pontus,Greek primordial deity
+Ananke,allegory,father,Chronos,Greek primordial deity
+Chronos,Greek primordial deity,father,Hydros,Greek primordial deity
+Ananke,allegory,father,Hydros,Greek primordial deity
+Pothos,mythological Greek character,father,Zephyrus,Anemoi
+Echidna,drakaina,father,Tartarus,Greek primordial deity
+Charon,psychopomp,father,Erebos,Greek primordial deity
+Eris,Greek deity,father,Erebos,Greek primordial deity
+Hypnos,Greek deity,father,Erebos,Greek primordial deity
+Hemera,goddess,father,Erebos,Greek primordial deity
+Thanatos,death deity,father,Erebos,Greek primordial deity
+Eleos,Greek deity,father,Erebos,Greek primordial deity
+Dolos,Greek deity,father,Aether,Greek primordial deity
+Dolor,Greek deity,father,Aether,Greek primordial deity
+Heimarmene,mythological Greek character,father,Uranus,Greek primordial deity
+Lyssa,Greek deity,father,Uranus,Greek primordial deity
+Basileia,Greek deity,father,Uranus,Greek primordial deity
+Momus,Greek deity,father,Erebos,Greek primordial deity
+Phantasos,Greek deity,father,Erebos,Greek primordial deity
+Moros,Greek deity,father,Erebos,Greek primordial deity
+Phthonus,personification,father,Erebos,Greek primordial deity
+Epiphron,Greek deity,father,Erebos,Greek primordial deity
+Amicitia,personification,father,Erebos,Greek primordial deity
+Aegina,Greek nymph,father,Asopus,Potamoi
+Io,Greek nymph,father,Inachus,Potamoi
+Eros,personification,father,Porus,daemon
+Alala,human,father,Polemos,personification
+Hypereia,Greek nymph,father,Inachus,Potamoi
+Asopis,Greek nymph,father,Asopus,Potamoi
+Ismenus,Potamoi,father,Asopus,Potamoi
+Pitane,naiad,father,Eurotas,Potamoi
+Daulis,naiad,father,Cephissus,Potamoi
+Anchiroe,naiad,father,Erasinos,Potamoi
+Telphusa,Greek nymph,father,Termessus,Potamoi
+Symaithis,naiad,father,Symaithos,Potamoi
+Tricca,Greek nymph,father,Peneus,Potamoi
+Melite,naiad,father,Aegaeus,Potamoi
+Samia,naiad,father,Meander,Potamoi
+Diopatra,Greek nymph,father,Spercheus,Potamoi
+Castalia,naiad,father,Achelous,Potamoi
+Callirhoe,naiad,father,Achelous,Potamoi
+Cyane,naiad,father,Anapos,Potamoi
+Corcyra,Greek nymph,father,Asopus,Potamoi
+Euboea,naiad,father,Asopus,Potamoi
+Sinope,naiad,father,Asopus,Potamoi
+Nemea,naiad,father,Asopus,Potamoi
+Salamis,Greek nymph,father,Asopus,Potamoi
+Harpina,Greek nymph,father,Asopus,Potamoi
+Combe,Greek nymph,father,Asopus,Potamoi
+Pirene,naiad,father,Asopus,Potamoi
+Chalcis,Greek nymph,father,Asopus,Potamoi
+Oeroe,Greek nymph,father,Asopus,Potamoi
+Ornea,Greek nymph,father,Asopus,Potamoi
+Plataea,naiad,father,Asopus,Potamoi
+Thespia,Greek nymph,father,Asopus,Potamoi
+Thyia,naiad,father,Cephissus,Greek water deities
+Melaena,Greek nymph,father,Cephissus,Greek water deities
+Astyoche,Greek nymph,father,Simoeis,Potamoi
+Hieromneme,Greek water deities,father,Simoeis,Potamoi
+Borysthenis,Greek nymph,father,Borysthenes,river
+Evadne,naiad,father,Strymon,Potamoi
+Tereine,Greek nymph,father,Strymon,Potamoi
+Asterodeia,Greek nymph,father,Phasis,Potamoi
+Daphne,naiad,father,Ladon,Potamoi
+Metope,naiad,father,Ladon,Potamoi
+Thelpusa,Greek nymph,father,Ladon,Potamoi
+Alexirrhoe,Greek nymph,father,Granicus,Potamoi
+Pegasis,naiad,father,Granicus,Potamoi
+Cnossia,naiad,father,Amnisus,Potamoi
+Aganippe,Greek nymph,father,Termessus,Potamoi
+Eupheme,Greek nymph,father,Termessus,Potamoi
+Thisbe,Greek nymph,father,Termessus,Potamoi
+Abarbarea,naiad,father,Aesepus,Potamoi
+Strophia,naiad,father,Ismenus,Potamoi
+Dercetis,Greek nymph,father,Ismenus,Potamoi
+Ismenis,naiad,father,Ismenus,Potamoi
+Minthe,Greek nymph,father,Cocytus,Potamoi
+Limnaee,naiad,father,Ganges,Potamoi
+Polyxo,naiad,father,Nilus,Potamoi
+Caliadne,naiad,father,Nilus,Potamoi
+Anchiroe,naiad,father,Nilus,Potamoi
+Chione,Greek nymph,father,Nilus,Potamoi
+Anippe,naiad,father,Nilus,Potamoi
+Phoroneus,Potamoi,father,Inachus,Potamoi
+Danais,Greek nymph,father,Alpheus,Potamoi
+Myrtoessa,naiad,father,Alpheus,Potamoi
+Nana,Greek nymph,father,Sangarius,Potamoi
+Ocyrhoe,Greek nymph,father,Sangarius,Potamoi
+Daphne,naiad,father,Peneus,Potamoi
+Orseis,naiad,father,Peneus,Potamoi
+Stilbe,naiad,father,Peneus,Potamoi
+Tiasa,naiad,father,Eurotas,Potamoi
+Oenone,naiad,father,Cebren,Potamoi
+Hesperia,Greek nymph,father,Cebren,Potamoi
+Castalia,naiad,father,Cephissus,Potamoi
+Lilaea,naiad,father,Cephissus,Potamoi
+Sagaritis,Hamadryad,father,Sangarius,Potamoi
+Dexithea,Telchines,father,Damon,Telchines
+Rhesus of Thrace,mythological Greek character,father,Strymon,Potamoi
+Syrinx,Hamadryad,father,Ladon,Potamoi
+Istrus,personification,father,Oceanus,titan
+Cephissus,Potamoi,father,Oceanus,titan
+Euphrates,Potamoi,father,Oceanus,titan
+Kytheros,Greek water deities,father,Oceanus,titan
+Pleistos,Greek water deities,father,Oceanus,titan
+Ilissos,Greek water deities,father,Oceanus,titan
+Amalthea,Okeanid,father,Oceanus,titan
+Nemesis,Okeanid,father,Oceanus,titan
+Metis,Okeanid,father,Oceanus,titan
+Zeuxo,Okeanid,father,Oceanus,titan
+Tyche,Okeanid,father,Oceanus,titan
+Philyra,Okeanid,father,Oceanus,titan
+Merope,Okeanid,father,Oceanus,titan
+Pleione,Okeanid,father,Oceanus,titan
+Styx,Okeanid,father,Oceanus,titan
+Eurynome,Okeanid,father,Oceanus,titan
+Asia,Okeanid,father,Oceanus,titan
+Peitho,Okeanid,father,Oceanus,titan
+Rhodos,Okeanid,father,Oceanus,titan
+Argeia,Okeanid,father,Oceanus,titan
+Plouto,Okeanid,father,Oceanus,titan
+Hesione,Okeanid,father,Oceanus,titan
+Doris,Okeanid,father,Oceanus,titan
+Beroe,Okeanid,father,Oceanus,titan
+Idothea,Okeanid,father,Oceanus,titan
+Klytia,Okeanid,father,Oceanus,titan
+Polydora,Okeanid,father,Oceanus,titan
+Asterope,Okeanid,father,Oceanus,titan
+Zeuxippe,Okeanid,father,Oceanus,titan
+Chryseis,deity,father,Oceanus,titan
+Cisseis,naiad,father,Oceanus,titan
+Coryphe,Okeanid,father,Oceanus,titan
+Eudore,Okeanid,father,Oceanus,titan
+Plexaure,Okeanid,father,Oceanus,titan
+Ianire,deity,father,Oceanus,titan
+Argie,deity,father,Oceanus,titan
+Menestho,deity,father,Oceanus,titan
+Melobosis,deity,father,Oceanus,titan
+Ianthe,Okeanid,father,Oceanus,titan
+Kleio,Okeanid,father,Oceanus,titan
+Kretheis,naiad,father,Oceanus,titan
+Axius,Potamoi,father,Oceanus,titan
+Phyllis,Potamoi,father,Oceanus,titan
+Apidanus,Potamoi,father,Oceanus,titan
+Ardescus,Potamoi,father,Oceanus,titan
+Granicus,Potamoi,father,Oceanus,titan
+Chremetes,Potamoi,father,Oceanus,titan
+Calypso,Okeanid,father,Nereus,Greek water deities
+Amphitrite,Okeanid,father,Nereus,Greek water deities
+Beroe,Okeanid,father,Nereus,Greek water deities
+Anapos,Potamoi,father,Oceanus,titan
+Asopus,Potamoi,father,Oceanus,titan
+Crinisus,Potamoi,father,Oceanus,titan
+Nilus,Potamoi,father,Oceanus,titan
+Inachus,Potamoi,father,Oceanus,titan
+Clitumnus,Potamoi,father,Oceanus,titan
+Alpheus,Potamoi,father,Oceanus,titan
+Enipeus,Potamoi,father,Oceanus,titan
+Hermus,Potamoi,father,Oceanus,titan
+Chrysas,Potamoi,father,Oceanus,titan
+Scamander,Potamoi,father,Oceanus,titan
+Eridanos,Potamoi,father,Oceanus,titan
+Sangarius,Potamoi,father,Oceanus,titan
+Peneus,Potamoi,father,Oceanus,titan
+Cebren,Potamoi,father,Oceanus,titan
+Caicus,Potamoi,father,Oceanus,titan
+Clytie,Okeanid,father,Oceanus,titan
+Prymno,Okeanid,father,Oceanus,titan
+Callirhoe,Okeanid,father,Oceanus,titan
+Orseis,naiad,father,Oceanus,titan
+Creusa,naiad,father,Oceanus,titan
+Lysithea,Okeanid,father,Oceanus,titan
+Telesto,Okeanid,father,Oceanus,titan
+Perse,Okeanid,father,Oceanus,titan
+Electra,Okeanid,father,Oceanus,titan
+Thoe,Okeanid,father,Oceanus,titan
+Hippo,Okeanid,father,Oceanus,titan
+Amphiro,Okeanid,father,Oceanus,titan
+Eidyia,Okeanid,father,Oceanus,titan
+Phaeno,Okeanid,father,Oceanus,titan
+Xanthe,deity,father,Oceanus,titan
+Meliboea,Okeanid,father,Oceanus,titan
+Pasithoe,Okeanid,father,Oceanus,titan
+Capheira,Okeanid,father,Oceanus,titan
+Galaxaura,Okeanid,father,Oceanus,titan
+Daeira,Okeanid,father,Oceanus,titan
+Acaste,Okeanid,father,Oceanus,titan
+Admete,Okeanid,father,Oceanus,titan
+Bolbe,naiad,father,Oceanus,titan
+Thrace,Okeanid,father,Oceanus,titan
+Europa,Okeanid,father,Oceanus,titan
+Evagore,Okeanid,father,Oceanus,titan
+Ephyra,Okeanid,father,Oceanus,titan
+Camarina,Okeanid,father,Oceanus,titan
+Cerceis,Okeanid,father,Oceanus,titan
+Plexaure,goddess,father,Nereus,Greek water deities
+Hydaspes,Potamoi,father,Oceanus,titan
+Hebrus,Potamoi,father,Oceanus,titan
+Acheron,Potamoi,father,Oceanus,titan
+Aegaeus,Potamoi,father,Oceanus,titan
+Aesar,Potamoi,father,Oceanus,titan
+Amnisus,Potamoi,father,Oceanus,titan
+Anaurus,Potamoi,father,Oceanus,titan
+Anigrus,Potamoi,father,Oceanus,titan
+Ascanius,Potamoi,father,Oceanus,titan
+Baphyras,Potamoi,father,Oceanus,titan
+Brychon,Potamoi,father,Oceanus,titan
+Elisson,Potamoi,father,Oceanus,titan
+Erasinos,Potamoi,father,Oceanus,titan
+Termessus,Potamoi,father,Oceanus,titan
+Aesepus,Potamoi,father,Oceanus,titan
+Symaithos,Potamoi,father,Oceanus,titan
+Ismenus,Potamoi,father,Oceanus,titan
+Evenus,Potamoi,father,Oceanus,titan
+Ganges,Potamoi,father,Oceanus,titan
+Pactolus,Potamoi,father,Oceanus,titan
+Nerites,Greek water deities,father,Nereus,Greek water deities
+Idotea,Greek water deities,father,Proteus,water deity
+Briareus,Hecatoncheires,father,Aegaeon,Greek water deities
+Ephyra,Okeanid,father,Nereus,Greek water deities
+Crataeis,Greek nymph,father,Triton,Greek water deities
+Calliste,Greek nymph,father,Triton,Greek water deities
+Periboea,Greek nymph,father,Oceanus,titan
+Borysthenes,river,father,Oceanus,titan
+Haliacmon,Potamoi,father,Oceanus,titan
+Strymon,Potamoi,father,Oceanus,titan
+Bromie,Greek nymph,father,Oceanus,titan
+Phasis,Potamoi,father,Oceanus,titan
+Ladon,Potamoi,father,Oceanus,titan
+Adrasteia,Greek nymph,father,Oceanus,titan
+Asterion,Potamoi,father,Oceanus,titan
+Ceto,water deity,father,Oceanus,titan
+Aeas,Potamoi,father,Oceanus,titan
+Ocyrhoe,Greek nymph,father,Oceanus,titan
+Dodone,Greek nymph,father,Oceanus,titan
+Deino,Greek nymph,father,Oceanus,titan
+Asterodeia,Greek nymph,father,Oceanus,titan
+Klymene,Greek nymph,father,Oceanus,titan
+Chariclo,Greek nymph,father,Oceanus,titan
+Cladeus,Potamoi,father,Oceanus,titan
+Kydnos,river,father,Oceanus,titan
+Meander,Potamoi,father,Oceanus,titan
+Neda,Greek nymph,father,Oceanus,titan
+Pamisus,Potamoi,father,Oceanus,titan
+Caanthus,Greek water deities,father,Oceanus,titan
+Simoeis,Potamoi,father,Oceanus,titan
+Spercheus,Potamoi,father,Oceanus,titan
+Caystrus,Potamoi,father,Oceanus,titan
+Aethra,Greek nymph,father,Oceanus,Greek water deities
+Leuce,Greek nymph,father,Oceanus,Greek water deities
+Nephele,Greek nymph,father,Oceanus,Greek water deities
+Thaleia,Greek nymph,father,Nereus,Greek water deities
+Neaera,deity,father,Nereus,Greek water deities
+Hydaspes,Potamoi,father,Thaumas,Greek water deities
+Orithyia,Greek nymph,father,Nereus,Greek water deities
+Deiopea,Greek nymph,father,Nereus,Greek water deities
+Glyce,Greek nymph,father,Nereus,Greek water deities
+Cabeiro,Greek nymph,father,Proteus,water deity
+Iris,goddess,father,Thaumas,Greek water deities
+Arke,Greek deity,father,Thaumas,Greek water deities
+Tyche,Okeanid,father,Zeus,thunder deity
+Aletheia,daemon,father,Zeus,thunder deity
+Eros,personification,father,Ares,Greek deity
+Rhodos,Okeanid,father,Poseidon,water deity
+Amalthea,Okeanid,father,Helios,solar deity
+Aegiale,Greek nymph,father,Helios,solar deity
+Phaethusa,Greek nymph,father,Helios,solar deity
+Lampetia,Greek nymph,father,Helios,solar deity
+Ares,Olympian god,father,Zeus,thunder deity
+Hermes,Olympian god,father,Zeus,thunder deity
+Heracles,demigod of Greek mythology,father,Zeus,thunder deity
+Perseus,Greek heroes,father,Zeus,thunder deity
+Hebe,goddess,father,Zeus,thunder deity
+Ceroessa,Greek nymph,father,Zeus,thunder deity
+Thrassa,Greek nymph,father,Ares,Greek deity
+Cymopoleia,Greek nymph,father,Poseidon,water deity
+Nysa,Greek nymph,father,Aristaeus,Greek deity
+Macris,Greek nymph,father,Aristaeus,Greek deity
+Dike,Greek deity,father,Nomos,Greek deity
+Ersa,goddess,father,Zeus,thunder deity
+Atë,allegorical Greek deity,father,Zeus,thunder deity
+Dike,Greek deity,father,Zeus,thunder deity
+Scamander,Potamoi,father,Zeus,thunder deity
+Amyrus,Potamoi,father,Poseidon,water deity
+Thysa,Greek nymph,father,Dionysus,nature deity
+Thalia,Greek nymph,father,Hephaestus,Greek deity
+Phasis,Potamoi,father,Helios,solar deity
+Artemis,lunar deity,father,Zeus,thunder deity
+Aegle,naiad,father,Zeus,thunder deity
+Aphrodite,goddess,father,Zeus,thunder deity
+Athena,goddess,father,Zeus,thunder deity
+Apollo,solar deity,father,Zeus,thunder deity
+Mnemosyne,titan,father,Zeus,thunder deity
+Astris,Greek nymph,father,Helios,solar deity
+Beroe,Greek nymph,father,Adonis,Greek deity
+Hamadryas,dryad,father,Oreius,Greek deity
+Menoites,daemon,father,Keuthonymos,Greek deity
+Chariclo,Greek nymph,father,Apollo,solar deity
+Triton,Greek water deities,father,Poseidon,water deity
+Proteus,water deity,father,Poseidon,water deity
+Charybdis,sea monster,father,Poseidon,water deity
+Glaucus,Greek water deities,father,Poseidon,water deity
+Benthesikyme,Greek water deities,father,Poseidon,water deity
+Caanthus,Greek water deities,father,Poseidon,water deity
+Apollonis,Muses Apollonides,father,Apollo,solar deity
+Chrysus,daemon,father,Zeus,thunder deity
+Eurymedon,daemon,father,Hephaestus,Greek deity
+Phaethousa,Greek nymph,father,Helios,solar deity
+Opus II,demigod of Greek mythology,father,Zeus,thunder deity
+Eirene,personification,father,Zeus,thunder deity
+Aristaeus,Greek deity,father,Apollo,solar deity
+Cephisso,Muses Apollonides,father,Apollo,solar deity
+Crotus,mythological Greek character,father,Pan,nature deity
+Circe,Greek deity,father,Helios,solar deity
+Morpheus,Greek deity,father,Hypnos,Greek deity
+Phantasos,Greek deity,father,Hypnos,Greek deity
+Phobetor,Greek deity,father,Hypnos,Greek deity
+Carpo,Greek deity,father,Zeus,thunder deity
+Euphrosyne,Greek deity,father,Zeus,thunder deity
+Astraea,goddess,father,Zeus,thunder deity
+Enyo,Greek deity,father,Zeus,thunder deity
+Atropos,Greek deity,father,Zeus,thunder deity
+Auxo,mythological Greek character,father,Zeus,thunder deity
+Clotho,Greek deity,father,Zeus,thunder deity
+Britomartis,Greek deity,father,Zeus,thunder deity
+Lachesis,Greek deity,father,Zeus,thunder deity
+Eunomia,Greek deity,father,Zeus,thunder deity
+Pandia,goddess,father,Zeus,thunder deity
+Hymen,nature deity,father,Apollo,solar deity
+Phobos,Greek deity,father,Ares,Greek deity
+Deimos,Greek deity,father,Ares,Greek deity
+Anteros,Greek deity,father,Ares,Greek deity
+Harmonia,mythological Greek character,father,Ares,Greek deity
+Aeolus,mythological Greek character,father,Poseidon,water deity
+Zagreus,Greek deity,father,Hades,death deity
+Hymen,nature deity,father,Dionysus,nature deity
+Hygieia,Greek deity,father,Asclepius,Greek deity
+Aceso,mythological Greek character,father,Asclepius,Greek deity
+Panacea,Greek deity,father,Asclepius,Greek deity
+Hephaestus,Greek deity,father,Zeus,Greek deity
+Persephone,Greek deity,father,Zeus,Greek deity
+Eileithyia,goddess,father,Zeus,Greek deity
+Hecate,goddess,father,Zeus,Greek deity
+Zagreus,Greek deity,father,Zeus,Greek deity
+Dionysus,nature deity,father,Zeus,Olympian god
+Asclepius,Greek deity,father,Apollo,solar deity
+Enyalius,epithet,father,Ares,Greek deity
+Himeros,Greek deity,father,Ares,Greek deity
+Adrestia,goddess,father,Ares,Greek deity
+Despoina,mythological Greek character,father,Poseidon,water deity
+Phaunos,Greek deity,father,Poseidon,water deity
+Pasithea,Greek deity,father,Dionysus,nature deity
+Phthonus,personification,father,Dionysus,nature deity
+Staphylus,mythological Greek character,father,Dionysus,nature deity
+Eucleia,mythological Greek character,father,Hephaestus,Greek deity
+Philophrosyne,Greek deity,father,Hephaestus,Greek deity
+Cadmilus,mythological Greek character,father,Hephaestus,Greek deity
+Telesphorus,Greek deity,father,Asclepius,Greek deity
+Aegle,Greek deity,father,Asclepius,Greek deity
+Homonoia,mythological Greek character,father,Soter,Greek deity
+Angelia,Greek deity,father,Hermes,Olympian god
+Ctesius,Greek deity,father,Soter,Greek deity
+Eupraxia,Greek deity,father,Soter,Greek deity
+Tyche,Okeanid,father,Hermes,Olympian god
+Pasithea,Greek deity,father,Zeus,thunder deity
+Thallo,mythological Greek character,father,Zeus,thunder deity
+Thalia,Greek deity,father,Zeus,thunder deity
+Angelos,Greek deity,father,Zeus,thunder deity
+Caerus,personification,father,Zeus,thunder deity
+Melinoe,Greek deity,father,Zeus,thunder deity
+Basileia,Greek deity,father,Zeus,thunder deity
+Aglaea,Greek deity,father,Zeus,thunder deity
+Aphrodite Pandemos,epithet,father,Zeus,thunder deity
+Calligeneia,mythological Greek character,father,Zeus,thunder deity
+Adrasteia,Greek deity,father,Zeus,thunder deity
+Calypso,Okeanid,father,Atlas,titan
+Epimetheus,titan,father,Iapetos,titan
+Prometheus,titan,father,Iapetos,titan
+Atlas,titan,father,Iapetos,titan
+Leto,titan,father,Coeus,titan
+Lelantos,titan,father,Coeus,titan
+Poseidon,Greek deity,father,Cronus,titan
+Hestia,Greek deity,father,Cronus,titan
+Nike,goddess,father,Pallas,titan
+Chariclo,Greek nymph,father,Perses,titan
+Aura,Greek nymph,father,Lelantos,titan
+Taygete,Pleiades,father,Atlas,titan
+Menoetius,titan,father,Iapetos,titan
+Anchiale,titan,father,Iapetos,titan
+Asteria,titan,father,Coeus,titan
+Euros,Anemoi,father,Astraeus,titan
+Notus,Anemoi,father,Astraeus,titan
+Caecias,Anemoi,father,Astraeus,titan
+Lips,wind,father,Astraeus,titan
+Apeliotes,Anemoi,father,Astraeus,titan
+Sciron,Anemoi,father,Astraeus,titan
+Argestes,Anemoi,father,Astraeus,titan
+Astraeus,titan,father,Kreios,titan
+Pallas,titan,father,Kreios,titan
+Perses,titan,father,Kreios,titan
+Phaenon,Astra Planeta,father,Astraeus,titan
+Pyroeis,Astra Planeta,father,Astraeus,titan
+Maia,Pleiades,father,Atlas,titan
+Merope,Pleiades,father,Atlas,titan
+Sterope,Pleiades,father,Atlas,titan
+Electra,Pleiades,father,Atlas,titan
+Zeus,thunder deity,father,Cronus,titan
+Hera,fertility deity,father,Cronus,titan
+Demeter,goddess,father,Cronus,titan
+Stilbon,titan,father,Astraeus,titan
+Boreas,personification,father,Astraeus,titan
+Zephyrus,Anemoi,father,Astraeus,titan
+Celaeno,Greek nymph,father,Atlas,titan
+Alcyone,Greek nymph,father,Atlas,titan
+Dioné,Greek nymph,father,Atlas,titan
+Keltos,mythological Greek character,father,Heracles,demigod of Greek mythology
+Eucleia,mythological Greek character,father,Heracles,demigod of Greek mythology
+Coronis,Greek nymph,father,Atlas,titan
+Hecate,goddess,father,Perses,titan
+Hades,death deity,father,Cronus,titan
+Pothos,mythological Greek character,father,Cronus,titan
+Aidos,Greek deity,father,Prometheus,titan
+Pan,nature deity,father,Hermes,Olympian god
+Hermaphroditus,Greek deity,father,Hermes,Olympian god
+Selene,goddess,father,Hyperion,titan
+Helios,solar deity,father,Hyperion,titan
+Eos,personification,father,Hyperion,titan
+Zelus,Greek deity,father,Pallas,titan
+Bia,goddess,father,Pallas,titan
+Kratos,Greek deity,father,Pallas,titan
+Astraea,goddess,father,Astraeus,titan
+Prophasis,Greek deity,father,Epimetheus,titan
+Hesperus,Greek deity,father,Astraeus,titan
+Porphyrion,Giants,killed by,Zeus,thunder deity
+Enceladus,Giants,killed by,Athena,goddess
+Ephialtes,Giants,killed by,Apollo,solar deity
+Gration,Giants,killed by,Artemis,lunar deity
+Polybotes,Giants,killed by,Poseidon,water deity
+Alpos,Giants,killed by,Dionysus,nature deity
+Mimas,Giants,killed by,Hephaestus,Greek deity
+Clytius,Giants,killed by,Hecate,goddess
+Phoitos,Giants,killed by,Hera,fertility deity
+Minthe,Greek nymph,killed by,Persephone,Greek deity
+Caanthus,Greek water deities,killed by,Apollo,solar deity
+Minthe,Greek nymph,killed by,Demeter,goddess
+Pallas,Giants,killed by,Athena,goddess
+Eurytos,Giants,killed by,Dionysus,nature deity
+Hippolytos,Giants,killed by,Hermes,Olympian god
+Alcyoneus,Giants,killed by,Heracles,demigod of Greek mythology
+Athis,demigod of Greek mythology,killed by,Perseus,Greek heroes
+Ephialtes,Giants,killed by,Heracles,demigod of Greek mythology
+Porphyrion,Giants,killed by,Heracles,demigod of Greek mythology
+Eurytos,Giants,killed by,Heracles,demigod of Greek mythology
+Tricca,Greek nymph,mother,Creusa,naiad
+Plataea,naiad,mother,Metope,naiad
+Thespia,Greek nymph,mother,Metope,naiad
+Ismenus,Potamoi,mother,Metope,naiad
+Chalcis,Greek nymph,mother,Metope,naiad
+Ornea,Greek nymph,mother,Metope,naiad
+Aegina,Greek nymph,mother,Metope,naiad
+Corcyra,Greek nymph,mother,Metope,naiad
+Chariclo,Greek nymph,mother,Stilbe,naiad
+Asopus,Potamoi,mother,Celusa,Oread
+Daphne,naiad,mother,Creusa,naiad
+Stilbe,naiad,mother,Creusa,naiad
+Sinope,naiad,mother,Metope,naiad
+Salamis,Greek nymph,mother,Metope,naiad
+Harpina,Greek nymph,mother,Metope,naiad
+Pirene,naiad,mother,Metope,naiad
+Athis,demigod of Greek mythology,mother,Limnaee,naiad
+Athena,goddess,mother,Coryphe,Okeanid
+Triton,Greek water deities,mother,Amphitrite,Okeanid
+Athena,goddess,mother,Metis,Okeanid
+Calypso,Okeanid,mother,Pleione,Okeanid
+Taygete,Pleiades,mother,Pleione,Okeanid
+Maia,Pleiades,mother,Pleione,Okeanid
+Rhodos,Okeanid,mother,Amphitrite,Okeanid
+Adrasteia,Greek nymph,mother,Amalthea,Okeanid
+Benthesikyme,Greek water deities,mother,Amphitrite,Okeanid
+Cymopoleia,Greek nymph,mother,Amphitrite,Okeanid
+Porus,daemon,mother,Metis,Okeanid
+Celaeno,Greek nymph,mother,Pleione,Okeanid
+Merope,Pleiades,mother,Pleione,Okeanid
+Sterope,Pleiades,mother,Pleione,Okeanid
+Alcyone,Greek nymph,mother,Pleione,Okeanid
+Electra,Pleiades,mother,Pleione,Okeanid
+Beroe,Okeanid,mother,Doris,Okeanid
+Scamander,Potamoi,mother,Doris,Okeanid
+Thaleia,Greek nymph,mother,Doris,Okeanid
+Neaera,deity,mother,Doris,Okeanid
+Nerites,Greek water deities,mother,Doris,Okeanid
+Ephyra,Okeanid,mother,Doris,Okeanid
+Orithyia,Greek nymph,mother,Doris,Okeanid
+Deiopea,Greek nymph,mother,Doris,water deity
+Plexaure,goddess,mother,Doris,water deity
+Chione,Greek nymph,mother,Callirhoe,Okeanid
+Asopus,Greek water deities,mother,Eurynome,Okeanid
+Nike,goddess,mother,Styx,Okeanid
+Calypso,Okeanid,mother,Doris,Okeanid
+Amphitrite,Okeanid,mother,Doris,Okeanid
+Hydaspes,Potamoi,mother,Electra,Okeanid
+Persephone,Greek deity,mother,Styx,Okeanid
+Echidna,drakaina,mother,Styx,Okeanid
+Echidna,drakaina,mother,Callirhoe,Okeanid
+Iris,goddess,mother,Electra,Okeanid
+Zelus,Greek deity,mother,Styx,Okeanid
+Bia,goddess,mother,Styx,Okeanid
+Kratos,Greek deity,mother,Styx,Okeanid
+Euphrosyne,Greek deity,mother,Eurynome,Okeanid
+Pasithea,Greek deity,mother,Eurynome,Okeanid
+Thalia,Greek deity,mother,Eurynome,Okeanid
+Aglaea,Greek deity,mother,Eurynome,Okeanid
+Morea,Greek nymph,mother,Hamadryas,dryad
+Pan,nature deity,mother,Penelope,dryad
+Ampelus,Hamadryad,mother,Hamadryas,mythological Greek character
+Q21286562,Hamadryad,mother,Hamadryas,mythological Greek character
+Aigeiros,Hamadryad,mother,Hamadryas,mythological Greek character
+Syke,Hamadryad,mother,Hamadryas,mythological Greek character
+Kraneia,Hamadryad,mother,Hamadryas,mythological Greek character
+Balanus,Hamadryad,mother,Hamadryas,mythological Greek character
+Carya,Hamadryad,mother,Hamadryas,mythological Greek character
+Ptelea,Hamadryad,mother,Hamadryas,dryad
+Circe,Greek deity,mother,Perse,Okeanid
+Hippolytos,Giants,mother,Gaia,Greek primordial deity
+Anax,Giants,mother,Gaia,Greek primordial deity
+Pallas,Giants,mother,Gaia,Greek primordial deity
+Aristaeus,Giants,mother,Gaia,Greek primordial deity
+Astraios,Giants,mother,Gaia,Greek primordial deity
+Damasen,Giants,mother,Gaia,Greek primordial deity
+Eurytos,Giants,mother,Gaia,Greek primordial deity
+Hoplodamus,Giants,mother,Gaia,Greek primordial deity
+Athos,Giants,mother,Gaia,Greek primordial deity
+Cottus,Hecatoncheires,mother,Gaia,Greek primordial deity
+Otus,Giants,mother,Gaia,Greek primordial deity
+Peloreus,Giants,mother,Gaia,Greek primordial deity
+Colophonus,Giants,mother,Gaia,Greek primordial deity
+Corydon,Giants,mother,Gaia,Greek primordial deity
+Effra,Giants,mother,Gaia,Greek primordial deity
+Halie,Greek nymph,mother,Thalassa,Greek primordial deity
+Ourea,Greek primordial deity,mother,Gaia,Greek primordial deity
+Scotus,Greek primordial deity,mother,Gaia,Greek primordial deity
+Uranus,Greek primordial deity,mother,Gaia,Greek primordial deity
+Eurymedon,Giants,mother,Gaia,Greek primordial deity
+Typhon,Giants,mother,Gaia,Greek primordial deity
+Nereus,Greek water deities,mother,Gaia,Greek primordial deity
+Pontus,Greek primordial deity,mother,Gaia,Greek primordial deity
+Charybdis,sea monster,mother,Gaia,Greek primordial deity
+Oceanus,titan,mother,Gaia,Greek primordial deity
+Tethys,titan,mother,Gaia,Greek primordial deity
+Daphne,naiad,mother,Gaia,Greek primordial deity
+Phorcys,chthonic deities,mother,Gaia,Greek primordial deity
+Ceto,Greek water deities,mother,Gaia,Greek primordial deity
+Thaumas,Greek water deities,mother,Gaia,Greek primordial deity
+Aegaeon,Greek water deities,mother,Gaia,Greek primordial deity
+Eurybia,Greek water deities,mother,Gaia,Greek primordial deity
+Eros,personification,mother,Nyx,goddess
+Aether,Greek primordial deity,mother,Nyx,goddess
+Chaos,Greek primordial deity,mother,Ananke,allegory
+Alcyoneus,Giants,mother,Gaia,Greek primordial deity
+Enceladus,Giants,mother,Gaia,Greek primordial deity
+Damysos,Giants,mother,Gaia,Greek primordial deity
+Alpos,Giants,mother,Gaia,Greek primordial deity
+Mimas,Giants,mother,Gaia,Greek primordial deity
+Clytius,Giants,mother,Gaia,Greek primordial deity
+Polybotes,Giants,mother,Gaia,Greek primordial deity
+Ephialtes,Giants,mother,Gaia,Greek primordial deity
+Emphytus,Giants,mother,Gaia,Greek primordial deity
+Porphyrion,Giants,mother,Gaia,Greek primordial deity
+Gration,Giants,mother,Gaia,Greek primordial deity
+Achlys,Greek primordial deity,mother,Nyx,goddess
+Hybris,daemon,mother,Nyx,goddess
+Cronus,titan,mother,Gaia,Greek primordial deity
+Mnemosyne,titan,mother,Gaia,Greek primordial deity
+Rhea,titan,mother,Gaia,Greek primordial deity
+Themis,titan,mother,Gaia,Greek primordial deity
+Hyperion,titan,mother,Gaia,Greek primordial deity
+Iapetos,titan,mother,Gaia,Greek primordial deity
+Coeus,titan,mother,Gaia,Greek primordial deity
+Phoebe,titan,mother,Gaia,Greek primordial deity
+Theia,titan,mother,Gaia,Greek primordial deity
+Kreios,titan,mother,Gaia,Greek primordial deity
+Dione,titan,mother,Gaia,Greek primordial deity
+Glauce,Greek nymph,mother,Gaia,Greek primordial deity
+Pheme,Greek deity,mother,Gaia,Greek primordial deity
+Aergia,Greek deity,mother,Gaia,Greek primordial deity
+Andes,titan,mother,Gaia,Greek primordial deity
+Geras,allegorical Greek deity,mother,Nyx,goddess
+Oizys,allegorical Greek deity,mother,Nyx,goddess
+Lycus,Telchines,mother,Thalassa,Greek primordial deity
+Damon,Telchines,mother,Thalassa,Greek primordial deity
+Aetna,Greek nymph,mother,Gaia,Greek primordial deity
+Briareus,Hecatoncheires,mother,Gaia,Roman deity
+Gyges,Hecatoncheires,mother,Gaia,Roman deity
+Creusa,naiad,mother,Gaia,Roman deity
+Nemesis,Okeanid,mother,Nyx,goddess
+Aegaeon,Greek water deities,mother,Thalassa,Greek primordial deity
+Apate,personification,mother,Nyx,goddess
+Philotes,goddess,mother,Nyx,goddess
+Arke,Greek deity,mother,Electra,Okeanid
+Echidna,drakaina,mother,Gaia,Greek primordial deity
+Charon,psychopomp,mother,Nyx,goddess
+Eris,Greek deity,mother,Nyx,goddess
+Hypnos,Greek deity,mother,Nyx,goddess
+Hemera,goddess,mother,Nyx,goddess
+Morpheus,Greek deity,mother,Nyx,goddess
+Thanatos,death deity,mother,Nyx,goddess
+Eleos,Greek deity,mother,Nyx,goddess
+Elpis,mythological Greek character,mother,Nyx,goddess
+Epiphron,Greek deity,mother,Nyx,goddess
+Kakia,Greek deity,mother,Nyx,goddess
+Amicitia,personification,mother,Nyx,goddess
+Momus,Greek deity,mother,Nyx,Greek primordial deity
+Atropos,Greek deity,mother,Nyx,Greek primordial deity
+Clotho,Greek deity,mother,Nyx,Greek primordial deity
+Lachesis,Greek deity,mother,Nyx,Greek primordial deity
+Phantasos,Greek deity,mother,Nyx,Greek primordial deity
+Moros,Greek deity,mother,Nyx,Greek primordial deity
+Lyssa,Greek deity,mother,Nyx,Greek primordial deity
+Phobetor,Greek deity,mother,Nyx,Greek primordial deity
+Dolos,Greek deity,mother,Nyx,Greek primordial deity
+Phthonus,personification,mother,Nyx,Greek primordial deity
+Adrasteia,Greek deity,mother,Ananke,allegory
+Dolos,Greek deity,mother,Gaia,Greek primordial deity
+Basileia,Greek deity,mother,Gaia,Greek primordial deity
+Acmon,Greek deity,mother,Gaia,Greek primordial deity
+Dolor,Greek deity,mother,Gaia,Greek primordial deity
+Pan,nature deity,mother,Hybris,daemon
+Hermes,Olympian god,mother,Maia,Pleiades
+Corus,daemon,mother,Hybris,daemon
+Dike,Greek deity,mother,Eusebia,daemon
+Anaurus,Potamoi,mother,Tethys,titan
+Anigrus,Potamoi,mother,Tethys,titan
+Ascanius,Potamoi,mother,Tethys,titan
+Baphyras,Potamoi,mother,Tethys,titan
+Brychon,Potamoi,mother,Tethys,titan
+Elisson,Potamoi,mother,Tethys,titan
+Erasinos,Potamoi,mother,Tethys,titan
+Termessus,Potamoi,mother,Tethys,titan
+Istrus,personification,mother,Tethys,titan
+Aesepus,Potamoi,mother,Tethys,titan
+Symaithos,Potamoi,mother,Tethys,titan
+Cephissus,Potamoi,mother,Tethys,titan
+Ismenus,Potamoi,mother,Tethys,titan
+Evenus,Potamoi,mother,Tethys,titan
+Euphrates,Potamoi,mother,Tethys,titan
+Ganges,Potamoi,mother,Tethys,titan
+Pactolus,Potamoi,mother,Tethys,titan
+Calypso,Okeanid,mother,Tethys,titan
+Amalthea,Okeanid,mother,Tethys,titan
+Nemesis,Okeanid,mother,Tethys,titan
+Metis,Okeanid,mother,Tethys,titan
+Zeuxo,Okeanid,mother,Tethys,titan
+Tyche,Okeanid,mother,Tethys,titan
+Philyra,Okeanid,mother,Tethys,titan
+Pleione,Okeanid,mother,Tethys,titan
+Styx,Okeanid,mother,Tethys,titan
+Eurynome,Okeanid,mother,Tethys,titan
+Asia,Okeanid,mother,Tethys,titan
+Peitho,Okeanid,mother,Tethys,titan
+Rhodos,Okeanid,mother,Tethys,titan
+Argeia,Okeanid,mother,Tethys,titan
+Plouto,Okeanid,mother,Tethys,titan
+Hesione,Okeanid,mother,Tethys,titan
+Doris,Okeanid,mother,Tethys,titan
+Beroe,Okeanid,mother,Tethys,titan
+Clytie,Okeanid,mother,Tethys,titan
+Prymno,Okeanid,mother,Tethys,titan
+Callirhoe,Okeanid,mother,Tethys,titan
+Lysithea,Okeanid,mother,Tethys,titan
+Telesto,Okeanid,mother,Tethys,titan
+Electra,Okeanid,mother,Tethys,titan
+Thoe,Okeanid,mother,Tethys,titan
+Hippo,Okeanid,mother,Tethys,titan
+Amphiro,Okeanid,mother,Tethys,titan
+Eidyia,Okeanid,mother,Tethys,titan
+Xanthe,deity,mother,Tethys,titan
+Pasithoe,Okeanid,mother,Tethys,titan
+Capheira,Okeanid,mother,Tethys,titan
+Galaxaura,Okeanid,mother,Tethys,titan
+Klytia,Okeanid,mother,Tethys,titan
+Asterope,Okeanid,mother,Tethys,titan
+Zeuxippe,Okeanid,mother,Tethys,titan
+Chryseis,deity,mother,Tethys,titan
+Coryphe,Okeanid,mother,Tethys,titan
+Dodone,Greek nymph,mother,Tethys,titan
+Eudore,Okeanid,mother,Tethys,titan
+Plexaure,Okeanid,mother,Tethys,titan
+Kretheis,naiad,mother,Tethys,titan
+Kytheros,Greek water deities,mother,Tethys,titan
+Pleistos,Greek water deities,mother,Tethys,titan
+Ilissos,Greek water deities,mother,Tethys,titan
+Anapos,Potamoi,mother,Tethys,titan
+Asopus,Potamoi,mother,Tethys,titan
+Crinisus,Potamoi,mother,Tethys,titan
+Nilus,Potamoi,mother,Tethys,titan
+Inachus,Potamoi,mother,Tethys,titan
+Clitumnus,Potamoi,mother,Tethys,titan
+Alpheus,Potamoi,mother,Tethys,titan
+Enipeus,Potamoi,mother,Tethys,titan
+Hermus,Potamoi,mother,Tethys,titan
+Scamander,Potamoi,mother,Tethys,titan
+Eridanos,Potamoi,mother,Tethys,titan
+Sangarius,Potamoi,mother,Tethys,titan
+Peneus,Potamoi,mother,Tethys,titan
+Cebren,Potamoi,mother,Tethys,titan
+Caicus,Potamoi,mother,Tethys,titan
+Cladeus,Potamoi,mother,Tethys,titan
+Kydnos,river,mother,Tethys,titan
+Meander,Potamoi,mother,Tethys,titan
+Simoeis,Potamoi,mother,Tethys,titan
+Spercheus,Potamoi,mother,Tethys,titan
+Caystrus,Potamoi,mother,Tethys,titan
+Borysthenes,river,mother,Tethys,titan
+Haliacmon,Potamoi,mother,Tethys,titan
+Strymon,Potamoi,mother,Tethys,titan
+Phasis,Potamoi,mother,Tethys,titan
+Ladon,Potamoi,mother,Tethys,titan
+Asterion,Potamoi,mother,Tethys,titan
+Axius,Potamoi,mother,Tethys,titan
+Aeas,Potamoi,mother,Tethys,titan
+Phyllis,Potamoi,mother,Tethys,titan
+Apidanus,Potamoi,mother,Tethys,titan
+Ardescus,Potamoi,mother,Tethys,titan
+Granicus,Potamoi,mother,Tethys,titan
+Chremetes,Potamoi,mother,Tethys,titan
+Hydaspes,Potamoi,mother,Tethys,titan
+Hebrus,Potamoi,mother,Tethys,titan
+Aegaeus,Potamoi,mother,Tethys,titan
+Aesar,Potamoi,mother,Tethys,titan
+Amnisus,Potamoi,mother,Tethys,titan
+Aura,Anemoi,mother,Orithyia,Greek water deities
+Daeira,Okeanid,mother,Tethys,titan
+Acaste,Okeanid,mother,Tethys,titan
+Admete,Okeanid,mother,Tethys,titan
+Bolbe,naiad,mother,Tethys,titan
+Thrace,Okeanid,mother,Tethys,titan
+Europa,Okeanid,mother,Tethys,titan
+Evagore,Okeanid,mother,Tethys,titan
+Ephyra,Okeanid,mother,Tethys,titan
+Camarina,Okeanid,mother,Tethys,titan
+Cerceis,Okeanid,mother,Tethys,titan
+Ianire,deity,mother,Tethys,titan
+Argie,deity,mother,Tethys,titan
+Menestho,deity,mother,Tethys,titan
+Melobosis,deity,mother,Tethys,titan
+Ianthe,Okeanid,mother,Tethys,titan
+Kleio,Okeanid,mother,Tethys,titan
+Astraeus,titan,mother,Eurybia,Greek water deities
+Pallas,titan,mother,Eurybia,Greek water deities
+Perses,titan,mother,Eurybia,Greek water deities
+Aethra,Greek nymph,mother,Tethys,titan
+Asterodeia,Greek nymph,mother,Tethys,titan
+Klymene,Greek nymph,mother,Tethys,titan
+Caanthus,Greek water deities,mother,Tethys,titan
+Periboea,water deity,mother,Tethys,titan
+Ceto,water deity,mother,Tethys,titan
+Ocyrhoe,Greek nymph,mother,Tethys,titan
+Thoosa,Greek nymph,mother,Ceto,Greek water deities
+Echidna,drakaina,mother,Ceto,Greek water deities
+Eros,personification,mother,Aphrodite,goddess
+Tyche,Okeanid,mother,Aphrodite,goddess
+Peitho,Okeanid,mother,Aphrodite,goddess
+Rhodos,Okeanid,mother,Aphrodite,goddess
+Hebe,goddess,mother,Hera,fertility deity
+Philomelus,Greek deity,mother,Demeter,goddess
+Ares,Greek deity,mother,Hera,fertility deity
+Prometheus,titan,mother,Klymene,Greek nymph
+Atlas,titan,mother,Klymene,Greek nymph
+Aegiale,Greek nymph,mother,Klymene,Greek nymph
+Phaethusa,Greek nymph,mother,Klymene,Greek nymph
+Lampetia,Greek nymph,mother,Klymene,Greek nymph
+Phaethusa,Greek nymph,mother,Neaera,deity
+Lampetia,Greek nymph,mother,Neaera,deity
+Britomartis,Greek deity,mother,Carme,Greek nymph
+Thrassa,Greek nymph,mother,Tereine,Greek nymph
+Aura,Greek nymph,mother,Periboea,water deity
+Rhodos,Okeanid,mother,Halie,Greek nymph
+Crotus,mythological Greek character,mother,Eupheme,Greek nymph
+Scylla,sea monster,mother,Crataeis,Greek nymph
+Achelous,Potamoi,mother,Nais,Greek nymph
+Pan,nature deity,mother,Callisto,Greek nymph
+Dioné,Greek nymph,mother,Aethra,Greek nymph
+Helle,Greek water deities,mother,Nephele,Greek nymph
+Nemea,naiad,mother,Selene,goddess
+Eros,personification,mother,Eris,Greek deity
+Lethe,daemon,mother,Eris,Greek deity
+Boreas,personification,mother,Eos,personification
+Zephyrus,Anemoi,mother,Eos,personification
+Euros,Anemoi,mother,Eos,personification
+Notus,Anemoi,mother,Eos,personification
+Caecias,Anemoi,mother,Eos,personification
+Lips,wind,mother,Eos,personification
+Apeliotes,Anemoi,mother,Eos,personification
+Ponos,personification,mother,Eris,Greek deity
+Atë,allegorical Greek deity,mother,Eris,Greek deity
+Dysnomia,allegorical Greek deity,mother,Eris,Greek deity
+Thalassa,Greek primordial deity,mother,Hemera,goddess
+Glaucus,Greek water deities,mother,Alcyone,Greek nymph
+Phoroneus,Potamoi,mother,Melia,Greek nymph
+Epimetheus,titan,mother,Klymene,Greek nymph
+Astris,Greek nymph,mother,Klymene,Greek nymph
+Carystus,demigod of Greek mythology,mother,Chariclo,Greek nymph
+Eurymedon,daemon,mother,Cabeiro,Greek nymph
+Astris,Greek nymph,mother,Ceto,water deity
+Crataeis,Greek nymph,mother,Hecate,goddess
+Menai,titan,mother,Selene,goddess
+Algea,group of Greek mythical characters,mother,Eris,Greek deity
+Stilbon,titan,mother,Eos,personification
+Eros,personification,mother,Iris,goddess
+Uranus,Greek primordial deity,mother,Hemera,goddess
+Gaia,Greek primordial deity,mother,Hemera,goddess
+Eros,personification,mother,Penia,personification
+Ceroessa,Greek nymph,mother,Io,Greek nymph
+Coronis,Greek nymph,mother,Aethra,Greek nymph
+Menoetius,titan,mother,Klymene,Greek nymph
+Hybris,daemon,mother,Dyssebeia,Greek deity
+Beroe,Greek nymph,mother,Aphrodite,goddess
+Scylla,sea monster,mother,Hecate,goddess
+Ersa,goddess,mother,Selene,goddess
+Phaenon,Astra Planeta,mother,Eos,personification
+Pyroeis,Astra Planeta,mother,Eos,personification
+Sciron,Anemoi,mother,Eos,personification
+Argestes,Anemoi,mother,Eos,personification
+Ersa,goddess,mother,Eos,personification
+Agave,Greek water deities,mother,Harmonia,mythological Greek character
+Adikia,Greek deity,mother,Eris,Greek deity
+Phobos,Greek deity,mother,Aphrodite,goddess
+Deimos,Greek deity,mother,Aphrodite,goddess
+Hermaphroditus,Greek deity,mother,Aphrodite,goddess
+Hymen,nature deity,mother,Aphrodite,goddess
+Anteros,Greek deity,mother,Aphrodite,goddess
+Harmonia,mythological Greek character,mother,Aphrodite,goddess
+Hygieia,Greek deity,mother,Athena,goddess
+Hephaestus,Greek deity,mother,Hera,fertility deity
+Eileithyia,goddess,mother,Hera,fertility deity
+Hecate,goddess,mother,Hera,fertility deity
+Enyo,Greek deity,mother,Hera,fertility deity
+Dionysus,nature deity,mother,Demeter,goddess
+Persephone,Greek deity,mother,Demeter,goddess
+Hecate,goddess,mother,Demeter,goddess
+Plutus,Greek deity,mother,Demeter,goddess
+Selene,goddess,mother,Basileia,Greek deity
+Morpheus,Greek deity,mother,Aglaea,Greek deity
+Aegle,Greek deity,mother,Lampetia,Greek nymph
+Cadmilus,mythological Greek character,mother,Cabeiro,Greek nymph
+Zagreus,Greek deity,mother,Persephone,Greek deity
+Phantasos,Greek deity,mother,Pasithea,Greek deity
+Phthonus,personification,mother,Aphrodite,Greek deity
+Pothos,mythological Greek character,mother,Aphrodite,Greek deity
+Adrestia,goddess,mother,Aphrodite,Greek deity
+Himeros,Greek deity,mother,Aphrodite,Olympian god
+Pasithea,Greek deity,mother,Hera,fertility deity
+Angelos,Greek deity,mother,Hera,fertility deity
+Despoina,mythological Greek character,mother,Demeter,goddess
+Calligeneia,mythological Greek character,mother,Demeter,goddess
+Melinoe,Greek deity,mother,Persephone,Greek deity
+Pothos,mythological Greek character,mother,Iris,goddess
+Phaunos,Greek deity,mother,Circe,Greek deity
+Enyalius,epithet,mother,Enyo,Greek deity
+Homonoia,mythological Greek character,mother,Praxidice,mythological Greek character
+Eucleia,mythological Greek character,mother,Aglaea,Greek deity
+Philophrosyne,Greek deity,mother,Aglaea,Greek deity
+Circe,Greek deity,mother,Hecate,goddess
+Pandia,goddess,mother,Selene,goddess
+Neikea,Greek deity,mother,Eris,Greek deity
+Algos,goddess,mother,Eris,Greek deity
+Limos,personification,mother,Eris,Greek deity
+Hesperus,Greek deity,mother,Eos,personification
+Astraea,goddess,mother,Eos,personification
+Phosphorus,personification,mother,Eos,personification
+Leto,titan,mother,Phoebe,titan
+Lelantos,titan,mother,Phoebe,titan
+Poseidon,Greek deity,mother,Rhea,titan
+Hestia,Greek deity,mother,Rhea,titan
+Dike,Greek deity,mother,Themis,titan
+Menoetius,titan,mother,Themis,titan
+Apollo,solar deity,mother,Leto,titan
+Zeus,thunder deity,mother,Rhea,titan
+Hera,fertility deity,mother,Rhea,titan
+Demeter,goddess,mother,Rhea,titan
+Asteria,titan,mother,Phoebe,titan
+Aphrodite,goddess,mother,Dione,titan
+Artemis,lunar deity,mother,Leto,titan
+Kydnos,river,mother,Anchiale,titan
+Selene,goddess,mother,Theia,titan
+Helios,solar deity,mother,Theia,titan
+Eos,personification,mother,Theia,titan
+Hecate,goddess,mother,Asteria,titan
+Hades,death deity,mother,Rhea,titan
+Eirene,personification,mother,Themis,titan
+Carpo,Greek deity,mother,Themis,titan
+Astraea,goddess,mother,Themis,titan
+Atropos,Greek deity,mother,Themis,titan
+Auxo,mythological Greek character,mother,Themis,titan
+Clotho,Greek deity,mother,Themis,titan
+Lachesis,Greek deity,mother,Themis,titan
+Eunomia,Greek deity,mother,Themis,titan
+Thallo,mythological Greek character,mother,Themis,titan
+Adrasteia,Greek deity,mother,Themis,titan
+Aphrodite Pandemos,epithet,mother,Dione,titan
+Cottus,Hecatoncheires,sibling,Briareus,Hecatoncheires
+Cottus,Hecatoncheires,sibling,Gyges,Hecatoncheires
+Chione,Greek nymph,sibling,Polyxo,naiad
+Gyges,Hecatoncheires,sibling,Briareus,Hecatoncheires
+Briareus,Hecatoncheires,sibling,Gyges,Hecatoncheires
+Briareus,Hecatoncheires,sibling,Cottus,Hecatoncheires
+Gyges,Hecatoncheires,sibling,Cottus,Hecatoncheires
+Chione,Greek nymph,sibling,Caliadne,naiad
+Chione,Greek nymph,sibling,Anchiroe,naiad
+Chione,Greek nymph,sibling,Anippe,naiad
+Triton,Greek water deities,sibling,Rhodos,Okeanid
+Zephyrus,Anemoi,sibling,Boreas,personification
+Boreas,personification,sibling,Zephyrus,Anemoi
+Boreas,personification,sibling,Euros,Anemoi
+Zephyrus,Anemoi,sibling,Euros,Anemoi
+Boreas,personification,sibling,Notus,Anemoi
+Zephyrus,Anemoi,sibling,Notus,Anemoi
+Euros,Anemoi,sibling,Boreas,personification
+Notus,Anemoi,sibling,Boreas,personification
+Euros,Anemoi,sibling,Zephyrus,Anemoi
+Notus,Anemoi,sibling,Zephyrus,Anemoi
+Notus,Anemoi,sibling,Euros,Anemoi
+Euros,Anemoi,sibling,Notus,Anemoi
+Ourea,Greek primordial deity,sibling,Uranus,Greek primordial deity
+Pontus,Greek primordial deity,sibling,Uranus,Greek primordial deity
+Eros,personification,sibling,Gaia,Greek primordial deity
+Nyx,goddess,sibling,Gaia,Greek primordial deity
+Nyx,goddess,sibling,Tartarus,Greek primordial deity
+Gaia,Greek primordial deity,sibling,Eros,personification
+Erebos,Greek primordial deity,sibling,Eros,personification
+Nyx,goddess,sibling,Eros,personification
+Eros,personification,sibling,Erebos,Greek primordial deity
+Nyx,goddess,sibling,Erebos,Greek primordial deity
+Gaia,Greek primordial deity,sibling,Nyx,goddess
+Tartarus,Greek primordial deity,sibling,Nyx,goddess
+Eros,personification,sibling,Nyx,goddess
+Erebos,Greek primordial deity,sibling,Nyx,goddess
+Uranus,Greek primordial deity,sibling,Pontus,Greek primordial deity
+Uranus,Greek primordial deity,sibling,Ourea,Greek primordial deity
+Hemera,goddess,sibling,Aether,Greek primordial deity
+Anteros,Greek deity,sibling,Eros,personification
+Himeros,Greek deity,sibling,Eros,personification
+Pothos,mythological Greek character,sibling,Eros,personification
+Ponos,personification,sibling,Lethe,daemon
+Atë,allegorical Greek deity,sibling,Lethe,Potamoi
+Enyo,Greek deity,sibling,Polemos,personification
+Benthesikyme,Greek water deities,sibling,Triton,Greek water deities
+Cronus,titan,sibling,Oceanus,titan
+Rhea,titan,sibling,Oceanus,titan
+Themis,titan,sibling,Oceanus,titan
+Hyperion,titan,sibling,Oceanus,titan
+Iapetos,titan,sibling,Oceanus,titan
+Tethys,titan,sibling,Oceanus,titan
+Theia,titan,sibling,Oceanus,titan
+Rhodos,Okeanid,sibling,Triton,Greek water deities
+Oceanus,Greek water deities,sibling,Tethys,goddess
+Triton,Greek water deities,sibling,Benthesikyme,Greek water deities
+Cabeiro,Greek nymph,sibling,Idotea,Greek water deities
+Melia,Greek nymph,sibling,Caanthus,Greek water deities
+Cronus,titan,sibling,Tethys,titan
+Rhea,titan,sibling,Tethys,titan
+Themis,titan,sibling,Tethys,titan
+Hyperion,titan,sibling,Tethys,titan
+Iapetos,titan,sibling,Tethys,titan
+Theia,titan,sibling,Tethys,titan
+Pandia,goddess,sibling,Ersa,goddess
+Zeus,King of the Gods,sibling,Demeter,Greek deity
+Hera,fertility deity,sibling,Demeter,Greek deity
+Poseidon,water deity,sibling,Demeter,Greek deity
+Hestia,Greek deity,sibling,Demeter,Greek deity
+Zeus,thunder deity,sibling,Poseidon,water deity
+Hera,fertility deity,sibling,Poseidon,water deity
+Demeter,goddess,sibling,Poseidon,water deity
+Hestia,Greek deity,sibling,Poseidon,water deity
+Zeus,thunder deity,sibling,Hades,death deity
+Hera,fertility deity,sibling,Hades,death deity
+Demeter,goddess,sibling,Hades,death deity
+Poseidon,water deity,sibling,Hades,death deity
+Hestia,Greek deity,sibling,Hades,death deity
+Zeus,thunder deity,sibling,Hestia,Greek deity
+Hera,fertility deity,sibling,Hestia,Greek deity
+Demeter,goddess,sibling,Hestia,Greek deity
+Poseidon,water deity,sibling,Hestia,Greek deity
+Ares,Greek deity,sibling,Eris,Greek deity
+Hestia,Olympian god,sibling,Hera,fertility deity
+Zeus,thunder deity,sibling,Hera,fertility deity
+Demeter,goddess,sibling,Hera,fertility deity
+Poseidon,water deity,sibling,Hera,fertility deity
+Apollo,solar deity,sibling,Artemis,lunar deity
+Lampetia,Greek nymph,sibling,Phaethusa,Greek nymph
+Phaethusa,Greek nymph,sibling,Lampetia,Greek nymph
+Idotea,Greek water deities,sibling,Cabeiro,Greek nymph
+Idaea,Greek nymph,sibling,Adrasteia,Greek nymph
+Poseidon,water deity,sibling,Zeus,thunder deity
+Hestia,Greek deity,sibling,Zeus,thunder deity
+Perses,titan,sibling,Circe,Greek deity
+Nike,goddess,sibling,Zelus,Greek deity
+Dike,Greek deity,sibling,Eirene,personification
+Nike,goddess,sibling,Bia,goddess
+Nike,goddess,sibling,Kratos,Greek deity
+Dike,Greek deity,sibling,Eunomia,Greek deity
+Atë,allegorical Greek deity,sibling,Neikea,Greek deity
+Ponos,personification,sibling,Algos,goddess
+Ponos,personification,sibling,Limos,personification
+Atë,allegorical Greek deity,sibling,Limos,personification
+Atë,allegorical Greek deity,sibling,Dolor,Greek deity
+Adrasteia,Greek nymph,sibling,Ida,Greek nymph
+Ida,Greek nymph,sibling,Adrasteia,Greek nymph
+Hera,fertility deity,sibling,Zeus,thunder deity
+Demeter,goddess,sibling,Zeus,thunder deity
+Aether,Greek primordial deity,sibling,Hemera,goddess
+Eros,personification,sibling,Anteros,Greek deity
+Eros,personification,sibling,Himeros,Greek deity
+Eros,personification,sibling,Pothos,mythological Greek character
+Caanthus,Greek water deities,sibling,Melia,Greek nymph
+Polemos,personification,sibling,Enyo,Greek deity
+Ersa,goddess,sibling,Pandia,goddess
+Artemis,lunar deity,sibling,Apollo,solar deity
+Atë,allegorical Greek deity,sibling,Pseudea,goddess
+Zelus,Greek deity,sibling,Bia,goddess
+Kratos,Greek deity,sibling,Bia,goddess
+Zelus,Greek deity,sibling,Kratos,Greek deity
+Bia,goddess,sibling,Kratos,Greek deity
+Eirene,personification,sibling,Dike,Greek deity
+Hygieia,Greek deity,sibling,Aceso,mythological Greek character
+Atropos,Greek deity,sibling,Clotho,Greek deity
+Hygieia,Greek deity,sibling,Panacea,Greek deity
+Aceso,mythological Greek character,sibling,Panacea,Greek deity
+Atropos,Greek deity,sibling,Lachesis,Greek deity
+Eirene,personification,sibling,Eunomia,Greek deity
+Persephone,Greek deity,sibling,Despoina,mythological Greek character
+Aceso,mythological Greek character,sibling,Hygieia,Greek deity
+Panacea,Greek deity,sibling,Hygieia,Greek deity
+Himeros,Greek deity,sibling,Anteros,Greek deity
+Pothos,mythological Greek character,sibling,Anteros,Greek deity
+Panacea,Greek deity,sibling,Aceso,mythological Greek character
+Telesphorus,Greek deity,sibling,Aceso,mythological Greek character
+Aegle,Greek deity,sibling,Aceso,mythological Greek character
+Thallo,mythological Greek character,sibling,Carpo,Greek deity
+Thalia,Greek deity,sibling,Euphrosyne,Greek deity
+Aglaea,Greek deity,sibling,Euphrosyne,Greek deity
+Clotho,Greek deity,sibling,Atropos,Greek deity
+Lachesis,Greek deity,sibling,Atropos,Greek deity
+Lachesis,Greek deity,sibling,Clotho,Greek deity
+Telesphorus,Greek deity,sibling,Panacea,Greek deity
+Aegle,Greek deity,sibling,Panacea,Greek deity
+Clotho,Greek deity,sibling,Lachesis,Greek deity
+Aegle,Greek deity,sibling,Hygieia,Greek deity
+Eunomia,Greek deity,sibling,Eirene,personification
+Eunomia,Greek deity,sibling,Dike,Greek deity
+Hades,death deity,sibling,Zeus,thunder deity
+Telesphorus,Greek deity,sibling,Hygieia,Greek deity
+Hades,death deity,sibling,Hera,fertility deity
+Hades,death deity,sibling,Demeter,goddess
+Helios,solar deity,sibling,Selene,goddess
+Eos,personification,sibling,Selene,goddess
+Selene,goddess,sibling,Helios,solar deity
+Eos,personification,sibling,Helios,solar deity
+Zelus,Greek deity,sibling,Nike,goddess
+Bia,goddess,sibling,Nike,goddess
+Kratos,Greek deity,sibling,Nike,goddess
+Selene,goddess,sibling,Eos,personification
+Helios,solar deity,sibling,Eos,personification
+Bia,goddess,sibling,Zelus,Greek deity
+Kratos,Greek deity,sibling,Zelus,Greek deity
+Carpo,Greek deity,sibling,Thallo,mythological Greek character
+Euphrosyne,Greek deity,sibling,Thalia,Greek deity
+Aglaea,Greek deity,sibling,Thalia,Greek deity
+Hygieia,Greek deity,sibling,Telesphorus,Greek deity
+Hades,death deity,sibling,Hestia,Greek deity
+Hesperus,Greek deity,sibling,Phosphorus,personification
+Eris,Greek deity,sibling,Ares,Greek deity
+Phosphorus,personification,sibling,Hesperus,Greek deity
+Deimos,Greek deity,sibling,Phobos,Greek deity
+Phobos,Greek deity,sibling,Deimos,Greek deity
+Aceso,mythological Greek character,sibling,Telesphorus,Greek deity
+Panacea,Greek deity,sibling,Telesphorus,Greek deity
+Aegle,Greek deity,sibling,Telesphorus,Greek deity
+Anteros,Greek deity,sibling,Himeros,Greek deity
+Pothos,mythological Greek character,sibling,Himeros,Greek deity
+Anteros,Greek deity,sibling,Pothos,mythological Greek character
+Himeros,Greek deity,sibling,Pothos,mythological Greek character
+Philophrosyne,Greek deity,sibling,Eucleia,mythological Greek character
+Eucleia,mythological Greek character,sibling,Philophrosyne,Greek deity
+Hygieia,Greek deity,sibling,Aegle,Greek deity
+Aceso,mythological Greek character,sibling,Aegle,Greek deity
+Panacea,Greek deity,sibling,Aegle,Greek deity
+Telesphorus,Greek deity,sibling,Aegle,Greek deity
+Penia,personification,sibling,Amechania,personification
+Amechania,personification,sibling,Penia,personification
+Euphrosyne,Greek deity,sibling,Aglaea,Greek deity
+Thalia,Greek deity,sibling,Aglaea,Greek deity
+Hephaestus,Greek deity,sibling,Ares,Greek deity
+Hades,death deity,sibling,Poseidon,water deity
+Atë,allegorical Greek deity,sibling,Ponos,personification
+Lethe,daemon,sibling,Ponos,personification
+Atë,allegorical Greek deity,sibling,Dysnomia,allegorical Greek deity
+Algos,goddess,sibling,Ponos,personification
+Limos,personification,sibling,Ponos,personification
+Oceanus,titan,sibling,Hyperion,titan
+Tethys,titan,sibling,Hyperion,titan
+Oceanus,titan,sibling,Iapetos,titan
+Tethys,titan,sibling,Iapetos,titan
+Prometheus,titan,sibling,Epimetheus,titan
+Atlas,titan,sibling,Epimetheus,titan
+Rhea,titan,sibling,Cronus,titan
+Themis,titan,sibling,Cronus,titan
+Oceanus,titan,sibling,Cronus,titan
+Hyperion,titan,sibling,Cronus,titan
+Iapetos,titan,sibling,Cronus,titan
+Tethys,titan,sibling,Cronus,titan
+Theia,titan,sibling,Cronus,titan
+Atlas,titan,sibling,Prometheus,titan
+Oceanus,titan,sibling,Rhea,titan
+Hyperion,titan,sibling,Rhea,titan
+Iapetos,titan,sibling,Rhea,titan
+Tethys,titan,sibling,Rhea,titan
+Theia,titan,sibling,Rhea,titan
+Oceanus,titan,sibling,Themis,titan
+Tethys,titan,sibling,Themis,titan
+Cronus,titan,sibling,Theia,titan
+Rhea,titan,sibling,Theia,titan
+Themis,titan,sibling,Theia,titan
+Oceanus,titan,sibling,Theia,titan
+Hyperion,titan,sibling,Theia,titan
+Iapetos,titan,sibling,Theia,titan
+Tethys,titan,sibling,Theia,titan
+Pallas,titan,sibling,Astraeus,titan
+Perses,titan,sibling,Astraeus,titan
+Astraeus,titan,sibling,Pallas,titan
+Perses,titan,sibling,Pallas,titan
+Astraeus,titan,sibling,Perses,titan
+Pallas,titan,sibling,Perses,titan
+Prometheus,titan,sibling,Menoetius,titan
+Atlas,titan,sibling,Menoetius,titan
+Leto,titan,sibling,Asteria,titan
+Cronus,titan,sibling,Rhea,titan
+Themis,titan,sibling,Rhea,titan
+Epimetheus,titan,sibling,Atlas,titan
+Prometheus,titan,sibling,Atlas,titan
+Menoetius,titan,sibling,Epimetheus,titan
+Menoetius,titan,sibling,Prometheus,titan
+Asteria,titan,sibling,Leto,titan
+Menoetius,titan,sibling,Atlas,titan
+Hyperion,titan,sibling,Themis,titan
+Iapetos,titan,sibling,Themis,titan
+Theia,titan,sibling,Themis,titan
+Iapetos,titan,sibling,Hyperion,titan
+Theia,titan,sibling,Hyperion,titan
+Epimetheus,titan,sibling,Prometheus,titan
+Cronus,titan,sibling,Themis,titan
+Rhea,titan,sibling,Themis,titan
+Cronus,titan,sibling,Hyperion,titan
+Rhea,titan,sibling,Hyperion,titan
+Cronus,titan,sibling,Iapetos,titan
+Rhea,titan,sibling,Iapetos,titan
+Hyperion,titan,sibling,Iapetos,titan
+Theia,titan,sibling,Iapetos,titan
+Themis,titan,sibling,Hyperion,titan
+Themis,titan,sibling,Iapetos,titan
+Epimetheus,titan,sibling,Menoetius,titan
+Circe,Greek deity,sibling,Perses,titan
+Phoebe,Hamadryad,sibling,Atlantia,Hamadryad
+Cymopoleia,Greek nymph,spouse,Briareus,Hecatoncheires
+Peneus,Potamoi,spouse,Creusa,naiad
+Asopus,Potamoi,spouse,Metope,naiad
+Helios,solar deity,spouse,Aegle,naiad
+Poseidon,water deity,spouse,Amphitrite,Okeanid
+Zeus,thunder deity,spouse,Metis,Okeanid
+Atlas,titan,spouse,Pleione,Okeanid
+Inachus,Potamoi,spouse,Argeia,Okeanid
+Hermes,Olympian god,spouse,Daeira,Okeanid
+Pallas,titan,spouse,Styx,Okeanid
+Nereus,Greek water deities,spouse,Doris,Okeanid
+Thaumas,Greek water deities,spouse,Electra,Okeanid
+Prometheus,titan,spouse,Pronoia,Okeanid
+Helios,solar deity,spouse,Rhodos,Okeanid
+Echidna,drakaina,spouse,Typhon,Giants
+Iris,goddess,spouse,Zephyrus,Anemoi
+Hydros,Greek primordial deity,spouse,Gaia,Greek primordial deity
+Orithyia,Greek water deities,spouse,Boreas,personification
+Gaia,Greek primordial deity,spouse,Uranus,Greek primordial deity
+Uranus,Greek primordial deity,spouse,Gaia,Greek primordial deity
+Tartarus,Greek primordial deity,spouse,Gaia,Greek primordial deity
+Gaia,Greek primordial deity,spouse,Tartarus,Greek primordial deity
+Nyx,goddess,spouse,Erebos,Greek primordial deity
+Erebos,Greek primordial deity,spouse,Nyx,goddess
+Chloris,Greek nymph,spouse,Zephyrus,Anemoi
+Ceto,Greek water deities,spouse,Phorcys,chthonic deities
+Ananke,allegory,spouse,Chronos,Greek primordial deity
+Hydros,Greek primordial deity,spouse,Thesis,Greek primordial deity
+Thesis,Greek primordial deity,spouse,Hydros,Greek primordial deity
+Hemera,goddess,spouse,Aether,Greek primordial deity
+Psyche,mythological Greek character,spouse,Eros,personification
+Hybris,daemon,spouse,Polemos,personification
+Laodice,Greek nymph,spouse,Phoroneus,Potamoi
+Metope,naiad,spouse,Asopus,Potamoi
+Teledice,Greek nymph,spouse,Phoroneus,Potamoi
+Astris,Greek nymph,spouse,Hydaspes,Potamoi
+Orphne,Greek nymph,spouse,Acheron,Potamoi
+Melia,Greek nymph,spouse,Inachus,Potamoi
+Idaea,Greek nymph,spouse,Scamander,Potamoi
+Creusa,naiad,spouse,Peneus,Potamoi
+Argeia,Okeanid,spouse,Inachus,Potamoi
+Polemos,personification,spouse,Hybris,daemon
+Nomos,Greek deity,spouse,Eusebia,daemon
+Doris,Okeanid,spouse,Nereus,Greek water deities
+Phorcys,chthonic deities,spouse,Ceto,Greek water deities
+Electra,Okeanid,spouse,Thaumas,Greek water deities
+Boreas,personification,spouse,Orithyia,Greek water deities
+Tethys,titan,spouse,Oceanus,titan
+Oceanus,Greek water deities,spouse,Tethys,goddess
+Kreios,titan,spouse,Eurybia,Greek water deities
+Aphrodite,goddess,spouse,Hephaestus,Greek deity
+Metis,Okeanid,spouse,Zeus,thunder deity
+Zeus,thunder deity,spouse,Hera,fertility deity
+Prometheus,titan,spouse,Klymene,Greek nymph
+Iapetos,titan,spouse,Klymene,Greek nymph
+Briareus,Hecatoncheires,spouse,Cymopoleia,Greek nymph
+Zephyrus,Anemoi,spouse,Chloris,Greek nymph
+Scamander,Potamoi,spouse,Idaea,Greek nymph
+Adranus,Greek deity,spouse,Thalia,Greek nymph
+Phoroneus,Potamoi,spouse,Teledice,Greek nymph
+Helios,solar deity,spouse,Ceto,water deity
+Poseidon,water deity,spouse,Euryte,Greek nymph
+Phoroneus,Potamoi,spouse,Laodice,Greek nymph
+Atlas,titan,spouse,Aethra,Greek nymph
+Poseidon,water deity,spouse,Corcyra,Greek nymph
+Prometheus,titan,spouse,Celaeno,Greek nymph
+Amphitrite,Okeanid,spouse,Poseidon,water deity
+Heracles,demigod of Greek mythology,spouse,Hebe,goddess
+Rhodos,Okeanid,spouse,Helios,solar deity
+Corcyra,Greek nymph,spouse,Poseidon,water deity
+Inachus,Potamoi,spouse,Melia,Greek nymph
+Acheron,Potamoi,spouse,Orphne,Greek nymph
+Hydaspes,Potamoi,spouse,Astris,Greek nymph
+Euryte,Greek nymph,spouse,Poseidon,water deity
+Ceto,water deity,spouse,Helios,solar deity
+Hera,fertility deity,spouse,Zeus,thunder deity
+Aegle,naiad,spouse,Helios,solar deity
+Themis,titan,spouse,Zeus,thunder deity
+Ceroessa,Greek nymph,spouse,Poseidon,water deity
+Zephyrus,Anemoi,spouse,Iris,goddess
+Typhon,Giants,spouse,Echidna,drakaina
+Aether,Greek primordial deity,spouse,Hemera,goddess
+Eusebia,daemon,spouse,Nomos,Greek deity
+Ares,war deity,spouse,Aphrodite,goddess
+Thalia,Greek nymph,spouse,Adranus,Greek deity
+Hyperion,titan,spouse,Basileia,Greek deity
+Astraeus,titan,spouse,Eos,personification
+Hephaestus,Greek deity,spouse,Aglaea,Greek deity
+Hypnos,Greek deity,spouse,Pasithea,Greek deity
+Pasithea,Greek deity,spouse,Hypnos,Greek deity
+Daeira,Okeanid,spouse,Hermes,Olympian god
+Hephaestus,Greek deity,spouse,Aphrodite,goddess
+Persephone,Greek deity,spouse,Hades,Greek deity
+Hades,death deity,spouse,Persephone,Greek deity
+Aglaea,Greek deity,spouse,Hephaestus,Greek deity
+Theia,titan,spouse,Hyperion,titan
+Phoebe,titan,spouse,Coeus,titan
+Coeus,titan,spouse,Phoebe,titan
+Rhea,titan,spouse,Cronus,titan
+Styx,Okeanid,spouse,Pallas,titan
+Klymene,Greek nymph,spouse,Prometheus,titan
+Pronoia,Okeanid,spouse,Prometheus,titan
+Cronus,titan,spouse,Rhea,titan
+Pleione,Okeanid,spouse,Atlas,titan
+Hebe,goddess,spouse,Heracles,demigod of Greek mythology
+Hyperion,titan,spouse,Theia,titan
+Eurybia,Greek water deities,spouse,Kreios,titan
+Perses,titan,spouse,Asteria,titan
+Klymene,Greek nymph,spouse,Iapetos,titan
+Asopis,Greek nymph,spouse,Iapetos,titan
+Zeus,thunder deity,spouse,Themis,titan
+Asteria,titan,spouse,Perses,titan
+Celaeno,Greek nymph,spouse,Prometheus,titan
+Aethra,Greek nymph,spouse,Atlas,titan
+Eos,personification,spouse,Astraeus,titan

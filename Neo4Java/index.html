@@ -4,96 +4,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greek Mythology Graph</title>
-
-    <!-- Load dependencies first -->
+    <title>Greek Mythology Relationship Explorer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/neo4j-driver/5.15.0/neo4j-driver.min.js"></script>
-
+    <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
     <style>
-        /* Same styling as your original file (unchanged) */
-        body {
+        * {
             margin: 0;
-            padding: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            overflow: hidden;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            min-height: 100vh;
+            color: #1565c0;
         }
 
         .header {
-            text-align: center;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            position: relative;
         }
 
-        .header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1565c0;
+        }
+
+        .controls-panel {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box,
+        .filter-select,
+        .limit-select {
+            padding: 8px 12px;
+            border: 2px solid #e3f2fd;
+            border-radius: 20px;
+            font-size: 14px;
+            background: white;
+            color: #1565c0;
+        }
+
+        .search-box {
+            width: 250px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .clear-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .center-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .relationship-filters {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px;
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .stats-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(21, 101, 192, 0.1);
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .zoom-controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+        }
+
+        .zoom-btn {
+            background: #1565c0;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         .graph-container {
-            width: 100%;
-            height: calc(100vh - 120px);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
+        }
+
+        #graph {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+
+        #graph:active {
+            cursor: grabbing;
         }
 
         .node {
             cursor: pointer;
-            stroke-width: 3px;
-            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+            stroke: #fff;
+            stroke-width: 2px;
         }
 
         .node:hover {
-            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1));
-            transform: scale(1.1);
+            stroke: #ff6b6b;
+            stroke-width: 3px;
         }
 
         .link {
-            stroke: rgba(255, 215, 0, 0.6);
-            stroke-width: 2px;
-            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.3));
+            stroke: #999;
+            stroke-width: 1.5px;
+            stroke-opacity: 0.6;
         }
 
         .node-label {
             font-family: 'Segoe UI', sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            fill: white;
+            font-size: 11px;
+            font-weight: 600;
+            fill: #333;
             text-anchor: middle;
             dominant-baseline: central;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+        }
+
+        .relationship-label {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 9px;
+            fill: #666;
+            text-anchor: middle;
+            dominant-baseline: central;
             pointer-events: none;
         }
 
         .tooltip {
             position: absolute;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1565c0;
             padding: 10px;
             border-radius: 8px;
-            border: 1px solid #ffd700;
+            border: 1px solid #ccc;
             font-size: 12px;
             pointer-events: none;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 200px;
         }
 
         .loading {
@@ -101,271 +237,649 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.5em;
             text-align: center;
-        }
-
-        .legend,
-        .controls {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            font-size: 12px;
+            font-size: 1.2em;
+            color: #1565c0;
         }
 
         .legend {
-            top: 20px;
-            right: 20px;
-        }
-
-        .controls {
-            bottom: 20px;
-            left: 20px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 11px;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .legend-color {
-            width: 20px;
-            height: 20px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
+            margin-right: 6px;
+            border: 1px solid #ccc;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .graph-container {
+                height: 500px;
+                order: 1;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Greek Mythology Family Tree</h1>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🏛️ Mythology Explorer</div>
+            <div class="controls-panel">
+                <input type="text" class="search-box" id="searchBox" placeholder="Search character...">
+                <select class="limit-select" id="limitSelect">
+                    <option value="25">25 nodes</option>
+                    <option value="100">100 nodes</option>
+                    <option value="all">All nodes</option>
+                </select>
+                <button class="btn center-btn" id="centerBtn">Center Graph</button>
+                <button class="btn clear-btn" id="clearBtn">Clear Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <h3>🔗 Relationships</h3>
+            <div class="relationship-filters" id="relationshipFilters">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div class="zoom-controls">
+                <h3>🔍 Zoom & Pan</h3>
+                <button class="zoom-btn" id="zoomInBtn">Zoom In (+)</button>
+                <button class="zoom-btn" id="zoomOutBtn">Zoom Out (-)</button>
+                <button class="zoom-btn" id="fitBtn">Fit to Screen</button>
+                <button class="zoom-btn" id="resetBtn">Reset View</button>
+            </div>
+
+            <div class="stats-panel">
+                <h3>📊 Stats</h3>
+                <div class="stat-item">
+                    <span>Total Nodes:</span>
+                    <span id="nodeCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Total Links:</span>
+                    <span id="linkCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Visible:</span>
+                    <span id="visibleCount">0</span>
+                </div>
+            </div>
         </div>
 
         <div class="graph-container">
             <div id="loading" class="loading">
-                <div>🏛️ Loading Greek Mythology Data...</div>
-                <div style="font-size: 0.8em; margin-top: 10px;">Connecting to Neo4j...</div>
+                <div>Loading Greek Mythology Data...</div>
             </div>
             <svg id="graph"></svg>
-        </div>
 
-        <div class="legend">
-            <h3 style="margin-top: 0; color: #ffd700;">Legend</h3>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #ff6b6b;"></div><span>Olympian Gods</span>
+            <div class="legend">
+                <h4 style="margin-bottom: 8px; color: #1565c0;">Character Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff6b6b;"></div>
+                    <span>Olympian Gods</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4ecdc4;"></div>
+                    <span>Greek Deities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #45b7d1;"></div>
+                    <span>Lunar Deities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #96ceb4;"></div>
+                    <span>Goddesses</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #feca57;"></div>
+                    <span>Characters</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #a8e6cf;"></div>
+                    <span>Titans</span>
+                </div>
             </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #4ecdc4;"></div><span>Greek Deities</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #45b7d1;"></div><span>Lunar Deities</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #96ceb4;"></div><span>Goddesses</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #feca57;"></div><span>Mythological Characters</span>
-            </div>
-        </div>
-
-        <div class="controls">
-            <h3 style="margin-top: 0; color: #ffd700;">Controls</h3>
-            <div>🖱️ Click and drag nodes to move them</div>
-            <div>🔍 Hover over nodes for details</div>
-            <div>⚡ Double-click to center the graph</div>
         </div>
 
         <div class="tooltip" id="tooltip" style="display: none;"></div>
     </div>
 
-    <!-- Your app logic goes at the end of the body, after all libraries are loaded -->
     <script>
-        window.onload = async function () {
-            const driver = neo4j.driver(
-                'neo4j+s://10634e70.databases.neo4j.io',
-                neo4j.auth.basic('neo4j', 'jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI')
-            );
+        class MythologyExplorer {
+            constructor() {
+                this.driver = null;
+                this.allData = { nodes: [], links: [] };
+                this.filteredData = { nodes: [], links: [] };
+                this.simulation = null;
+                this.svg = null;
+                this.g = null;
+                this.zoom = null;
+                this.tooltip = null;
+                this.selectedRelationships = new Set();
+                this.searchTerm = '';
+                this.nodeLimit = 25;
+                this.tooltipTimeout = null;
 
-            const colorMap = {
-                'Olympian god': '#ff6b6b',
-                'Greek deity': '#4ecdc4',
-                'lunar deity': '#45b7d1',
-                'goddess': '#96ceb4',
-                'mythological Greek character': '#feca57'
-            };
+                this.colorMap = {
+                    'Olympian god': '#ff6b6b',
+                    'Greek deity': '#4ecdc4',
+                    'lunar deity': '#45b7d1',
+                    'goddess': '#96ceb4',
+                    'mythological Greek character': '#feca57',
+                    'titan': '#a8e6cf',
+                    'thunder deity': '#ff9f43',
+                    'King of the Gods': '#ff6b6b'
+                };
 
-            const container = document.querySelector('.graph-container');
-            const width = container.clientWidth;
-            const height = container.clientHeight;
+                this.init();
+            }
 
-            const svg = d3.select('#graph')
-                .attr('width', width)
-                .attr('height', height);
+            async init() {
+                this.setupEventListeners();
+                this.setupVisualization();
+                await this.connectToNeo4j();
+                await this.loadData();
+            }
 
-            const tooltip = d3.select('#tooltip');
+            setupEventListeners() {
+                document.getElementById('searchBox').addEventListener('input', (e) => {
+                    this.searchTerm = e.target.value.toLowerCase();
+                    this.updateVisualization();
+                });
 
-            const simulation = d3.forceSimulation()
-                .force('link', d3.forceLink().id(d => d.id).distance(100))
-                .force('charge', d3.forceManyBody().strength(-300))
-                .force('center', d3.forceCenter(width / 2, height / 2))
-                .force('collision', d3.forceCollide().radius(40));
+                document.getElementById('limitSelect').addEventListener('change', (e) => {
+                    this.nodeLimit = e.target.value === 'all' ? Infinity : parseInt(e.target.value);
+                    this.updateVisualization();
+                });
 
-            async function loadGraphData() {
-                const session = driver.session();
-                try {
-                    const result = await session.run(`
-                        MATCH (n)
-                        OPTIONAL MATCH (n)-[r]->(m)
-                        RETURN n, r, m
-                    `);
+                document.getElementById('clearBtn').addEventListener('click', () => {
+                    this.clearFilters();
+                });
 
-                    const nodes = new Map();
-                    const links = [];
+                document.getElementById('centerBtn').addEventListener('click', () => {
+                    this.centerGraph();
+                });
 
-                    result.records.forEach(record => {
-                        const node = record.get('n');
-                        const relationship = record.get('r');
-                        const targetNode = record.get('m');
+                document.getElementById('zoomInBtn').addEventListener('click', () => {
+                    this.zoomIn();
+                });
 
-                        if (node && !nodes.has(node.properties.id)) {
-                            nodes.set(node.properties.id, {
-                                id: node.properties.id,
-                                label: node.properties.label || node.properties.id,
-                                type: node.properties.type,
-                                color: colorMap[node.properties.type] || '#888888'
-                            });
-                        }
+                document.getElementById('zoomOutBtn').addEventListener('click', () => {
+                    this.zoomOut();
+                });
 
-                        if (targetNode && relationship) {
-                            if (!nodes.has(targetNode.properties.id)) {
-                                nodes.set(targetNode.properties.id, {
-                                    id: targetNode.properties.id,
-                                    label: targetNode.properties.label || targetNode.properties.id,
-                                    type: targetNode.properties.type,
-                                    color: colorMap[targetNode.properties.type] || '#888888'
-                                });
-                            }
+                document.getElementById('fitBtn').addEventListener('click', () => {
+                    this.fitToScreen();
+                });
 
-                            links.push({
-                                source: node.properties.id,
-                                target: targetNode.properties.id,
-                                type: relationship.properties.type || relationship.type,
-                                relationship: relationship.type
-                            });
-                        }
+                document.getElementById('resetBtn').addEventListener('click', () => {
+                    this.resetView();
+                });
+            }
+
+            setupVisualization() {
+                const container = document.querySelector('.graph-container');
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+
+                this.svg = d3.select('#graph')
+                    .attr('width', width)
+                    .attr('height', height);
+
+                // Setup zoom behavior
+                this.zoom = d3.zoom()
+                    .scaleExtent([0.1, 10])
+                    .on('zoom', (event) => {
+                        this.g.attr('transform', event.transform);
                     });
 
-                    return {
-                        nodes: Array.from(nodes.values()),
-                        links: links
-                    };
+                this.svg.call(this.zoom);
+
+                // Create main group for all graph elements
+                this.g = this.svg.append('g');
+
+                this.tooltip = d3.select('#tooltip');
+
+                this.simulation = d3.forceSimulation()
+                    .force('link', d3.forceLink().id(d => d.id).distance(80))
+                    .force('charge', d3.forceManyBody().strength(-200))
+                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    .force('collision', d3.forceCollide().radius(25));
+            }
+
+            async connectToNeo4j() {
+                try {
+                    this.driver = neo4j.driver(
+                        'neo4j+s://10634e70.databases.neo4j.io',
+                        neo4j.auth.basic('neo4j', 'jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI')
+                    );
+                    console.log('✅ Connected to Neo4j');
+                } catch (error) {
+                    console.error('❌ Neo4j connection failed:', error);
+                    this.showError('Failed to connect to database');
+                }
+            }
+
+            async loadData() {
+                const session = this.driver.session();
+                try {
+                    const result = await session.run(`
+                        MATCH (n) 
+                        OPTIONAL MATCH (n)-[r]->(m) 
+                        RETURN n, r, m 
+                        LIMIT 500
+                    `);
+
+                    this.processData(result.records);
+                    this.createRelationshipFilters();
+                    this.updateVisualization();
+                    document.getElementById('loading').style.display = 'none';
+
+                } catch (error) {
+                    console.error('❌ Data loading failed:', error);
+                    this.showError('Failed to load data');
                 } finally {
                     await session.close();
                 }
             }
 
-            function createVisualization(graphData) {
-                document.getElementById('loading').style.display = 'none';
+            processData(records) {
+                const nodes = new Map();
+                const links = [];
 
-                const link = svg.append('g')
+                records.forEach(record => {
+                    const n = record.get('n');
+                    const r = record.get('r');
+                    const m = record.get('m');
+
+                    if (n && !nodes.has(n.properties.id)) {
+                        nodes.set(n.properties.id, {
+                            id: n.properties.id,
+                            label: n.properties.label || n.properties.id,
+                            type: n.properties.type,
+                            color: this.colorMap[n.properties.type] || '#888'
+                        });
+                    }
+
+                    if (m && r) {
+                        if (!nodes.has(m.properties.id)) {
+                            nodes.set(m.properties.id, {
+                                id: m.properties.id,
+                                label: m.properties.label || m.properties.id,
+                                type: m.properties.type,
+                                color: this.colorMap[m.properties.type] || '#888'
+                            });
+                        }
+
+                        links.push({
+                            source: n.properties.id,
+                            target: m.properties.id,
+                            relationship: r.properties.type || r.type
+                        });
+                    }
+                });
+
+                this.allData = {
+                    nodes: Array.from(nodes.values()),
+                    links
+                };
+
+                this.updateStats();
+            }
+
+            createRelationshipFilters() {
+                const relationships = [...new Set(this.allData.links.map(l => l.relationship))];
+                const container = document.getElementById('relationshipFilters');
+
+                relationships.forEach(rel => {
+                    if (rel) {
+                        const div = document.createElement('div');
+                        div.className = 'filter-checkbox';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.id = `rel-${rel}`;
+                        checkbox.checked = true;
+                        checkbox.addEventListener('change', () => {
+                            if (checkbox.checked) {
+                                this.selectedRelationships.add(rel);
+                            } else {
+                                this.selectedRelationships.delete(rel);
+                            }
+                            this.updateVisualization();
+                        });
+
+                        const label = document.createElement('label');
+                        label.htmlFor = `rel-${rel}`;
+                        label.textContent = rel;
+                        label.style.fontSize = '12px';
+
+                        div.appendChild(checkbox);
+                        div.appendChild(label);
+                        container.appendChild(div);
+
+                        this.selectedRelationships.add(rel);
+                    }
+                });
+            }
+
+            updateVisualization() {
+                this.filterData();
+                this.createVisualization();
+                this.updateStats();
+            }
+
+            filterData() {
+                let filteredNodes = this.allData.nodes;
+                let filteredLinks = this.allData.links;
+
+                // Filter by search term
+                if (this.searchTerm) {
+                    const searchNodes = filteredNodes.filter(n =>
+                        n.label.toLowerCase().includes(this.searchTerm)
+                    );
+
+                    const connectedNodeIds = new Set();
+                    searchNodes.forEach(n => connectedNodeIds.add(n.id));
+
+                    filteredLinks.forEach(l => {
+                        if (connectedNodeIds.has(l.source.id || l.source) ||
+                            connectedNodeIds.has(l.target.id || l.target)) {
+                            connectedNodeIds.add(l.source.id || l.source);
+                            connectedNodeIds.add(l.target.id || l.target);
+                        }
+                    });
+
+                    filteredNodes = filteredNodes.filter(n => connectedNodeIds.has(n.id));
+                }
+
+                // Filter by relationships
+                filteredLinks = filteredLinks.filter(l =>
+                    this.selectedRelationships.has(l.relationship)
+                );
+
+                // Get connected nodes
+                const connectedNodeIds = new Set();
+                filteredLinks.forEach(l => {
+                    connectedNodeIds.add(l.source.id || l.source);
+                    connectedNodeIds.add(l.target.id || l.target);
+                });
+
+                filteredNodes = filteredNodes.filter(n =>
+                    connectedNodeIds.has(n.id) ||
+                    (this.searchTerm && n.label.toLowerCase().includes(this.searchTerm))
+                );
+
+                // Apply node limit
+                if (filteredNodes.length > this.nodeLimit) {
+                    filteredNodes = filteredNodes.slice(0, this.nodeLimit);
+                    const limitedNodeIds = new Set(filteredNodes.map(n => n.id));
+                    filteredLinks = filteredLinks.filter(l =>
+                        limitedNodeIds.has(l.source.id || l.source) &&
+                        limitedNodeIds.has(l.target.id || l.target)
+                    );
+                }
+
+                this.filteredData = { nodes: filteredNodes, links: filteredLinks };
+            }
+
+            createVisualization() {
+                // Clear previous visualization
+                this.g.selectAll("*").remove();
+
+                const data = this.filteredData;
+                if (data.nodes.length === 0) return;
+
+                // Create links
+                const link = this.g.append('g')
                     .selectAll('line')
-                    .data(graphData.links)
+                    .data(data.links)
                     .enter().append('line')
                     .attr('class', 'link');
 
-                const node = svg.append('g')
+                // Create relationship labels
+                const linkLabels = this.g.append('g')
+                    .selectAll('text')
+                    .data(data.links)
+                    .enter().append('text')
+                    .attr('class', 'relationship-label')
+                    .text(d => d.relationship);
+
+                // Create nodes
+                const node = this.g.append('g')
                     .selectAll('circle')
-                    .data(graphData.nodes)
+                    .data(data.nodes)
                     .enter().append('circle')
                     .attr('class', 'node')
-                    .attr('r', d => d.id === 'Zeus' ? 25 : 20)
+                    .attr('r', d => d.id === 'Zeus' ? 15 : 10)
                     .attr('fill', d => d.color)
-                    .attr('stroke', '#ffd700')
                     .call(d3.drag()
-                        .on('start', dragstarted)
-                        .on('drag', dragged)
-                        .on('end', dragended));
+                        .on('start', this.dragstarted.bind(this))
+                        .on('drag', this.dragged.bind(this))
+                        .on('end', this.dragended.bind(this)));
 
-                const labels = svg.append('g')
+                // Create node labels - these move with nodes
+                const nodeLabels = this.g.append('g')
                     .selectAll('text')
-                    .data(graphData.nodes)
+                    .data(data.nodes)
                     .enter().append('text')
                     .attr('class', 'node-label')
-                    .text(d => d.label)
-                    .style('font-size', d => d.id === 'Zeus' ? '16px' : '14px');
+                    .text(d => d.label);
 
-                node.on('mouseover', function (event, d) {
-                    tooltip
-                        .style('display', 'block')
-                        .style('left', (event.pageX + 10) + 'px')
-                        .style('top', (event.pageY - 10) + 'px')
-                        .html(`<strong>${d.label}</strong><br/>Type: ${d.type}<br/>ID: ${d.id}`);
-                }).on('mouseout', function () {
-                    tooltip.style('display', 'none');
+                // Add hover interactions with timeout to prevent flashing
+                node.on('mouseenter', (event, d) => {
+                    clearTimeout(this.tooltipTimeout);
+                    this.showTooltip(event, d);
+                }).on('mouseleave', () => {
+                    this.tooltipTimeout = setTimeout(() => {
+                        this.hideTooltip();
+                    }, 100);
                 });
 
-                svg.on('dblclick', function () {
-                    simulation.alpha(0.3).restart();
-                });
-
-                simulation.nodes(graphData.nodes).on('tick', ticked);
-                simulation.force('link').links(graphData.links);
-
-                function ticked() {
+                // Setup simulation tick
+                this.simulation.nodes(data.nodes).on('tick', () => {
                     link
                         .attr('x1', d => d.source.x)
                         .attr('y1', d => d.source.y)
                         .attr('x2', d => d.target.x)
                         .attr('y2', d => d.target.y);
 
+                    linkLabels
+                        .attr('x', d => (d.source.x + d.target.x) / 2)
+                        .attr('y', d => (d.source.y + d.target.y) / 2);
+
                     node
                         .attr('cx', d => d.x)
                         .attr('cy', d => d.y);
 
-                    labels
+                    // Move labels WITH nodes - this fixes the sync issue
+                    nodeLabels
                         .attr('x', d => d.x)
-                        .attr('y', d => d.y);
-                }
-
-                function dragstarted(event, d) {
-                    if (!event.active) simulation.alphaTarget(0.3).restart();
-                    d.fx = d.x;
-                    d.fy = d.y;
-                }
-
-                function dragged(event, d) {
-                    d.fx = event.x;
-                    d.fy = event.y;
-                }
-
-                function dragended(event, d) {
-                    if (!event.active) simulation.alphaTarget(0);
-                    d.fx = null;
-                    d.fy = null;
-                }
-            }
-
-            // Load and show graph
-            loadGraphData()
-                .then(createVisualization)
-                .catch(error => {
-                    console.error('Error loading graph data:', error);
-                    document.getElementById('loading').innerHTML = `
-                        <div style="color: #ff6b6b;">❌ Error loading data</div>
-                        <div style="font-size: 0.8em; margin-top: 10px;">${error.message}</div>
-                    `;
+                        .attr('y', d => d.y + 3);
                 });
 
-            window.addEventListener('beforeunload', () => {
-                driver.close();
-            });
+                this.simulation.force('link').links(data.links);
+                this.simulation.alpha(1).restart();
+            }
+
+            showTooltip(event, d) {
+                const connections = this.filteredData.links
+                    .filter(l => l.source.id === d.id || l.target.id === d.id)
+                    .map(l => {
+                        const other = l.source.id === d.id ? l.target : l.source;
+                        return `${l.relationship}: ${other.label || other.id}`;
+                    });
+
+                this.tooltip
+                    .style('display', 'block')
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 10) + 'px')
+                    .html(`
+                        <strong>${d.label}</strong><br/>
+                        <em>${d.type}</em><br/>
+                        ${connections.length > 0 ? '<hr style="margin: 5px 0;"/>' : ''}
+                        ${connections.slice(0, 3).join('<br/>')}
+                        ${connections.length > 3 ? '<br/>...' : ''}
+                    `);
+            }
+
+            hideTooltip() {
+                this.tooltip.style('display', 'none');
+            }
+
+            // Zoom and pan controls
+            centerGraph() {
+                const container = this.svg.node().getBoundingClientRect();
+                const centerX = container.width / 2;
+                const centerY = container.height / 2;
+
+                this.svg.transition().duration(750).call(
+                    this.zoom.transform,
+                    d3.zoomIdentity.translate(centerX, centerY).scale(1)
+                );
+            }
+
+            zoomIn() {
+                this.svg.transition().duration(300).call(
+                    this.zoom.scaleBy, 1.5
+                );
+            }
+
+            zoomOut() {
+                this.svg.transition().duration(300).call(
+                    this.zoom.scaleBy, 1 / 1.5
+                );
+            }
+
+            fitToScreen() {
+                if (this.filteredData.nodes.length === 0) return;
+
+                const bounds = this.g.node().getBBox();
+                const parent = this.svg.node().getBoundingClientRect();
+                const fullWidth = parent.width;
+                const fullHeight = parent.height;
+                const width = bounds.width;
+                const height = bounds.height;
+                const midX = bounds.x + width / 2;
+                const midY = bounds.y + height / 2;
+
+                if (width == 0 || height == 0) return;
+
+                const scale = Math.min(fullWidth / width, fullHeight / height) * 0.8;
+                const translate = [fullWidth / 2 - scale * midX, fullHeight / 2 - scale * midY];
+
+                this.svg.transition().duration(750).call(
+                    this.zoom.transform,
+                    d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale)
+                );
+            }
+
+            resetView() {
+                this.svg.transition().duration(750).call(
+                    this.zoom.transform,
+                    d3.zoomIdentity
+                );
+            }
+
+            updateStats() {
+                document.getElementById('nodeCount').textContent = this.allData.nodes.length;
+                document.getElementById('linkCount').textContent = this.allData.links.length;
+                document.getElementById('visibleCount').textContent = this.filteredData.nodes.length;
+            }
+
+            clearFilters() {
+                document.getElementById('searchBox').value = '';
+                document.getElementById('limitSelect').value = '25';
+                this.searchTerm = '';
+                this.nodeLimit = 25;
+
+                document.querySelectorAll('#relationshipFilters input[type="checkbox"]').forEach(cb => {
+                    cb.checked = true;
+                });
+
+                this.selectedRelationships.clear();
+                this.allData.links.forEach(l => {
+                    if (l.relationship) this.selectedRelationships.add(l.relationship);
+                });
+
+                this.updateVisualization();
+            }
+
+            showError(message) {
+                document.getElementById('loading').innerHTML = `❌ Error: ${message}`;
+            }
+
+            dragstarted(event, d) {
+                if (!event.active) this.simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            dragended(event, d) {
+                if (!event.active) this.simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        // Initialize the application
+        window.onload = async function () {
+            if (typeof neo4j === "undefined") {
+                document.getElementById("loading").innerHTML = `❌ Neo4j library failed to load!`;
+                return;
+            }
+
+            window.explorer = new MythologyExplorer();
         };
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.explorer) {
+                const container = document.querySelector('.graph-container');
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+
+                d3.select('#graph').attr('width', width).attr('height', height);
+
+                if (window.explorer.simulation) {
+                    window.explorer.simulation.force('center', d3.forceCenter(width / 2, height / 2));
+                    window.explorer.simulation.alpha(0.3).restart();
+                }
+            }
+        });
     </script>
 </body>
 
