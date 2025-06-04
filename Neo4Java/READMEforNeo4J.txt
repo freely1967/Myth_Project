@@ -1,5 +1,69 @@
 basically its an intro for people to make the same graphdatanbase
 
+update, use this instead of last one , this contain the myth_query1358 as datasource format
+
+
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/freely1967/Myth_Project/refs/heads/main/myth_query1358with.csv' AS row
+MERGE (a:Entity {id: row.char1Label})
+  ON CREATE SET a.label = row.char1Label, a.type = row.char1Type
+MERGE (b:Entity {id: row.char2Label})
+  ON CREATE SET b.label = row.char2Label, b.type = row.char2Type;
+
+
+
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/freely1967/Myth_Project/refs/heads/main/myth_query1358with.csv' AS row
+MATCH (a:Entity {id: row.char1Label})
+MATCH (b:Entity {id: row.char2Label})
+MERGE (a)-[:RELATED {type: row.relationLabel}]->(b);
+
+MATCH (a)-[r]->(b)
+RETURN a, r, b LIMIT 100;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Step 1: Access Neo4j Online
 
@@ -42,4 +106,25 @@ Or to see all nodes and relationships:
 MATCH (n) OPTIONAL MATCH (n)-[r]->(m) RETURN n, r, m
 
 Step 5: Customize Visualization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
