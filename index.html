@@ -407,15 +407,30 @@
                 this.tooltipTimeout = null;
 
                 this.colorMap = {
-                    'Olympian god': '#ff6b6b',
-                    'Greek deity': '#4ecdc4',
+                    // Legend types
+                    'olympian god': '#ff6b6b',
+                    'greek deity': '#4ecdc4',
                     'lunar deity': '#45b7d1',
                     'goddess': '#96ceb4',
-                    'mythological Greek character': '#feca57',
+                    'mythological greek character': '#feca57',
                     'titan': '#a8e6cf',
-                    'thunder deity': '#ff9f43',
-                    'King of the Gods': '#ff6b6b'
+
+                    // Additional common types
+                    'king of the gods': '#ffd166',
+                    'personification': '#f5a3c7',
+                    'naiad': '#81ecec',
+                    'giants': '#bdb2ff',
+                    'primordial deity': '#c2c2f0',
+                    'anemoi': '#caffbf',
+                    'hecatoncheires': '#ffb3b3',
+                    'monster': '#d0bdf4',
+                    'nymph': '#f6d186',
+                    'sea deity': '#a0c4ff',
+                    'unknown': '#cccccc' // Fallback label if any type is null
                 };
+
+
+
 
                 this.init();
             }
@@ -538,21 +553,23 @@
                     const m = record.get('m');
 
                     if (n && !nodes.has(n.properties.id)) {
+                        const typeN = (n.properties.type || 'unknown').toLowerCase();
                         nodes.set(n.properties.id, {
                             id: n.properties.id,
                             label: n.properties.label || n.properties.id,
                             type: n.properties.type,
-                            color: this.colorMap[n.properties.type] || '#888'
+                            color: this.colorMap[typeN] || '#ffd6a5' // default pastel if truly unmapped
                         });
                     }
 
                     if (m && r) {
                         if (!nodes.has(m.properties.id)) {
+                            const typeM = (m.properties.type || 'unknown').toLowerCase();
                             nodes.set(m.properties.id, {
                                 id: m.properties.id,
                                 label: m.properties.label || m.properties.id,
                                 type: m.properties.type,
-                                color: this.colorMap[m.properties.type] || '#888'
+                                color: this.colorMap[typeM] || '#ffd6a5'
                             });
                         }
 
