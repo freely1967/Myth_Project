@@ -282,23 +282,23 @@
                 order: 1;
             }
         }
+
         .analysis-btn {
-    background: #ffd54f;
-    color: #1565c0;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s;
-}
+            background: #ffd54f;
+            color: #1565c0;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
 
-.analysis-btn:hover {
-    background: #ffca28;
-    text-decoration: underline;
-}
-
+        .analysis-btn:hover {
+            background: #ffca28;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -513,7 +513,6 @@
                         MATCH (n) 
                         OPTIONAL MATCH (n)-[r]->(m) 
                         RETURN n, r, m 
-                        LIMIT 500
                     `);
 
                     this.processData(result.records);
