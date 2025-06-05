@@ -635,55 +635,64 @@
                 let filteredNodes = this.allData.nodes;
                 let filteredLinks = this.allData.links;
 
-                // Filter by search term
-                if (this.searchTerm) {
-                    const searchNodes = filteredNodes.filter(n =>
-                        n.label.toLowerCase().includes(this.searchTerm)
-                    );
-
-                    const connectedNodeIds = new Set();
-                    searchNodes.forEach(n => connectedNodeIds.add(n.id));
-
-                    filteredLinks.forEach(l => {
-                        if (connectedNodeIds.has(l.source.id || l.source) ||
-                            connectedNodeIds.has(l.target.id || l.target)) {
-                            connectedNodeIds.add(l.source.id || l.source);
-                            connectedNodeIds.add(l.target.id || l.target);
-                        }
-                    });
-
-                    filteredNodes = filteredNodes.filter(n => connectedNodeIds.has(n.id));
-                }
-
-                // Filter by relationships
+                // 1. Filter links by selected relationships
                 filteredLinks = filteredLinks.filter(l =>
                     this.selectedRelationships.has(l.relationship)
                 );
 
-                // Get connected nodes
-                const connectedNodeIds = new Set();
-                filteredLinks.forEach(l => {
-                    connectedNodeIds.add(l.source.id || l.source);
-                    connectedNodeIds.add(l.target.id || l.target);
-                });
+                // 2. If there's a search term, isolate the node and its direct connections
+                if (this.searchTerm) {
+                    const lowerSearch = this.searchTerm.toLowerCase();
 
-                filteredNodes = filteredNodes.filter(n =>
-                    connectedNodeIds.has(n.id) ||
-                    (this.searchTerm && n.label.toLowerCase().includes(this.searchTerm))
-                );
+                    // Find nodes matching the search term
+                    const matchedNodes = this.allData.nodes.filter(n =>
+                        n.label.toLowerCase().includes(lowerSearch)
+                    );
+                    const matchedIds = new Set(matchedNodes.map(n => n.id));
 
-                // Apply node limit
+                    // Filter links that are connected to the searched node(s)
+                    filteredLinks = this.allData.links.filter(l =>
+                        matchedIds.has(l.source.id || l.source) ||
+                        matchedIds.has(l.target.id || l.target)
+                    );
+
+                    // Collect all directly connected node IDs (including searched node)
+                    const connectedIds = new Set();
+                    filteredLinks.forEach(l => {
+                        connectedIds.add(l.source.id || l.source);
+                        connectedIds.add(l.target.id || l.target);
+                    });
+
+                    // Filter nodes that are part of the search cluster
+                    filteredNodes = this.allData.nodes.filter(n =>
+                        connectedIds.has(n.id)
+                    );
+                } else {
+                    // If no search, restrict to nodes connected by selected relationship types
+                    const connectedIds = new Set();
+                    filteredLinks.forEach(l => {
+                        connectedIds.add(l.source.id || l.source);
+                        connectedIds.add(l.target.id || l.target);
+                    });
+
+                    filteredNodes = this.allData.nodes.filter(n =>
+                        connectedIds.has(n.id)
+                    );
+                }
+
+                // 3. Apply node limit (only after filtering)
                 if (filteredNodes.length > this.nodeLimit) {
                     filteredNodes = filteredNodes.slice(0, this.nodeLimit);
-                    const limitedNodeIds = new Set(filteredNodes.map(n => n.id));
+                    const limitedIds = new Set(filteredNodes.map(n => n.id));
                     filteredLinks = filteredLinks.filter(l =>
-                        limitedNodeIds.has(l.source.id || l.source) &&
-                        limitedNodeIds.has(l.target.id || l.target)
+                        limitedIds.has(l.source.id || l.source) &&
+                        limitedIds.has(l.target.id || l.target)
                     );
                 }
 
                 this.filteredData = { nodes: filteredNodes, links: filteredLinks };
             }
+
 
             createVisualization() {
                 // Clear previous visualization
