@@ -98,61 +98,51 @@ async function fetchGraphData(){
 }
 
 /* ---------- Analysis ---------- */
+function euclideanDistance(a, b) {
+  const sumSq = a.reduce((sum, v, i) => sum + (v - b[i]) ** 2, 0);
+  return Math.sqrt(sumSq);
+}
+
 async function analyze() {
-  const weights = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
+  const userVec = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
   const filter = document.getElementById("typeSelect").value;
   const data = await fetchGraphData();
 
-  const inEdges = {};
-  const outEdges = {};
-
-  // Robustere Zuordnung der Kanten
+  const inEdges = {}, outEdges = {};
   data.links.forEach(l => {
-    // Eingehende Kanten (Target)
-    if (!Array.isArray(inEdges[l.target])) inEdges[l.target] = [];
-    inEdges[l.target].push(l);
-
-    // Ausgehende Kanten (Source)
-    if (!Array.isArray(outEdges[l.source])) outEdges[l.source] = [];
-    outEdges[l.source].push(l);
+    (inEdges[l.target] = inEdges[l.target] || []).push(l);
+    (outEdges[l.source] = outEdges[l.source] || []).push(l);
   });
 
-  const scores = {};
-  const explanations = {};
-
+  const scores = {}, explanations = {};
   data.nodes.forEach(node => {
     if (filter !== "Any" && node.type !== filter) return;
 
     const out = outEdges[node.id] || [];
     const inc = inEdges[node.id] || [];
 
-    // Feature-Extraktion
-    const children = out.filter(e => ["father", "mother"].includes(e.type)).length;
-    const kills = inc.filter(e => e.type === "killed by").length;
-    const spouses = out.filter(e => e.type === "spouse").length;
+    const children = inc.filter(e => ["father","mother"].includes(e.type)).length;
+    const kills    = inc.filter(e => e.type === "killed by").length;
+    const spouses  = out.filter(e => e.type === "spouse").length;
     const siblings = out.filter(e => e.type === "sibling").length;
 
-    const features = [children, kills, spouses, inc.length, out.length, siblings];
-    const score = features.reduce((sum, f, i) => sum + f * weights[i], 0);
+    const charVec = [children, kills, spouses, inc.length, out.length, siblings];
 
-    scores[node.id] = score;
-    explanations[node.id] =
-      `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
-      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Score: ${score}`;
+    const dist = euclideanDistance(userVec, charVec);
+
+    scores[node.id] = dist;
+    explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
+      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Distance: ${dist.toFixed(3)}`;
   });
 
-  // Ausgabe der Top 5 Ergebnisse
-  const sorted = Object.entries(scores)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-
+  // Bei Distanz: kleiner ist besser => sortiere aufsteigend
+  const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]).slice(0,5);
   const resDiv = document.getElementById("results");
-  resDiv.innerHTML = '<h2>Top 5 Matches</h2>';
-
-  sorted.forEach(([id, score], i) => {
+  resDiv.innerHTML = '<h2>Top 5 Matches (Euclidean Distance)</h2>';
+  sorted.forEach(([id, dist], i) => {
     resDiv.innerHTML += `
       <div class="result">
-        <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
+        <strong>${i + 1}. ${id} — Distance: ${dist.toFixed(3)}</strong><br>
         ${explanations[id]}
       </div>`;
   });
