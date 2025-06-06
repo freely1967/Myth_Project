@@ -98,12 +98,9 @@ async function fetchGraphData(){
 }
 
 /* ---------- Analysis ---------- */
-function cosineSimilarity(a, b) {
-  const dot = a.reduce((sum, v, i) => sum + v * b[i], 0);
-  const magA = Math.sqrt(a.reduce((sum, v) => sum + v * v, 0));
-  const magB = Math.sqrt(b.reduce((sum, v) => sum + v * v, 0));
-  if (magA === 0 || magB === 0) return 0;
-  return dot / (magA * magB);
+function euclideanDistance(a, b) {
+  const sumSq = a.reduce((sum, v, i) => sum + (v - b[i]) ** 2, 0);
+  return Math.sqrt(sumSq);
 }
 
 async function analyze() {
@@ -131,20 +128,21 @@ async function analyze() {
 
     const charVec = [children, kills, spouses, inc.length, out.length, siblings];
 
-    const similarity = cosineSimilarity(userVec, charVec);
+    const dist = euclideanDistance(userVec, charVec);
 
-    scores[node.id] = similarity;
+    scores[node.id] = dist;
     explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
-      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Similarity: ${similarity.toFixed(3)}`;
+      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Distance: ${dist.toFixed(3)}`;
   });
 
-  const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]).slice(0,5);
+  // Bei Distanz: kleiner ist besser => sortiere aufsteigend
+  const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]).slice(0,5);
   const resDiv = document.getElementById("results");
-  resDiv.innerHTML = '<h2>Top 5 Matches (Cosine Similarity)</h2>';
-  sorted.forEach(([id, score], i) => {
+  resDiv.innerHTML = '<h2>Top 5 Matches (Euclidean Distance)</h2>';
+  sorted.forEach(([id, dist], i) => {
     resDiv.innerHTML += `
       <div class="result">
-        <strong>${i + 1}. ${id} — Similarity: ${score.toFixed(3)}</strong><br>
+        <strong>${i + 1}. ${id} — Distance: ${dist.toFixed(3)}</strong><br>
         ${explanations[id]}
       </div>`;
   });
