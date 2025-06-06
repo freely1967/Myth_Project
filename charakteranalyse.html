@@ -128,8 +128,7 @@ async function analyze() {
 
     // Feature-Extraktion
     const children = out.filter(e => ["father", "mother"].includes(e.type)).length;
-    const kills = out.filter(e => e.type === "killed by").length;
-
+    const kills = inc.filter(e => e.type === "killed by").length;
     const spouses = out.filter(e => e.type === "spouse").length;
     const siblings = out.filter(e => e.type === "sibling").length;
 
