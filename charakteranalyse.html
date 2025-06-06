@@ -6,114 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
-      color: #1565c0;
-    }
-
-    .header {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 1.8em;
-    }
-
-    .back-link {
-      text-decoration: none;
-      background: #ffd54f;
-      color: #1565c0;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .back-link:hover {
-      background: #ffca28;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .slider-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
-
-    input[type="range"] {
-      width: 100%;
-    }
-
-    select, button {
-      padding: 10px 15px;
-      font-size: 14px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      margin-top: 10px;
-    }
-
-    button {
-      background: #4ecdc4;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #3db8ae;
-    }
-
-    .results {
-      margin-top: 30px;
-    }
-
-    .result {
-      background: #e3f2fd;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .result strong {
-      font-size: 1.1em;
-    }
-
-    @media (max-width: 600px) {
-      .header {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .container {
-        padding: 20px;
-        margin: 20px;
-      }
-    }
+    body{margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 50%,#90caf9 100%);color:#1565c0}
+    .header{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,.1);padding:15px 20px;display:flex;
+      justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+    .header h1{margin:0;font-size:1.8em}
+    .back-link{text-decoration:none;background:#ffd54f;color:#1565c0;padding:8px 16px;
+      border-radius:20px;font-weight:bold;font-size:14px}
+    .back-link:hover{background:#ffca28}
+    .container{max-width:900px;margin:30px auto;background:rgba(255,255,255,.95);
+      border-radius:15px;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+    .slider-group{margin-bottom:20px}
+    label{display:block;margin-bottom:6px;font-weight:bold}
+    input[type=range]{width:100%}
+    select,button{padding:10px 15px;font-size:14px;border-radius:10px;border:1px solid #ddd;margin-top:10px}
+    button{background:#4ecdc4;color:#fff;font-weight:bold;cursor:pointer}
+    button:hover{background:#3db8ae}
+    .results{margin-top:30px}
+    .result{background:#e3f2fd;padding:15px;border-radius:10px;margin-bottom:15px}
+    .result strong{font-size:1.1em}
+    @media(max-width:600px){.header{flex-direction:column;gap:10px}.container{padding:20px;margin:20px}}
   </style>
 </head>
 <body>
@@ -135,127 +48,110 @@
     <div class="results" id="results"></div>
   </div>
 
-  <script>
-    const labels = [
-      "Desire for many children",
-      "Violent tendencies (killings)",
-      "Number of marriages/partners",
-      "Popularity (incoming connections)",
-      "Influence (outgoing connections)",
-      "Sibling relationships"
-    ];
+<script>
+/* ---------- UI Sliders ---------- */
+const labels = [
+  "Desire for many children",
+  "Violent tendencies (killings)",
+  "Number of marriages/partners",
+  "Popularity (incoming connections)",
+  "Influence (outgoing connections)",
+  "Sibling relationships"
+];
 
-    const sliderDiv = document.getElementById("sliders");
-    labels.forEach((label, i) => {
-      const group = document.createElement("div");
-      group.className = "slider-group";
-      group.innerHTML = `
-        <label for="slider${i}">${label}</label>
-        <input type="range" id="slider${i}" min="0" max="10" value="5">
-      `;
-      sliderDiv.appendChild(group);
+const sliderDiv = document.getElementById("sliders");
+labels.forEach((label, i) => {
+  const group = document.createElement("div");
+  group.className = "slider-group";
+  group.innerHTML = `
+    <label for="slider${i}">${label}</label>
+    <input type="range" id="slider${i}" min="0" max="10" value="5">
+  `;
+  sliderDiv.appendChild(group);
+});
+
+/* ---------- Neo4j Connection ---------- */
+const driver = neo4j.driver(
+  "neo4j+s://7811c857.databases.neo4j.io",
+  neo4j.auth.basic("neo4j","xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
+);
+
+/* ---------- Fetch Data ---------- */
+async function fetchGraphData(){
+  const session = driver.session();
+  const nodes=new Map(), links=[];
+  try{
+    const res = await session.run(`
+      MATCH (n)-[r:RELATED]->(m)
+      RETURN n,r,m
+    `);
+    res.records.forEach(rec=>{
+      const n=rec.get("n").properties;
+      const m=rec.get("m").properties;
+      const rType=rec.get("r").properties.type?.toLowerCase();   // normalize
+      if(n && !nodes.has(n.id)) nodes.set(n.id,{id:n.id,label:n.label,type:n.type});
+      if(m && !nodes.has(m.id)) nodes.set(m.id,{id:m.id,label:m.label,type:m.type});
+      links.push({source:n.id,target:m.id,type:rType});
     });
+    return {nodes:[...nodes.values()],links};
+  }finally{await session.close();}
+}
 
-    const driver = neo4j.driver(
-      "neo4j+s://7811c857.databases.neo4j.io",
-      neo4j.auth.basic("neo4j", "xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
-    );
+/* ---------- Analysis ---------- */
+async function analyze(){
+  const weights = labels.map((_,i)=>+document.getElementById(`slider${i}`).value);
+  const filter = document.getElementById("typeSelect").value;
+  const data  = await fetchGraphData();
 
-    async function fetchGraphData() {
-      const session = driver.session();
-      const nodes = new Map();
-      const links = [];
+  /* Build quick adjacency maps */
+  const inEdges={}, outEdges={};
+  data.links.forEach(l=>{
+    inEdges[l.target]=(inEdges[l.target]||[]).push(l);
+    outEdges[l.source]=(outEdges[l.source]||[]).push(l);
+  });
 
-      try {
-        const result = await session.run(`
-          MATCH (n)
-          OPTIONAL MATCH (n)-[r]->(m)
-          RETURN n, r, m
-        `);
+  const scores={}, explanations={};
+  data.nodes.forEach(node=>{
+    if(filter!=="Any" && node.type!==filter) return;
 
-        result.records.forEach(record => {
-          const n = record.get("n").properties;
-          const m = record.get("m")?.properties;
-          const r = record.get("r")?.type;
+    const out = outEdges[node.id]||[];
+    const inc = inEdges[node.id]||[];
 
-          if (n && !nodes.has(n.id)) {
-            nodes.set(n.id, { id: n.id, label: n.label, type: n.type });
-          }
+    /* Feature definitions */
+    const children = out.filter(e=>["father","mother"].includes(e.type)).length;  // parent edges
+    const kills    = inc.filter(e=>e.type==="killed by").length;                  // was killer
+    const spouses  = out.filter(e=>e.type==="spouse").length;
+    const siblings = out.filter(e=>e.type==="sibling").length;
 
-          if (m && r) {
-            if (!nodes.has(m.id)) {
-              nodes.set(m.id, { id: m.id, label: m.label, type: m.type });
-            }
-            links.push({ source: n.id, target: m.id, type: r });
-          }
-        });
+    const features=[children,kills,spouses,inc.length,out.length,siblings];
+    const score    = features.reduce((sum,f,i)=>sum+f*weights[i],0);
 
-        return { nodes: [...nodes.values()], links };
-      } finally {
-        await session.close();
-      }
-    }
+    scores[node.id]=score;
+    explanations[node.id]=`Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, `
+      +`Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Score: ${score}`;
+  });
 
-    async function analyze() {
-      const weights = labels.map((_, i) => parseInt(document.getElementById(`slider${i}`).value));
-      const filter = document.getElementById("typeSelect").value;
-      const data = await fetchGraphData();
+  /* Render */
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const resDiv = document.getElementById("results");
+  resDiv.innerHTML='<h2>Top 5 Matches</h2>';
+  sorted.forEach(([id,score],i)=>{
+    resDiv.innerHTML += `
+      <div class="result">
+        <strong>${i+1}. ${id} — Score: ${score}</strong><br>
+        ${explanations[id]}
+      </div>`;
+  });
+}
 
-      const inEdges = {}, outEdges = {};
-      data.links.forEach(link => {
-        inEdges[link.target] = inEdges[link.target] || [];
-        outEdges[link.source] = outEdges[link.source] || [];
-        inEdges[link.target].push(link);
-        outEdges[link.source].push(link);
-      });
-
-      const scores = {}, explanations = {};
-
-      data.nodes.forEach(node => {
-        if (filter !== "Any" && node.type !== filter) return;
-
-        const out = outEdges[node.id] || [];
-        const inc = inEdges[node.id] || [];
-
-        const children = inc.filter(e => e.type === "father" || e.type === "mother").length;
-        const siblings = out.filter(e => e.type === "sibling").length;
-        const kills = out.filter(e => e.type === "killed").length;
-        const spouses = out.filter(e => e.type === "spouse").length;
-
-        const features = [children, kills, spouses, inc.length, out.length, siblings];
-        const score = features.reduce((sum, f, i) => sum + f * weights[i], 0);
-
-        scores[node.id] = score;
-        explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, `
-                              + `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} => Score: ${score}`;
-      });
-
-      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "<h2>Top 5 Matches</h2>";
-
-      sorted.slice(0, 5).forEach(([id, score], i) => {
-        resultsDiv.innerHTML += `
-          <div class="result">
-            <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
-            ${explanations[id]}
-          </div>
-        `;
-      });
-    }
-
-    // Fill dropdown on load
-    fetchGraphData().then(data => {
-      const types = [...new Set(data.nodes.map(n => n.type))].sort();
-      const select = document.getElementById("typeSelect");
-      types.forEach(type => {
-        const opt = document.createElement("option");
-        opt.value = type;
-        opt.textContent = type;
-        select.appendChild(opt);
-      });
-    });
-  </script>
+/* ---------- Fill Type Dropdown on load ---------- */
+fetchGraphData().then(data=>{
+  const types=[...new Set(data.nodes.map(n=>n.type))].sort();
+  const sel=document.getElementById("typeSelect");
+  types.forEach(t=>{
+    const opt=document.createElement("option");opt.value=t;opt.textContent=t;sel.appendChild(opt);
+  });
+});
+</script>
 </body>
 </html>
