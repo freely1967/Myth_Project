@@ -98,12 +98,19 @@ async function fetchGraphData(){
 }
 
 /* ---------- Analysis ---------- */
-async function analyze(){
-  const weights = labels.map((_,i)=>+document.getElementById(`slider${i}`).value);
-  const filter = document.getElementById("typeSelect").value;
-  const data  = await fetchGraphData();
+function cosineSimilarity(a, b) {
+  const dot = a.reduce((sum, v, i) => sum + v * b[i], 0);
+  const magA = Math.sqrt(a.reduce((sum, v) => sum + v * v, 0));
+  const magB = Math.sqrt(b.reduce((sum, v) => sum + v * v, 0));
+  if (magA === 0 || magB === 0) return 0;
+  return dot / (magA * magB);
+}
 
-  /* Build quick adjacency maps */
+async function analyze() {
+  const userVec = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
+  const filter = document.getElementById("typeSelect").value;
+  const data = await fetchGraphData();
+
   const inEdges = {}, outEdges = {};
   data.links.forEach(l => {
     (inEdges[l.target] = inEdges[l.target] || []).push(l);
@@ -112,33 +119,32 @@ async function analyze(){
 
   const scores = {}, explanations = {};
   data.nodes.forEach(node => {
-    if(filter !== "Any" && node.type !== filter) return;
+    if (filter !== "Any" && node.type !== filter) return;
 
     const out = outEdges[node.id] || [];
     const inc = inEdges[node.id] || [];
 
-    /* Feature definitions */
-    const children = out.filter(e => ["father","mother"].includes(e.type)).length;  // parent edges
-    const kills    = inc.filter(e => e.type === "killed by").length;                // was killer
+    const children = out.filter(e => ["father","mother"].includes(e.type)).length;
+    const kills    = inc.filter(e => e.type === "killed by").length;
     const spouses  = out.filter(e => e.type === "spouse").length;
     const siblings = out.filter(e => e.type === "sibling").length;
 
-    const features = [children, kills, spouses, inc.length, out.length, siblings];
-    const score    = features.reduce((sum, f, i) => sum + f * weights[i], 0);
+    const charVec = [children, kills, spouses, inc.length, out.length, siblings];
 
-    scores[node.id] = score;
+    const similarity = cosineSimilarity(userVec, charVec);
+
+    scores[node.id] = similarity;
     explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
-      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Score: ${score}`;
+      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Similarity: ${similarity.toFixed(3)}`;
   });
 
-  /* Render */
   const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]).slice(0,5);
   const resDiv = document.getElementById("results");
-  resDiv.innerHTML = '<h2>Top 5 Matches</h2>';
-  sorted.forEach(([id,score], i) => {
+  resDiv.innerHTML = '<h2>Top 5 Matches (Cosine Similarity)</h2>';
+  sorted.forEach(([id, score], i) => {
     resDiv.innerHTML += `
       <div class="result">
-        <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
+        <strong>${i + 1}. ${id} — Similarity: ${score.toFixed(3)}</strong><br>
         ${explanations[id]}
       </div>`;
   });
