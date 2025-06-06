@@ -1,279 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>🔗 Shortest Path Finder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
-      color: #1565c0;
-    }
+    <meta charset="UTF-8" />
+    <title>🔗 Shortest Path Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            color: #1565c0;
+        }
 
-    .header {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        .header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .header h1 {
-      margin: 0;
-      font-size: 1.8em;
-    }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
 
-    .back-link {
-      text-decoration: none;
-      background: #ffd54f;
-      color: #1565c0;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 14px;
-    }
+        .back-link {
+            text-decoration: none;
+            background: #ffd54f;
+            color: #1565c0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 8px;
-    }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
 
-    button {
-      background: #4ecdc4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
+        button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background: #3db8ae;
-    }
+        button:hover {
+            background: #3db8ae;
+        }
 
-    .results {
-      margin-top: 30px;
-    }
+        .results {
+            margin-top: 30px;
+        }
 
-    .step {
-      background: #e3f2fd;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
+        .step {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
 
-    #viz {
-      width: 100%;
-      height: 400px;
-      margin-top: 30px;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    }
-  </style>
+        #viz {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .relationship-label {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 10px;
+            fill: #666;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="header">
-    <h1>🔗 Find Shortest Path</h1>
-    <a href="index.html" class="back-link">🏛️ Back to Overview</a>
-  </div>
+    <div class="header">
+        <h1>🔗 Find Shortest Path</h1>
+        <a href="index.html" class="back-link">🏛️ Back to Overview</a>
+    </div>
 
-  <div class="container">
-    <label for="start">Start Character Name:</label>
-    <input type="text" id="start" placeholder="e.g., Uranus" />
+    <div class="container">
+        <label for="start">Start Character Name:</label>
+        <input type="text" id="start" placeholder="e.g., Uranus" />
 
-    <label for="end">End Character Name:</label>
-    <input type="text" id="end" placeholder="e.g., Zephyrus" />
+        <label for="end">End Character Name:</label>
+        <input type="text" id="end" placeholder="e.g., Zephyrus" />
 
-    <button onclick="findPath()">Find Shortest Path</button>
+        <button onclick="findPath()">Find Shortest Path</button>
 
-    <div class="results" id="results"></div>
-    <svg id="viz"></svg>
-  </div>
+        <div class="results" id="results"></div>
+        <svg id="viz"></svg>
+    </div>
 
-  <script>
-    const driver = neo4j.driver(
-      "neo4j+s://7811c857.databases.neo4j.io",
-      neo4j.auth.basic("neo4j", "xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
-    );
+    <script>
+        const driver = neo4j.driver(
+            "neo4j+s://7811c857.databases.neo4j.io",
+            neo4j.auth.basic("neo4j", "xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
+        );
 
-    async function findPath() {
-      const start = document.getElementById("start").value.trim();
-      const end = document.getElementById("end").value.trim();
-      const resultsDiv = document.getElementById("results");
-      const svg = d3.select("#viz");
-      svg.selectAll("*").remove(); // Clear previous viz
+        async function findPath() {
+            const start = document.getElementById("start").value.trim();
+            const end = document.getElementById("end").value.trim();
+            const resultsDiv = document.getElementById("results");
+            const svg = d3.select("#viz");
+            svg.selectAll("*").remove(); // clear old graph
 
-      resultsDiv.innerHTML = "";
+            resultsDiv.innerHTML = "";
 
-      if (!start || !end) {
-        resultsDiv.innerHTML = "<p style='color:red;'>Please enter both character names.</p>";
-        return;
-      }
+            if (!start || !end) {
+                resultsDiv.innerHTML = "<p style='color:red;'>Please enter both character names.</p>";
+                return;
+            }
 
-      const session = driver.session();
-      try {
-        const query = `
+            const session = driver.session();
+            try {
+                const query = `
           MATCH (start {label: $startLabel}), (end {label: $endLabel})
           MATCH p = shortestPath((start)-[*..20]-(end))
           RETURN p
         `;
-        const result = await session.run(query, {
-          startLabel: start,
-          endLabel: end
-        });
+                const result = await session.run(query, {
+                    startLabel: start,
+                    endLabel: end
+                });
 
-        if (result.records.length === 0) {
-          resultsDiv.innerHTML = "<p>No path found between the characters.</p>";
-          return;
-        }
+                if (result.records.length === 0) {
+                    resultsDiv.innerHTML = "<p>No path found between the characters.</p>";
+                    return;
+                }
 
-        const path = result.records[0].get("p");
-        const segments = path.segments;
-        const nodes = new Map();
-        const links = [];
+                const path = result.records[0].get("p");
+                const segments = path.segments;
+                const nodes = new Map();
+                const links = [];
 
-        resultsDiv.innerHTML = "<h2>Shortest Path:</h2>";
+                resultsDiv.innerHTML = "<h2>Shortest Path:</h2>";
 
-        segments.forEach((seg, i) => {
-          const from = seg.start.properties;
-          const to = seg.end.properties;
-          const rel = seg.relationship.type;
+                segments.forEach((seg) => {
+                    const from = seg.start.properties;
+                    const to = seg.end.properties;
+                    const rel = seg.relationship.properties?.type || seg.relationship.type || "RELATED";
 
-          resultsDiv.innerHTML += `
+                    resultsDiv.innerHTML += `
             <div class="step">
               <strong>${from.label}</strong> —[<em>${rel}</em>]→ <strong>${to.label}</strong>
             </div>
           `;
 
-          nodes.set(from.id, { id: from.id, label: from.label });
-          nodes.set(to.id, { id: to.id, label: to.label });
-          links.push({ source: from.id, target: to.id, type: rel });
-        });
+                    nodes.set(from.id, { id: from.id, label: from.label });
+                    nodes.set(to.id, { id: to.id, label: to.label });
+                    links.push({ source: from.id, target: to.id, type: rel });
+                });
 
-        drawGraph(Array.from(nodes.values()), links);
-      } catch (err) {
-        console.error(err);
-        resultsDiv.innerHTML = "<p style='color:red;'>Query error. Try again.</p>";
-      } finally {
-        await session.close();
-      }
-    }
+                drawGraph(Array.from(nodes.values()), links);
+            } catch (err) {
+                console.error(err);
+                resultsDiv.innerHTML = "<p style='color:red;'>Query error. Try again.</p>";
+            } finally {
+                await session.close();
+            }
+        }
 
-    function drawGraph(nodes, links) {
-      const svg = d3.select("#viz");
-      const width = svg.node().clientWidth;
-      const height = svg.node().clientHeight;
+        function drawGraph(nodes, links) {
+            const svg = d3.select("#viz");
+            const width = svg.node().clientWidth;
+            const height = svg.node().clientHeight;
 
-      const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.id).distance(120))
-        .force("charge", d3.forceManyBody().strength(-400))
-        .force("center", d3.forceCenter(width / 2, height / 2));
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+                .force("charge", d3.forceManyBody().strength(-400))
+                .force("center", d3.forceCenter(width / 2, height / 2));
 
-      const link = svg.append("g")
-        .selectAll("line")
-        .data(links)
-        .join("line")
-        .attr("stroke", "#999")
-        .attr("stroke-width", 2)
-        .attr("marker-end", "url(#arrow)");
+            svg.append("defs").append("marker")
+                .attr("id", "arrow")
+                .attr("viewBox", "0 -5 10 10")
+                .attr("refX", 15)
+                .attr("refY", 0)
+                .attr("markerWidth", 6)
+                .attr("markerHeight", 6)
+                .attr("orient", "auto")
+                .append("path")
+                .attr("d", "M0,-5L10,0L0,5")
+                .attr("fill", "#999");
 
-      const node = svg.append("g")
-        .selectAll("circle")
-        .data(nodes)
-        .join("circle")
-        .attr("r", 12)
-        .attr("fill", "#4ecdc4")
-        .call(drag(simulation));
+            const link = svg.append("g")
+                .selectAll("line")
+                .data(links)
+                .join("line")
+                .attr("stroke", "#999")
+                .attr("stroke-width", 2)
+                .attr("marker-end", "url(#arrow)");
 
-      const labels = svg.append("g")
-        .selectAll("text")
-        .data(nodes)
-        .join("text")
-        .text(d => d.label)
-        .attr("font-size", "12px")
-        .attr("text-anchor", "middle")
-        .attr("dy", -20)
-        .attr("fill", "#1565c0");
+            const linkLabels = svg.append("g")
+                .selectAll("text")
+                .data(links)
+                .join("text")
+                .attr("class", "relationship-label")
+                .text(d => d.type);
 
-      svg.append("defs").append("marker")
-        .attr("id", "arrow")
-        .attr("viewBox", "0 -5 10 10")
-        .attr("refX", 15)
-        .attr("refY", 0)
-        .attr("markerWidth", 6)
-        .attr("markerHeight", 6)
-        .attr("orient", "auto")
-        .append("path")
-        .attr("d", "M0,-5L10,0L0,5")
-        .attr("fill", "#999");
+            const node = svg.append("g")
+                .selectAll("circle")
+                .data(nodes)
+                .join("circle")
+                .attr("r", 12)
+                .attr("fill", "#4ecdc4")
+                .call(drag(simulation));
 
-      simulation.on("tick", () => {
-        link
-          .attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
+            const labels = svg.append("g")
+                .selectAll("text.name")
+                .data(nodes)
+                .join("text")
+                .attr("class", "name-label")
+                .text(d => d.label)
+                .attr("font-size", "12px")
+                .attr("text-anchor", "middle")
+                .attr("dy", -20)
+                .attr("fill", "#1565c0");
 
-        node
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y);
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
 
-        labels
-          .attr("x", d => d.x)
-          .attr("y", d => d.y - 15);
-      });
-    }
+                linkLabels
+                    .attr("x", d => (d.source.x + d.target.x) / 2)
+                    .attr("y", d => (d.source.y + d.target.y) / 2);
 
-    function drag(simulation) {
-      return d3.drag()
-        .on("start", event => {
-          if (!event.active) simulation.alphaTarget(0.3).restart();
-          event.subject.fx = event.subject.x;
-          event.subject.fy = event.subject.y;
-        })
-        .on("drag", event => {
-          event.subject.fx = event.x;
-          event.subject.fy = event.y;
-        })
-        .on("end", event => {
-          if (!event.active) simulation.alphaTarget(0);
-          event.subject.fx = null;
-          event.subject.fy = null;
-        });
-    }
-  </script>
+                node
+                    .attr("cx", d => d.x)
+                    .attr("cy", d => d.y);
+
+                labels
+                    .attr("x", d => d.x)
+                    .attr("y", d => d.y - 15);
+            });
+        }
+
+        function drag(simulation) {
+            return d3.drag()
+                .on("start", event => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    event.subject.fx = event.subject.x;
+                    event.subject.fy = event.subject.y;
+                })
+                .on("drag", event => {
+                    event.subject.fx = event.x;
+                    event.subject.fy = event.y;
+                })
+                .on("end", event => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    event.subject.fx = null;
+                    event.subject.fy = null;
+                });
+        }
+    </script>
 </body>
+
 </html>
-s
