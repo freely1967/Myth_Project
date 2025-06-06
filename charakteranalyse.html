@@ -136,7 +136,8 @@ async function analyze() {
   });
 
   // Bei Distanz: kleiner ist besser => sortiere aufsteigend
-  const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]).slice(0,5);
+const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
+
   const resDiv = document.getElementById("results");
   resDiv.innerHTML = '<h2>Top 5 Matches (Euclidean Distance)</h2>';
   sorted.forEach(([id, dist], i) => {
