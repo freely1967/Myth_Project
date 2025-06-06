@@ -123,6 +123,7 @@
 </div>
 
 <div class="container">
+  <h1>What Are You Looking for in a Mythological Character?</h1>
   <div id="sliders"></div>
 
   <label for="typeSelect">Character type (optional):</label>
@@ -137,8 +138,8 @@
 
 <script>
 const sliderConfigs = [
-  { label: "Desire for many children", min: 0, max: 141 },
-  { label: "Violent tendencies (killings)", min: 0, max: 2 },
+  { label: "Amount of children", min: 0, max: 141 },
+  { label: "Violent tendencies (How many Kills)", min: 0, max: 2 },
   { label: "Number of marriages/partners", min: 0, max: 3 },
   { label: "Popularity (incoming connections)", min: 0, max: 149 },
   { label: "Influence (outgoing connections)", min: 0, max: 17 },
@@ -225,7 +226,7 @@ async function analyze() {
 
   const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
   const resDiv = document.getElementById("results");
-  resDiv.innerHTML = `<h2>All Matches (Sorted by Euclidean Distance)</h2><p>Your vector: [${userVec.join(', ')}]</p>`;
+  resDiv.innerHTML = `<h2>All Matches (Sorted by Euclidean Distance)</h2><!--<p>Your vector: [${userVec.join(', ')}]</p>-->`;
   sorted.forEach(([id, dist], i) => {
     resDiv.innerHTML += `
       <div class="result">
