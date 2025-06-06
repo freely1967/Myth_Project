@@ -176,17 +176,17 @@
         result.records.forEach(record => {
           const n = record.get("n").properties;
           const m = record.get("m")?.properties;
-          const r = record.get("r")?.type;
+          const rType = record.get("r")?.properties?.type; // ✅ FIXED: use property "type"
 
           if (n && !nodes.has(n.id)) {
             nodes.set(n.id, { id: n.id, label: n.label, type: n.type });
           }
 
-          if (m && r) {
+          if (m && rType) {
             if (!nodes.has(m.id)) {
               nodes.set(m.id, { id: m.id, label: m.label, type: m.type });
             }
-            links.push({ source: n.id, target: m.id, type: r });
+            links.push({ source: n.id, target: m.id, type: rType });
           }
         });
 
@@ -245,7 +245,6 @@
       });
     }
 
-    // Fill dropdown on load
     fetchGraphData().then(data => {
       const types = [...new Set(data.nodes.map(n => n.type))].sort();
       const select = document.getElementById("typeSelect");
