@@ -98,11 +98,6 @@ async function fetchGraphData(){
 }
 
 /* ---------- Analysis ---------- */
-function euclideanDistance(a, b) {
-  const sumSq = a.reduce((sum, v, i) => sum + (v - b[i]) ** 2, 0);
-  return Math.sqrt(sumSq);
-}
-
 async function analyze() {
   const userVec = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
   const filter = document.getElementById("typeSelect").value;
@@ -135,11 +130,20 @@ async function analyze() {
       `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Distance: ${dist.toFixed(3)}`;
   });
 
-  // Bei Distanz: kleiner ist besser => sortiere aufsteigend
-const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
+  const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
 
   const resDiv = document.getElementById("results");
-  resDiv.innerHTML = '<h2>Top 5 Matches (Euclidean Distance)</h2>';
+
+  const userInfo = `
+    <h3>🔧 Your Input Vector</h3>
+    <p>
+      <strong>Vector:</strong> [${userVec.join(", ")}]<br>
+      <strong>Meaning:</strong><br>
+      [Children Desire, Killings, Marriages, Incoming Links, Outgoing Links, Siblings]
+    </p>
+  `;
+
+  resDiv.innerHTML = userInfo + `<h2>All Matches (${sorted.length}) (Euclidean Distance)</h2>`;
   sorted.forEach(([id, dist], i) => {
     resDiv.innerHTML += `
       <div class="result">
@@ -148,7 +152,6 @@ const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
       </div>`;
   });
 }
-
 
 /* ---------- Fill Type Dropdown on load ---------- */
 fetchGraphData().then(data=>{
