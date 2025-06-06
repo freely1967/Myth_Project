@@ -104,7 +104,9 @@ function euclideanDistance(a, b) {
 }
 
 async function analyze() {
-  const userVec = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
+  const weights = [14, 1.5, 1, 1, 1, 14];  // example: weights for each slider
+const userVec = labels.map((_, i) => +document.getElementById(`slider${i}`).value * weights[i]);
+
   const filter = document.getElementById("typeSelect").value;
   const data = await fetchGraphData();
 
