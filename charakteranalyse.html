@@ -98,58 +98,44 @@ async function fetchGraphData(){
 }
 
 /* ---------- Analysis ---------- */
-async function analyze() {
-  const weights = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
+async function analyze(){
+  const weights = labels.map((_,i)=>+document.getElementById(`slider${i}`).value);
   const filter = document.getElementById("typeSelect").value;
-  const data = await fetchGraphData();
+  const data  = await fetchGraphData();
 
-  const inEdges = {};
-  const outEdges = {};
-
-  // Robustere Zuordnung der Kanten
+  /* Build quick adjacency maps */
+  const inEdges = {}, outEdges = {};
   data.links.forEach(l => {
-    // Eingehende Kanten (Target)
-    if (!Array.isArray(inEdges[l.target])) inEdges[l.target] = [];
-    inEdges[l.target].push(l);
-
-    // Ausgehende Kanten (Source)
-    if (!Array.isArray(outEdges[l.source])) outEdges[l.source] = [];
-    outEdges[l.source].push(l);
+    (inEdges[l.target] = inEdges[l.target] || []).push(l);
+    (outEdges[l.source] = outEdges[l.source] || []).push(l);
   });
 
-  const scores = {};
-  const explanations = {};
-
+  const scores = {}, explanations = {};
   data.nodes.forEach(node => {
-    if (filter !== "Any" && node.type !== filter) return;
+    if(filter !== "Any" && node.type !== filter) return;
 
     const out = outEdges[node.id] || [];
     const inc = inEdges[node.id] || [];
 
-    // Feature-Extraktion
-    const children = out.filter(e => ["father", "mother"].includes(e.type)).length;
-    const kills = inc.filter(e => e.type === "killed by").length;
-    const spouses = out.filter(e => e.type === "spouse").length;
+    /* Feature definitions */
+    const children = out.filter(e => ["father","mother"].includes(e.type)).length;  // parent edges
+    const kills    = inc.filter(e => e.type === "killed by").length;                // was killer
+    const spouses  = out.filter(e => e.type === "spouse").length;
     const siblings = out.filter(e => e.type === "sibling").length;
 
     const features = [children, kills, spouses, inc.length, out.length, siblings];
-    const score = features.reduce((sum, f, i) => sum + f * weights[i], 0);
+    const score    = features.reduce((sum, f, i) => sum + f * weights[i], 0);
 
     scores[node.id] = score;
-    explanations[node.id] =
-      `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
+    explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
       `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Score: ${score}`;
   });
 
-  // Ausgabe der Top 5 Ergebnisse
-  const sorted = Object.entries(scores)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-
+  /* Render */
+  const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]).slice(0,5);
   const resDiv = document.getElementById("results");
   resDiv.innerHTML = '<h2>Top 5 Matches</h2>';
-
-  sorted.forEach(([id, score], i) => {
+  sorted.forEach(([id,score], i) => {
     resDiv.innerHTML += `
       <div class="result">
         <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
