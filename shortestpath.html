@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🔗 Shortest Path Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            color: #1565c0;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .back-link {
+            text-decoration: none;
+            background: #ffd54f;
+            color: #1565c0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3db8ae;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .step {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🔗 Find Shortest Path</h1>
+        <a href="index.html" class="back-link">🏛️ Back to Overview</a>
+    </div>
+
+    <div class="container">
+        <label for="start">Start Character Name:</label>
+        <input type="text" id="start" placeholder="e.g., Uranus">
+
+        <label for="end">End Character Name:</label>
+        <input type="text" id="end" placeholder="e.g., Zephyrus">
+
+        <button onclick="findPath()">Find Shortest Path</button>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        const driver = neo4j.driver(
+            "neo4j+s://7811c857.databases.neo4j.io",
+            neo4j.auth.basic("neo4j", "xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
+        );
+
+        async function findPath() {
+            const start = document.getElementById("start").value.trim();
+            const end = document.getElementById("end").value.trim();
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            if (!start || !end) {
+                resultsDiv.innerHTML = "<p style='color:red;'>Please enter both character names.</p>";
+                return;
+            }
+
+            const session = driver.session();
+
+            try {
+                const query = `
+          MATCH (start {label: $startLabel}), (end {label: $endLabel})
+          MATCH p = shortestPath((start)-[*..20]-(end))
+          RETURN p
+        `;
+
+                const result = await session.run(query, {
+                    startLabel: start,
+                    endLabel: end
+                });
+
+                if (result.records.length === 0) {
+                    resultsDiv.innerHTML = "<p>No path found between the characters.</p>";
+                } else {
+                    const path = result.records[0].get('p');
+                    const segments = path.segments;
+
+                    resultsDiv.innerHTML = "<h2>Shortest Path:</h2>";
+                    segments.forEach((segment, index) => {
+                        const from = segment.start.properties.label;
+                        const to = segment.end.properties.label;
+                        const rel = segment.relationship.type;
+                        resultsDiv.innerHTML += `
+              <div class="step">
+                <strong>${from}</strong> —[<em>${rel}</em>]→ <strong>${to}</strong>
+              </div>
+            `;
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                resultsDiv.innerHTML = "<p style='color:red;'>An error occurred while querying the database.</p>";
+            } finally {
+                await session.close();
+            }
+        }
+    </script>
+</body>
+
+</html>
