@@ -98,13 +98,6 @@ async function fetchGraphData(){
 }
 
 /* ---------- Analysis ---------- */
-function cosineSimilarity(vecA, vecB) {
-  const dot = vecA.reduce((sum, a, i) => sum + a * vecB[i], 0);
-  const magA = Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0));
-  const magB = Math.sqrt(vecB.reduce((sum, b) => sum + b * b, 0));
-  return magA && magB ? dot / (magA * magB) : 0;
-}
-
 async function analyze() {
   const weights = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
   const filter = document.getElementById("typeSelect").value;
@@ -113,10 +106,13 @@ async function analyze() {
   const inEdges = {};
   const outEdges = {};
 
+  // Robustere Zuordnung der Kanten
   data.links.forEach(l => {
+    // Eingehende Kanten (Target)
     if (!Array.isArray(inEdges[l.target])) inEdges[l.target] = [];
     inEdges[l.target].push(l);
 
+    // Ausgehende Kanten (Source)
     if (!Array.isArray(outEdges[l.source])) outEdges[l.source] = [];
     outEdges[l.source].push(l);
   });
@@ -130,23 +126,22 @@ async function analyze() {
     const out = outEdges[node.id] || [];
     const inc = inEdges[node.id] || [];
 
+    // Feature-Extraktion
     const children = out.filter(e => ["father", "mother"].includes(e.type)).length;
     const kills = inc.filter(e => e.type === "killed by").length;
     const spouses = out.filter(e => e.type === "spouse").length;
     const siblings = out.filter(e => e.type === "sibling").length;
 
     const features = [children, kills, spouses, inc.length, out.length, siblings];
+    const score = features.reduce((sum, f, i) => sum + f * weights[i], 0);
 
-    // Ähnlichkeit berechnen statt Score
-    const similarity = cosineSimilarity(weights, features);
-
-    scores[node.id] = similarity;
+    scores[node.id] = score;
     explanations[node.id] =
       `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
-      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Similarity: ${similarity.toFixed(3)}`;
+      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Score: ${score}`;
   });
 
-  // Top 5 mit höchster Ähnlichkeit (also höchster Kosinuswert)
+  // Ausgabe der Top 5 Ergebnisse
   const sorted = Object.entries(scores)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
@@ -154,15 +149,14 @@ async function analyze() {
   const resDiv = document.getElementById("results");
   resDiv.innerHTML = '<h2>Top 5 Matches</h2>';
 
-  sorted.forEach(([id, similarity], i) => {
+  sorted.forEach(([id, score], i) => {
     resDiv.innerHTML += `
       <div class="result">
-        <strong>${i + 1}. ${id} — Similarity: ${similarity.toFixed(3)}</strong><br>
+        <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
         ${explanations[id]}
       </div>`;
   });
 }
-
 
 
 /* ---------- Fill Type Dropdown on load ---------- */
