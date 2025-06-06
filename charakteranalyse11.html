@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Character Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/neo4j-driver@5.22.0/lib/browser/neo4j-web.min.js"></script>
+  <style>
+    body{margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 50%,#90caf9 100%);color:#1565c0}
+    .header{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,.1);padding:15px 20px;display:flex;
+      justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+    .header h1{margin:0;font-size:1.8em}
+    .back-link{text-decoration:none;background:#ffd54f;color:#1565c0;padding:8px 16px;
+      border-radius:20px;font-weight:bold;font-size:14px}
+    .back-link:hover{background:#ffca28}
+    .container{max-width:900px;margin:30px auto;background:rgba(255,255,255,.95);
+      border-radius:15px;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+    .slider-group{margin-bottom:20px}
+    label{display:block;margin-bottom:6px;font-weight:bold}
+    input[type=range]{width:100%}
+    select,button{padding:10px 15px;font-size:14px;border-radius:10px;border:1px solid #ddd;margin-top:10px}
+    button{background:#4ecdc4;color:#fff;font-weight:bold;cursor:pointer}
+    button:hover{background:#3db8ae}
+    .results{margin-top:30px}
+    .result{background:#e3f2fd;padding:15px;border-radius:10px;margin-bottom:15px}
+    .result strong{font-size:1.1em}
+    @media(max-width:600px){.header{flex-direction:column;gap:10px}.container{padding:20px;margin:20px}}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔍 Character Analysis</h1>
+    <a href="https://freely1967.github.io/Myth_Project/" class="back-link">🏛️ Back to Overview</a>
+  </div>
+
+  <div class="container">
+    <div id="sliders"></div>
+
+    <label for="typeSelect">Character type (optional):</label>
+    <select id="typeSelect">
+      <option value="Any">All types</option>
+    </select>
+
+    <button onclick="analyze()">Find Best Match</button>
+
+    <div class="results" id="results"></div>
+  </div>
+
+<script>
+/* ---------- UI Sliders ---------- */
+const labels = [
+  "Desire for many children",
+  "Violent tendencies (killings)",
+  "Number of marriages/partners",
+  "Popularity (incoming connections)",
+  "Influence (outgoing connections)",
+  "Sibling relationships"
+];
+
+const sliderDiv = document.getElementById("sliders");
+labels.forEach((label, i) => {
+  const group = document.createElement("div");
+  group.className = "slider-group";
+  group.innerHTML = `
+    <label for="slider${i}">${label}</label>
+    <input type="range" id="slider${i}" min="0" max="10" value="5">
+  `;
+  sliderDiv.appendChild(group);
+});
+
+/* ---------- Neo4j Connection ---------- */
+const driver = neo4j.driver(
+  "neo4j+s://7811c857.databases.neo4j.io",
+  neo4j.auth.basic("neo4j","xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
+);
+
+/* ---------- Fetch Data ---------- */
+async function fetchGraphData(){
+  const session = driver.session();
+  const nodes=new Map(), links=[];
+  try{
+    const res = await session.run(`
+      MATCH (n)-[r:RELATED]->(m)
+      RETURN n,r,m
+    `);
+    res.records.forEach(rec=>{
+      const n=rec.get("n").properties;
+      const m=rec.get("m").properties;
+      const rType=rec.get("r").properties.type?.toLowerCase();   // normalize
+      if(n && !nodes.has(n.id)) nodes.set(n.id,{id:n.id,label:n.label,type:n.type});
+      if(m && !nodes.has(m.id)) nodes.set(m.id,{id:m.id,label:m.label,type:m.type});
+      links.push({source:n.id,target:m.id,type:rType});
+    });
+    return {nodes:[...nodes.values()],links};
+  }finally{await session.close();}
+}
+
+/* ---------- Analysis ---------- */
+async function analyze() {
+  const weights = labels.map((_, i) => +document.getElementById(`slider${i}`).value);
+  const filter = document.getElementById("typeSelect").value;
+  const data = await fetchGraphData();
+
+  const inEdges = {};
+  const outEdges = {};
+
+  // Robustere Zuordnung der Kanten
+  data.links.forEach(l => {
+    // Eingehende Kanten (Target)
+    if (!Array.isArray(inEdges[l.target])) inEdges[l.target] = [];
+    inEdges[l.target].push(l);
+
+    // Ausgehende Kanten (Source)
+    if (!Array.isArray(outEdges[l.source])) outEdges[l.source] = [];
+    outEdges[l.source].push(l);
+  });
+
+  const scores = {};
+  const explanations = {};
+
+  data.nodes.forEach(node => {
+    if (filter !== "Any" && node.type !== filter) return;
+
+    const out = outEdges[node.id] || [];
+    const inc = inEdges[node.id] || [];
+
+    // Feature-Extraktion
+    const children = inc.filter(e => ["father", "mother"].includes(e.type)).length;
+    const kills = inc.filter(e => e.type === "killed by").length;
+    const spouses = out.filter(e => e.type === "spouse").length;
+    const siblings = out.filter(e => e.type === "sibling").length;
+
+    const features = [children, kills, spouses, inc.length, out.length, siblings];
+    const score = features.reduce((sum, f, i) => sum + f * weights[i], 0);
+
+    scores[node.id] = score;
+    explanations[node.id] =
+      `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
+      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Score: ${score}`;
+  });
+
+  // Ausgabe der Top 5 Ergebnisse
+  const sorted = Object.entries(scores)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+
+  const resDiv = document.getElementById("results");
+  resDiv.innerHTML = '<h2>Top 5 Matches</h2>';
+
+  sorted.forEach(([id, score], i) => {
+    resDiv.innerHTML += `
+      <div class="result">
+        <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
+        ${explanations[id]}
+      </div>`;
+  });
+}
+
+
+/* ---------- Fill Type Dropdown on load ---------- */
+fetchGraphData().then(data=>{
+  const types=[...new Set(data.nodes.map(n=>n.type))].sort();
+  const sel=document.getElementById("typeSelect");
+  types.forEach(t=>{
+    const opt=document.createElement("option");opt.value=t;opt.textContent=t;sel.appendChild(opt);
+  });
+});
+</script>
+</body>
+</html>
