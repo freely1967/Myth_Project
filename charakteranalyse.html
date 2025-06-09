@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Character Analysis</title>
@@ -69,7 +70,8 @@
       width: 100%;
     }
 
-    select, button {
+    select,
+    button {
       padding: 10px 15px;
       font-size: 14px;
       border-radius: 10px;
@@ -116,41 +118,42 @@
     }
   </style>
 </head>
+
 <body>
-<div class="header">
-  <h1>🔍 Character Analysis</h1>
-  <a href="https://freely1967.github.io/Myth_Project/" class="back-link">🏛️ Back to Overview</a>
-</div>
+  <div class="header">
+    <h1>🔍 Character Analysis</h1>
+    <a href="https://freely1967.github.io/Myth_Project/" class="back-link">🏛️ Back to Overview</a>
+  </div>
 
-<div class="container">
-  <h1>What Are You Looking for in a Mythological Character?</h1>
-  <div id="sliders"></div>
+  <div class="container">
+    <h1>What Are You Looking for in a Mythological Character?</h1>
+    <div id="sliders"></div>
 
-  <label for="typeSelect">Character type (optional):</label>
-  <select id="typeSelect">
-    <option value="Any">All types</option>
-  </select>
+    <label for="typeSelect">Character type (optional):</label>
+    <select id="typeSelect">
+      <option value="Any">All types</option>
+    </select>
 
-  <button onclick="analyze()">Find Best Match</button>
+    <button onclick="analyze()">Find Best Match</button>
 
-  <div class="results" id="results"></div>
-</div>
+    <div class="results" id="results"></div>
+  </div>
 
-<script>
-const sliderConfigs = [
-  { label: "Amount of children", min: 0, max: 141 },
-  { label: "Violent tendencies (How many Kills)", min: 0, max: 2 },
-  { label: "Number of marriages/partners", min: 0, max: 3 },
-  { label: "Popularity (incoming connections)", min: 0, max: 149 },
-  { label: "Influence (outgoing connections)", min: 0, max: 17 },
-  { label: "Sibling relationships", min: 0, max: 7 }
-];
+  <script>
+    const sliderConfigs = [
+      { label: "Amount of children", min: 0, max: 141 },
+      { label: "Violent tendencies (How many Kills)", min: 0, max: 2 },
+      { label: "Number of marriages/partners", min: 0, max: 3 },
+      { label: "Popularity (incoming connections)", min: 0, max: 149 },
+      { label: "Influence (outgoing connections)", min: 0, max: 17 },
+      { label: "Sibling relationships", min: 0, max: 7 }
+    ];
 
-const sliderDiv = document.getElementById("sliders");
-sliderConfigs.forEach((cfg, i) => {
-  const group = document.createElement("div");
-  group.className = "slider-group";
-  group.innerHTML = `
+    const sliderDiv = document.getElementById("sliders");
+    sliderConfigs.forEach((cfg, i) => {
+      const group = document.createElement("div");
+      group.className = "slider-group";
+      group.innerHTML = `
     <label for="slider${i}">${cfg.label}: 
       <span id="sliderVal${i}">${(cfg.min + cfg.max) / 2}</span>
     </label>
@@ -159,101 +162,107 @@ sliderConfigs.forEach((cfg, i) => {
            value="${(cfg.min + cfg.max) / 2}" 
            oninput="document.getElementById('sliderVal${i}').textContent = this.value">
   `;
-  sliderDiv.appendChild(group);
-});
+      sliderDiv.appendChild(group);
+    });
+    const driver = neo4j.driver(
+      "neo4j+s://10634e70.databases.neo4j.io",
+      neo4j.auth.basic("neo4j", "jTeHUI2t2iie3kZyLGVNJtmnQqdjHAP6Lcfo0FkzfuI")
+    );
 
-const driver = neo4j.driver(
-  "neo4j+s://7811c857.databases.neo4j.io",
-  neo4j.auth.basic("neo4j","xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
-);
-
-async function fetchGraphData(){
-  const session = driver.session();
-  const nodes=new Map(), links=[];
-  try{
-    const res = await session.run(`
+    /*
+    const driver = neo4j.driver(
+      "neo4j+s://7811c857.databases.neo4j.io",
+      neo4j.auth.basic("neo4j","xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
+    );
+    */
+    async function fetchGraphData() {
+      const session = driver.session();
+      const nodes = new Map(), links = [];
+      try {
+        const res = await session.run(`
       MATCH (n)-[r:RELATED]->(m)
       RETURN n,r,m
     `);
-    res.records.forEach(rec=>{
-      const n=rec.get("n").properties;
-      const m=rec.get("m").properties;
-      const rType=rec.get("r").properties.type?.toLowerCase();
-      if(n && !nodes.has(n.id)) nodes.set(n.id,{id:n.id,label:n.label,type:n.type});
-      if(m && !nodes.has(m.id)) nodes.set(m.id,{id:m.id,label:m.label,type:m.type});
-      links.push({source:n.id,target:m.id,type:rType});
-    });
-    return {nodes:[...nodes.values()],links};
-  }finally{await session.close();}
-}
+        res.records.forEach(rec => {
+          const n = rec.get("n").properties;
+          const m = rec.get("m").properties;
+          const rType = rec.get("r").properties.type?.toLowerCase();
+          if (n && !nodes.has(n.id)) nodes.set(n.id, { id: n.id, label: n.label, type: n.type });
+          if (m && !nodes.has(m.id)) nodes.set(m.id, { id: m.id, label: m.label, type: m.type });
+          links.push({ source: n.id, target: m.id, type: rType });
+        });
+        return { nodes: [...nodes.values()], links };
+      } finally { await session.close(); }
+    }
 
-function euclideanDistance(a, b) {
-  const sumSq = a.reduce((sum, v, i) => sum + (v - b[i]) ** 2, 0);
-  return Math.sqrt(sumSq);
-}
+    function euclideanDistance(a, b) {
+      const sumSq = a.reduce((sum, v, i) => sum + (v - b[i]) ** 2, 0);
+      return Math.sqrt(sumSq);
+    }
 
-async function analyze() {
-  const userVec = sliderConfigs.map((_, i) => +document.getElementById(`slider${i}`).value);
-  const filter = document.getElementById("typeSelect").value;
-  const data = await fetchGraphData();
+    async function analyze() {
+      const userVec = sliderConfigs.map((_, i) => +document.getElementById(`slider${i}`).value);
+      const filter = document.getElementById("typeSelect").value;
+      const data = await fetchGraphData();
 
-  const inEdges = {}, outEdges = {};
-  data.links.forEach(l => {
-    (inEdges[l.target] = inEdges[l.target] || []).push(l);
-    (outEdges[l.source] = outEdges[l.source] || []).push(l);
-  });
+      const inEdges = {}, outEdges = {};
+      data.links.forEach(l => {
+        (inEdges[l.target] = inEdges[l.target] || []).push(l);
+        (outEdges[l.source] = outEdges[l.source] || []).push(l);
+      });
 
-  const scores = {}, explanations = {};
-  data.nodes.forEach(node => {
-    if (filter !== "Any" && node.type !== filter) return;
+      const scores = {}, explanations = {};
+      data.nodes.forEach(node => {
+        if (filter !== "Any" && node.type !== filter) return;
 
-    const out = outEdges[node.id] || [];
-    const inc = inEdges[node.id] || [];
+        const out = outEdges[node.id] || [];
+        const inc = inEdges[node.id] || [];
 
-    const children = inc.filter(e => ["father","mother"].includes(e.type)).length;
-    const kills    = inc.filter(e => e.type === "killed by").length;
-    const spouses  = out.filter(e => e.type === "spouse").length;
-    const siblings = out.filter(e => e.type === "sibling").length;
+        const children = inc.filter(e => ["father", "mother"].includes(e.type)).length;
+        const kills = inc.filter(e => e.type === "killed by").length;
+        const spouses = out.filter(e => e.type === "spouse").length;
+        const siblings = out.filter(e => e.type === "sibling").length;
 
-    const charVec = [children, kills, spouses, inc.length, out.length, siblings];
+        const charVec = [children, kills, spouses, inc.length, out.length, siblings];
 
-    const dist = euclideanDistance(userVec, charVec);
+        const dist = euclideanDistance(userVec, charVec);
 
-    scores[node.id] = dist;
-    explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
-      `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Distance: ${dist.toFixed(3)}`;
-  });
-
-
-
-//all entries
- // const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
+        scores[node.id] = dist;
+        explanations[node.id] = `Type: ${node.type} | Children: ${children}, Kills: ${kills}, Spouses: ${spouses}, ` +
+          `Incoming: ${inc.length}, Outgoing: ${out.length}, Siblings: ${siblings} ⇒ Distance: ${dist.toFixed(3)}`;
+      });
 
 
-// top 10 entries
-    const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 10);
-  const resDiv = document.getElementById("results");
-    resDiv.innerHTML = '<h2>Top 10 Matches (Sorted by Euclidean Distance)</h2>';
-  //resDiv.innerHTML = `<h2>All Matches (Sorted by Euclidean Distance)</h2><!--<p>Your vector: [${userVec.join(', ')}]</p>-->`;
 
-  sorted.forEach(([id, score], i) => {
-    resDiv.innerHTML += `
+      //all entries
+      // const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
+
+
+      // top 10 entries
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      const resDiv = document.getElementById("results");
+      resDiv.innerHTML = '<h2>Top 10 Matches (Sorted by Euclidean Distance)</h2>';
+      //resDiv.innerHTML = `<h2>All Matches (Sorted by Euclidean Distance)</h2><!--<p>Your vector: [${userVec.join(', ')}]</p>-->`;
+
+      sorted.forEach(([id, score], i) => {
+        resDiv.innerHTML += `
       <div class="result">
         <strong>${i + 1}. ${id} — Score: ${score}</strong><br>
         ${explanations[id]}
       </div>`;
-  });
-}
+      });
+    }
 
-fetchGraphData().then(data=>{
-  const types=[...new Set(data.nodes.map(n=>n.type))].sort();
-  const sel=document.getElementById("typeSelect");
-  types.forEach(t=>{
-    const opt=document.createElement("option");
-    opt.value=t; opt.textContent=t;
-    sel.appendChild(opt);
-  });
-});
-</script>
+    fetchGraphData().then(data => {
+      const types = [...new Set(data.nodes.map(n => n.type))].sort();
+      const sel = document.getElementById("typeSelect");
+      types.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t; opt.textContent = t;
+        sel.appendChild(opt);
+      });
+    });
+  </script>
 </body>
+
 </html>
