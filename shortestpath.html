@@ -134,9 +134,16 @@
 
     <script>
         const driver = neo4j.driver(
+            "neo4j+s://fe556841.databases.neo4j.io",
+            neo4j.auth.basic("neo4j", "OVXIC3WQHeRP2dw7SwvZ5u0ZtpFs2-JDoac3A7KzfL4")
+        );
+
+        /*
+        const driver = neo4j.driver(
             "neo4j+s://7811c857.databases.neo4j.io",
             neo4j.auth.basic("neo4j", "xQQo8QrpsZXttPCRQzcHt3AgqaDtIGqo_0Mil8B-idI")
         );
+        */
 
         async function findPath() {
             const start = document.getElementById("start").value.trim();
