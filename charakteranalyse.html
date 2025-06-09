@@ -235,14 +235,14 @@
 
 
       //all entries
-      // const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
+       const sorted = Object.entries(scores).sort((a,b) => a[1] - b[1]);
 
 
       // top 10 entries
-      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      //const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 10);
       const resDiv = document.getElementById("results");
-      resDiv.innerHTML = '<h2>Top 10 Matches (Sorted by Euclidean Distance)</h2>';
-      //resDiv.innerHTML = `<h2>All Matches (Sorted by Euclidean Distance)</h2><!--<p>Your vector: [${userVec.join(', ')}]</p>-->`;
+      //resDiv.innerHTML = '<h2>Top 10 Matches (Sorted by Euclidean Distance)</h2>';
+      resDiv.innerHTML = `<h2>All Matches (Sorted by Euclidean Distance)</h2><!--<p>Your vector: [${userVec.join(', ')}]</p>-->`;
 
       sorted.forEach(([id, score], i) => {
         resDiv.innerHTML += `
